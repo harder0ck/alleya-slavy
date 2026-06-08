@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Мемориальный сайт в честь героев военных операций. Помним. Гордимся. Чтим.">
+<title>Аллея Славы | Герои Военных Операций</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Forum&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Marck+Script&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0c120e;
+  --bg-2:#101a13;
+  --panel:#142019;
+  --panel-2:#18271e;
+  --line:rgba(201,162,39,.18);
+  --gold:#c9a227;
+  --gold-l:#e9cf72;
+  --bronze:#9a7b3f;
+  --ink:#ede6d6;
+  --muted:#9aa89c;
+  --green:#46785a;
+  --green-l:#69a07e;
+  --orange:#d57b1e;
+  --shadow:0 24px 60px rgba(0,0,0,.55);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:78px}
+body{
+  font-family:"PT Serif",Georgia,serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.65;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+body::before{
+  content:"";position:fixed;inset:0;z-index:-2;
+  background:
+    radial-gradient(1200px 700px at 78% -8%, rgba(201,162,39,.10), transparent 60%),
+    radial-gradient(900px 600px at 5% 12%, rgba(70,120,90,.12), transparent 55%),
+    linear-gradient(180deg,#0c120e 0%, #0a0f0c 100%);
+}
+body::after{
+  content:"";position:fixed;inset:0;z-index:-1;opacity:.05;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+h1,h2,h3,.display{font-family:"Forum",serif;font-weight:400;letter-spacing:.02em}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+.eyebrow{
+  font-family:"Forum",serif;letter-spacing:.42em;text-transform:uppercase;
+  font-size:.72rem;color:var(--gold);margin-bottom:18px;
+}
+.section{padding:108px 0;position:relative}
+.section-head{text-align:center;max-width:720px;margin:0 auto 60px}
+.section-head h2{font-size:clamp(2.1rem,5vw,3.3rem);color:var(--ink);line-height:1.1}
+.section-head p{color:var(--muted);margin-top:16px;font-size:1.08rem}
+.gold{color:var(--gold)}
+.rule{width:64px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:22px auto}
+
+/* ===== NAV ===== */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 28px;backdrop-filter:blur(12px);
+  background:rgba(10,15,12,.72);border-bottom:1px solid var(--line);
+  transition:.3s;
+}
+.brand{display:flex;align-items:center;gap:12px;font-family:"Forum",serif;font-size:1.25rem;letter-spacing:.06em}
+.brand .flame{width:14px;height:14px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;
+  background:radial-gradient(circle at 50% 70%,#ffe6a0,var(--orange) 60%,transparent);
+  box-shadow:0 0 14px var(--orange);animation:flick 2.4s infinite alternate}
+@keyframes flick{from{transform:scale(1) rotate(-3deg);opacity:.85}to{transform:scale(1.12) rotate(3deg);opacity:1}}
+.nav-links{display:flex;gap:6px;flex-wrap:wrap}
+.nav-links a{font-family:"Forum",serif;font-size:.92rem;letter-spacing:.04em;color:var(--muted);
+  padding:7px 12px;border-radius:6px;transition:.2s}
+.nav-links a:hover{color:var(--gold);background:rgba(201,162,39,.08)}
+.burger{display:none;background:none;border:1px solid var(--line);color:var(--gold);
+  border-radius:8px;padding:8px 12px;cursor:pointer;font-size:1.2rem}
+
+/* ===== HERO ===== */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:120px 24px 60px;position:relative}
+.ribbon{display:inline-flex;gap:4px;margin-bottom:28px}
+.ribbon i{width:10px;height:34px;border-radius:2px}
+.ribbon i:nth-child(odd){background:#1c1c1c}
+.ribbon i:nth-child(even){background:var(--orange)}
+.hero h1{font-size:clamp(3rem,11vw,7rem);line-height:.95;color:var(--ink);
+  text-shadow:0 2px 40px rgba(201,162,39,.25)}
+.hero .sub{font-family:"Marck Script",cursive;color:var(--gold-l);font-size:clamp(1.5rem,4vw,2.4rem);margin-top:6px}
+.hero p.lead{max-width:620px;color:var(--muted);margin:26px auto 0;font-size:1.12rem}
+.stats{display:flex;gap:48px;justify-content:center;margin-top:54px;flex-wrap:wrap}
+.stat{text-align:center}
+.stat b{display:block;font-family:"Forum",serif;font-size:2.8rem;color:var(--gold);line-height:1}
+.stat span{color:var(--muted);letter-spacing:.18em;text-transform:uppercase;font-size:.72rem}
+.scroll-hint{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);
+  color:var(--muted);font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px}
+.scroll-hint::after{content:"";width:1px;height:36px;background:linear-gradient(var(--gold),transparent);animation:fall 1.8s infinite}
+@keyframes fall{0%{opacity:0;transform:scaleY(0);transform-origin:top}50%{opacity:1}100%{opacity:0;transform:scaleY(1);transform-origin:bottom}}
+.quote-band{text-align:center;padding:46px 24px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(201,162,39,.04),transparent)}
+.quote-band q{font-family:"Forum",serif;font-size:clamp(1.4rem,3.6vw,2.2rem);color:var(--gold-l);font-style:normal}
+.quote-band q::before,.quote-band q::after{content:"";}
+
+/* ===== DECLARATION ===== */
+.declaration{background:var(--bg-2)}
+.decl-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:54px;align-items:center}
+.decl-text p{margin-bottom:18px;font-size:1.08rem;color:#d8d2c2}
+.decl-text p.big{font-family:"Forum",serif;font-size:1.5rem;color:var(--ink);line-height:1.4}
+.pledge{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+.pledge span{font-family:"Forum",serif;letter-spacing:.16em;text-transform:uppercase;font-size:.82rem;
+  border:1px solid var(--line);color:var(--gold);padding:10px 18px;border-radius:30px}
+.decl-card{background:linear-gradient(160deg,var(--panel),var(--bg));border:1px solid var(--line);
+  border-radius:18px;padding:38px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.decl-card::before{content:"❝";position:absolute;top:-10px;left:18px;font-size:6rem;color:rgba(201,162,39,.14);font-family:Georgia}
+.decl-card h3{color:var(--gold);font-size:1.4rem;margin-bottom:14px}
+.decl-card ul{list-style:none;margin-top:8px}
+.decl-card li{padding:10px 0 10px 28px;position:relative;color:#cfc9ba;border-bottom:1px dashed rgba(201,162,39,.12)}
+.decl-card li:last-child{border:0}
+.decl-card li::before{content:"✦";position:absolute;left:0;color:var(--gold)}
+
+/* ===== TREES + SUBGROUPS ===== */
+.tabs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:42px}
+.tab{font-family:"Forum",serif;letter-spacing:.06em;font-size:1rem;cursor:pointer;
+  background:var(--panel);border:1px solid var(--line);color:var(--muted);
+  padding:11px 22px;border-radius:30px;transition:.25s}
+.tab .cnt{font-size:.72rem;opacity:.7;margin-left:6px}
+.tab:hover{color:var(--ink)}
+.tab.active{background:linear-gradient(180deg,var(--gold),var(--bronze));color:#1a140a;border-color:var(--gold);box-shadow:0 8px 24px rgba(201,162,39,.25)}
+.subgroup-title{font-family:"Forum",serif;color:var(--gold);text-align:center;font-size:1.05rem;
+  letter-spacing:.16em;text-transform:uppercase;margin-bottom:26px;opacity:0;transition:.4s}
+.tree-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:26px}
+.tree-card{background:linear-gradient(165deg,var(--panel),var(--bg-2));border:1px solid var(--line);
+  border-radius:16px;padding:30px 26px;text-align:center;cursor:pointer;position:relative;
+  transition:.35s;overflow:hidden}
+.tree-card::after{content:"";position:absolute;inset:0;background:radial-gradient(200px 120px at 50% 0,rgba(201,162,39,.12),transparent);opacity:0;transition:.35s}
+.tree-card:hover{transform:translateY(-6px);border-color:rgba(201,162,39,.45);box-shadow:var(--shadow)}
+.tree-card:hover::after{opacity:1}
+.tree-vis{height:124px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;position:relative}
+.ava-face{position:relative;width:108px;height:108px;transition:transform .4s cubic-bezier(.16,.84,.34,1)}
+.tree-card:hover .ava-face{transform:translateY(-3px) scale(1.04)}
+.ava-face>svg{width:100%;height:100%;display:block;filter:drop-shadow(0 12px 24px rgba(0,0,0,.45))}
+.ava-face .num-badge{position:absolute;right:0;bottom:2px;width:32px;height:32px;border-radius:50%;
+  background:linear-gradient(180deg,var(--gold-l),var(--bronze));color:#1a140a;
+  font-family:"Forum",serif;font-size:1.1rem;display:flex;align-items:center;justify-content:center;
+  border:3px solid var(--bg-2);box-shadow:0 4px 12px rgba(0,0,0,.45)}
+.tree-card h3{color:var(--ink);font-size:1.5rem;margin-top:4px}
+.tree-card .role{color:var(--gold);font-size:.86rem;letter-spacing:.1em;text-transform:uppercase;margin-top:4px}
+.tree-card .meta{color:var(--muted);font-size:.88rem;margin-top:14px;border-top:1px solid var(--line);padding-top:12px}
+.tree-card .meta b{color:#cfc9ba;font-weight:400}
+.tree-card .more{margin-top:16px;font-size:.82rem;color:var(--gold);letter-spacing:.08em}
+
+/* ===== MAP ===== */
+.map{background:var(--bg-2)}
+.map-wrap{display:grid;grid-template-columns:1.4fr 1fr;gap:36px;align-items:stretch}
+.map-stage{background:linear-gradient(160deg,#0e1712,#0a120d);border:1px solid var(--line);
+  border-radius:18px;padding:14px;box-shadow:var(--shadow);position:relative}
+.map-stage svg{width:100%;height:auto;display:block;border-radius:12px}
+.marker{cursor:pointer;transition:.2s}
+.marker .face{transition:transform .2s;transform-box:fill-box;transform-origin:center}
+.marker circle.ring{transition:.2s}
+.marker:hover .face{transform:scale(1.12)}
+.marker:hover circle.ring{stroke-opacity:1}
+.marker.sel circle.ring{stroke:#fff;stroke-width:3;stroke-opacity:1}
+.legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;padding:0 6px 6px;font-size:.82rem;color:var(--muted)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.map-info{background:linear-gradient(160deg,var(--panel),var(--bg));border:1px solid var(--line);
+  border-radius:18px;padding:30px;box-shadow:var(--shadow);display:flex;flex-direction:column}
+.map-info .badge{font-family:"Forum",serif;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-size:.74rem}
+.map-info h3{font-size:1.9rem;margin:6px 0 4px;color:var(--ink)}
+.map-info .row{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px dashed rgba(201,162,39,.14);font-size:.95rem}
+.map-info .row span{color:var(--muted)}
+.map-info .row b{color:#d8d2c2;font-weight:400;text-align:right}
+.map-info .coord{font-family:"PT Serif";color:var(--gold-l)}
+.map-info .hint{margin-top:auto;padding-top:18px;color:var(--muted);font-size:.85rem;font-style:italic}
+
+/* ===== CARE ===== */
+.care-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px}
+.care-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:28px;transition:.3s}
+.care-card:hover{transform:translateY(-4px);border-color:rgba(201,162,39,.4)}
+.care-card .ic{font-size:1.8rem;margin-bottom:10px}
+/* elegant line-icons replacing emoji */
+.ic svg,.medal svg,.ava svg,.where svg,.modal-avatar-tag svg,.meta svg,.hint svg{width:1em;height:1em;display:inline-block;vertical-align:-.12em;fill:none;stroke:var(--gold-l);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.meta svg{stroke:var(--green-l)}
+.care-card .ic svg,.spec-m .ic svg,.flow .step .ic svg{filter:drop-shadow(0 0 9px rgba(201,162,39,.28))}
+.ava svg{stroke:#0c120e;stroke-width:1.7}
+.medal svg{stroke:var(--gold-l);stroke-width:1.4}
+.care-card h3{color:var(--gold);font-size:1.25rem;margin-bottom:10px}
+.care-card p{color:#cbc6b8;font-size:.96rem}
+.season{margin-top:46px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.season .s{background:var(--bg-2);border:1px solid var(--line);border-radius:12px;padding:20px;text-align:center}
+.season .s h4{font-family:"Forum",serif;color:var(--gold-l);letter-spacing:.1em;text-transform:uppercase;font-size:.86rem;margin-bottom:10px}
+.season .s p{color:var(--muted);font-size:.88rem}
+
+/* ===== EVENTS ===== */
+.events{background:var(--bg-2)}
+.ev-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:24px;margin-bottom:50px}
+.ev{position:relative;flex:1 1 300px;max-width:340px;border-radius:18px;overflow:hidden;
+  background:linear-gradient(165deg,rgba(24,39,30,.78),rgba(16,26,19,.55));
+  border:1px solid rgba(201,162,39,.2);backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
+  transition:transform .4s cubic-bezier(.16,.84,.34,1),border-color .4s,box-shadow .4s}
+.ev::before{content:"";position:absolute;inset:0;border-radius:18px;padding:1px;pointer-events:none;opacity:.6;
+  background:linear-gradient(150deg,rgba(233,207,114,.5),transparent 45%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude}
+.ev:hover{transform:translateY(-7px);border-color:rgba(201,162,39,.5);box-shadow:0 22px 48px rgba(0,0,0,.45)}
+.ev .date{position:relative;display:flex;align-items:baseline;gap:10px;padding:18px 24px;
+  font-family:"Forum",serif;
+  background:linear-gradient(120deg,rgba(201,162,39,.16),rgba(201,162,39,.03));
+  border-bottom:1px solid rgba(201,162,39,.18)}
+.ev .date .d{font-size:2.4rem;line-height:1;color:var(--gold-l);text-shadow:0 2px 18px rgba(201,162,39,.3)}
+.ev .date .m{letter-spacing:.14em;text-transform:uppercase;font-size:.78rem;color:var(--gold)}
+.ev .date .yr{margin-left:auto;align-self:center;font-family:"PT Serif",serif;font-size:.74rem;letter-spacing:.1em;color:var(--muted)}
+.ev .body{padding:22px 24px 26px}
+.ev .body h3{color:var(--ink);font-family:"Forum",serif;font-size:1.3rem;margin-bottom:8px}
+.ev .body p{color:var(--muted);font-size:.94rem;line-height:1.5}
+.ev .body .where{display:inline-flex;align-items:center;gap:7px;margin-top:14px;color:var(--gold);font-size:.84rem;letter-spacing:.04em}
+.ev .body .where svg{width:1em;height:1em;fill:none;stroke:var(--gold);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.propose{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:38px;max-width:760px;margin:0 auto}
+.propose h3{color:var(--gold);text-align:center;font-size:1.6rem;margin-bottom:6px}
+.propose p.s{color:var(--muted);text-align:center;margin-bottom:24px}
+
+/* ===== TIMELINE / CHRONICLE ===== */
+.chron-head{text-align:center;max-width:680px;margin:8px auto 40px}
+.chron-head h3{font-family:"Forum",serif;color:var(--gold);font-size:1.9rem;margin-bottom:8px}
+.chron-head p{color:var(--muted);font-size:1rem;line-height:1.55}
+.timeline{position:relative;max-width:860px;margin:0 auto 58px;padding-left:8px}
+.timeline::before{content:"";position:absolute;left:120px;top:6px;bottom:6px;width:2px;
+  background:linear-gradient(180deg,transparent,rgba(201,162,39,.5) 6%,rgba(201,162,39,.5) 94%,transparent)}
+.tl-year{position:relative;display:flex;align-items:center;gap:16px;margin:34px 0 18px}
+.tl-year:first-child{margin-top:0}
+.tl-year .yv{width:104px;text-align:right;font-family:"Forum",serif;font-size:1.5rem;color:var(--gold-l);flex:none}
+.tl-year .yl{flex:1;height:1px;background:linear-gradient(90deg,rgba(201,162,39,.4),transparent)}
+.tl-item{position:relative;padding:0 0 22px 150px;min-height:34px}
+.tl-item::before{content:"";position:absolute;left:114px;top:5px;width:14px;height:14px;border-radius:50%;
+  background:radial-gradient(circle at 38% 34%,var(--gold-l),var(--bronze));
+  border:3px solid var(--bg);box-shadow:0 0 0 2px rgba(201,162,39,.35),0 0 14px rgba(201,162,39,.4);z-index:2}
+.tl-item .tl-date{position:absolute;left:0;top:0;width:104px;text-align:right;
+  font-family:"PT Serif",serif;font-size:.86rem;color:var(--gold);letter-spacing:.02em;padding-top:2px}
+.tl-card{background:linear-gradient(165deg,rgba(24,39,30,.7),rgba(16,26,19,.5));
+  border:1px solid rgba(201,162,39,.18);border-radius:14px;padding:16px 20px;
+  backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);transition:transform .35s,border-color .35s,box-shadow .35s}
+.tl-card:hover{transform:translateX(4px);border-color:rgba(201,162,39,.45);box-shadow:0 16px 36px rgba(0,0,0,.4)}
+.tl-card .tag{display:inline-block;font-family:"PT Serif",serif;font-size:.68rem;letter-spacing:.12em;
+  text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-bottom:9px;
+  border:1px solid rgba(201,162,39,.35);color:var(--gold-l);background:rgba(201,162,39,.08)}
+.tl-card .tag.plant{color:var(--green-l);border-color:rgba(105,160,126,.4);background:rgba(70,120,90,.12)}
+.tl-card .tag.award{color:var(--gold-l);border-color:rgba(233,207,114,.45);background:rgba(201,162,39,.12)}
+.tl-card h4{font-family:"Forum",serif;color:var(--ink);font-size:1.22rem;margin-bottom:6px;line-height:1.25}
+.tl-card p{color:var(--muted);font-size:.92rem;line-height:1.5}
+.tl-card .trees{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-size:.82rem;color:var(--green-l)}
+.tl-card .trees svg{width:1em;height:1em;fill:none;stroke:var(--green-l);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:640px){
+  .timeline::before{left:8px}
+  .tl-year{padding-left:0}
+  .tl-year .yv{width:auto;text-align:left;margin-left:30px}
+  .tl-item{padding-left:38px}
+  .tl-item::before{left:2px}
+  .tl-item .tl-date{position:static;width:auto;text-align:left;margin-bottom:6px;display:block}
+}
+
+/* ===== FORMS ===== */
+.field{margin-bottom:16px}
+.field label{display:block;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.field input,.field textarea,.field select{width:100%;background:var(--bg);border:1px solid var(--line);
+  border-radius:10px;padding:13px 15px;color:var(--ink);font-family:"PT Serif";font-size:1rem;transition:.2s}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,162,39,.12)}
+.field textarea{min-height:110px;resize:vertical}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.btn{display:inline-block;cursor:pointer;font-family:"Forum",serif;letter-spacing:.1em;text-transform:uppercase;
+  font-size:.92rem;background:linear-gradient(180deg,var(--gold),var(--bronze));color:#1a140a;border:none;
+  padding:14px 32px;border-radius:30px;transition:.25s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(201,162,39,.3)}
+.btn.ghost{background:transparent;border:1px solid var(--gold);color:var(--gold)}
+.form-msg{margin-top:14px;color:var(--green-l);font-size:.92rem;min-height:20px}
+
+/* ===== REVIEWS ===== */
+.rev-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:22px;margin-bottom:44px}
+.rev{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:26px;position:relative}
+.rev::before{content:"“";position:absolute;top:-6px;right:18px;font-size:4rem;color:rgba(201,162,39,.16);font-family:Georgia}
+.rev .stars{color:var(--gold);letter-spacing:3px;margin-bottom:10px}
+.rev p{color:#d2ccbe;font-style:italic;margin-bottom:16px}
+.rev .who{display:flex;align-items:center;gap:12px}
+.rev .av{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-family:"Forum",serif;color:#1a140a;background:linear-gradient(180deg,var(--gold-l),var(--bronze))}
+.rev .who b{display:block;color:var(--ink);font-weight:400}
+.rev .who span{color:var(--muted);font-size:.82rem}
+.add-rev{background:var(--bg-2);border:1px solid var(--line);border-radius:18px;padding:34px;max-width:680px;margin:0 auto}
+.add-rev h3{color:var(--gold);text-align:center;font-size:1.5rem;margin-bottom:18px}
+.rate{display:flex;gap:6px;font-size:1.6rem;color:var(--line);cursor:pointer;justify-content:center;margin-bottom:8px}
+.rate span{transition:.15s}
+.rate span.on,.rate span:hover{color:var(--gold);transform:scale(1.1)}
+
+/* ===== VIDEO / AVATAR / QR ===== */
+.media{background:var(--bg-2)}
+.media-wrap{display:grid;grid-template-columns:1.5fr 1fr;gap:40px;align-items:center}
+.video-frame{position:relative;border-radius:18px;overflow:hidden;border:1px solid rgba(201,162,39,.35);
+  box-shadow:var(--shadow);aspect-ratio:16/9;background:#000}
+.video-frame iframe{width:100%;height:100%;border:0;display:block}
+.video-frame .corner{position:absolute;top:14px;left:14px;z-index:3;display:flex;align-items:center;gap:8px;
+  background:rgba(10,15,12,.7);backdrop-filter:blur(6px);border:1px solid var(--line);
+  padding:7px 14px;border-radius:30px;font-family:"Forum",serif;letter-spacing:.1em;font-size:.78rem;color:var(--gold)}
+.video-frame .corner .pulse{width:9px;height:9px;border-radius:50%;background:var(--orange);box-shadow:0 0 10px var(--orange);animation:flick 1.6s infinite alternate}
+/* video poster / cover */
+.video-poster{position:absolute;inset:0;z-index:2;cursor:pointer;overflow:hidden;border:0;padding:0;display:block;width:100%;height:100%}
+.video-poster .vp-bg{position:absolute;inset:0;background:
+  radial-gradient(120% 90% at 50% 8%,rgba(201,162,39,.16),transparent 55%),
+  radial-gradient(80% 60% at 80% 100%,rgba(70,120,90,.32),transparent 60%),
+  linear-gradient(160deg,#16271d,#0b130e 70%);
+  transition:transform .8s cubic-bezier(.16,.84,.34,1),filter .6s}
+.video-poster .vp-trees{position:absolute;left:0;right:0;bottom:0;width:100%;height:62%;opacity:.5}
+.video-poster:hover .vp-bg{transform:scale(1.06);filter:brightness(1.08)}
+.video-poster .vp-content{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;padding:20px}
+.video-poster .vp-play{width:84px;height:84px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(180deg,rgba(233,207,114,.95),rgba(201,162,39,.92));
+  box-shadow:0 12px 38px rgba(0,0,0,.5),0 0 0 0 rgba(201,162,39,.5);
+  transition:transform .35s cubic-bezier(.16,.84,.34,1),box-shadow .35s;animation:vpglow 2.6s infinite}
+@keyframes vpglow{0%{box-shadow:0 12px 38px rgba(0,0,0,.5),0 0 0 0 rgba(201,162,39,.45)}70%{box-shadow:0 12px 38px rgba(0,0,0,.5),0 0 0 22px rgba(201,162,39,0)}100%{box-shadow:0 12px 38px rgba(0,0,0,.5),0 0 0 0 rgba(201,162,39,0)}}
+.video-poster:hover .vp-play{transform:scale(1.09)}
+.video-poster .vp-play svg{width:34px;height:34px;margin-left:5px;fill:#1a140a}
+.video-poster .vp-title{font-family:"Forum",serif;color:var(--gold-l);font-size:1.5rem;letter-spacing:.02em;text-shadow:0 2px 18px rgba(0,0,0,.6)}
+.video-poster .vp-sub{color:#cdc6b6;font-size:.86rem;letter-spacing:.12em;text-transform:uppercase}
+.video-poster::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(8,12,9,.25),rgba(8,12,9,.55))}
+.qr-card{background:linear-gradient(160deg,var(--panel),var(--bg));border:1px solid var(--line);
+  border-radius:18px;padding:30px;text-align:center;box-shadow:var(--shadow)}
+.qr-card h3{color:var(--gold);font-size:1.4rem;margin-bottom:6px}
+.qr-card p{color:var(--muted);font-size:.92rem;margin-bottom:20px}
+.qr-card .qr-img{background:#fff;padding:14px;border-radius:14px;display:inline-block;border:3px solid var(--gold);
+  box-shadow:0 0 26px rgba(201,162,39,.3)}
+.qr-card .qr-img img{width:200px;height:200px;display:block}
+.qr-card a.btn{margin-top:20px}
+.avatar-note{display:flex;align-items:center;gap:12px;margin-top:18px;color:var(--muted);font-size:.9rem;justify-content:center}
+.avatar-note .ava{width:40px;height:40px;border-radius:50%;background:linear-gradient(180deg,var(--green-l),var(--green));
+  display:flex;align-items:center;justify-content:center;font-size:1.2rem;border:2px solid var(--gold)}
+
+/* modal video */
+.modal-video{margin:0 0 20px;border-radius:12px;overflow:hidden;border:1px solid rgba(201,162,39,.3);aspect-ratio:16/9;background:#000;position:relative}
+.modal-video iframe{width:100%;height:100%;border:0}
+.modal-avatar-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(70,120,90,.18);
+  border:1px solid rgba(105,160,126,.4);color:var(--green-l);padding:5px 12px;border-radius:30px;
+  font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
+
+/* ===== CONTACTS ===== */
+.contacts{background:var(--bg-2)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px}
+.contact-info .c-item{display:flex;gap:16px;align-items:flex-start;padding:18px 0;border-bottom:1px dashed rgba(201,162,39,.14)}
+.contact-info .c-item .ic{font-size:1.4rem;color:var(--gold);width:34px;text-align:center;flex-shrink:0}
+.contact-info .c-item b{display:block;color:var(--ink);font-weight:400;font-size:1.05rem}
+.contact-info .c-item span{color:var(--muted);font-size:.95rem}
+.socials{display:flex;gap:12px;margin-top:24px}
+.socials a{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;
+  justify-content:center;color:var(--gold);font-family:"Forum",serif;transition:.25s}
+.socials a:hover{background:var(--gold);color:#1a140a}
+.contact-form{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:34px;box-shadow:var(--shadow)}
+.contact-form h3{color:var(--gold);font-size:1.5rem;margin-bottom:18px}
+
+/* ===== FOOTER ===== */
+footer{text-align:center;padding:60px 24px 40px;border-top:1px solid var(--line);background:var(--bg)}
+footer .flame{width:18px;height:18px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;margin:0 auto 14px;
+  background:radial-gradient(circle at 50% 70%,#ffe6a0,var(--orange) 60%,transparent);box-shadow:0 0 22px var(--orange);animation:flick 2.4s infinite alternate}
+footer .pledge{justify-content:center}
+footer .cr{color:var(--muted);font-size:.85rem;margin-top:24px}
+
+/* ===== MODAL ===== */
+.modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:24px;
+  background:rgba(5,8,6,.82);backdrop-filter:blur(6px)}
+.modal.open{display:flex;animation:fade .3s}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.modal-card{background:linear-gradient(165deg,var(--panel-2),var(--bg));border:1px solid rgba(201,162,39,.3);
+  border-radius:18px;max-width:560px;width:100%;padding:40px;position:relative;box-shadow:var(--shadow);animation:pop .35s}
+@keyframes pop{from{transform:translateY(20px) scale(.97);opacity:0}to{transform:none;opacity:1}}
+.modal-card .x{position:absolute;top:16px;right:20px;font-size:1.6rem;color:var(--muted);cursor:pointer;background:none;border:none}
+.modal-card .x:hover{color:var(--gold)}
+.modal-card .badge{font-family:"Forum",serif;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-size:.74rem}
+.modal-card h2{font-size:2.2rem;margin:6px 0 2px}
+.modal-card .role{color:var(--gold-l);font-style:italic;margin-bottom:18px}
+.modal-card .bio{color:#d2ccbe;margin-bottom:20px}
+.modal-card .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.modal-card .grid .b{background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.modal-card .grid .b span{display:block;color:var(--muted);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
+.modal-card .grid .b b{color:var(--gold-l);font-weight:400}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(26px);transition:.7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:880px){
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;
+    background:rgba(10,15,12,.97);padding:14px;border-bottom:1px solid var(--line)}
+  .nav-links.show{display:flex}
+  .burger{display:block}
+  .decl-grid,.map-wrap,.contact-grid{grid-template-columns:1fr}
+  .season{grid-template-columns:1fr 1fr}
+  .two{grid-template-columns:1fr}
+}
+
+/* ===== SPECIES / WOODMAX-8 ===== */
+.species{background:var(--bg-2)}
+.spec-lead{display:grid;grid-template-columns:1.05fr .95fr;gap:46px;align-items:center;margin-bottom:48px}
+.spec-lead .txt p{color:#d8d2c2;margin-bottom:16px;font-size:1.06rem}
+.spec-lead .txt p.big{font-family:"Forum",serif;font-size:1.45rem;color:var(--ink);line-height:1.4}
+.spec-lead .txt .nick{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.spec-lead .txt .nick span{font-family:"Forum",serif;letter-spacing:.1em;font-size:.82rem;
+  border:1px solid var(--line);color:var(--gold);padding:9px 16px;border-radius:30px}
+.spec-card{background:linear-gradient(160deg,var(--panel),var(--bg));border:1px solid var(--line);
+  border-radius:18px;padding:36px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.spec-card::before{content:"❀";position:absolute;top:-6px;right:18px;font-size:5rem;color:rgba(201,162,39,.12)}
+.spec-card h3{color:var(--gold);font-size:1.35rem;margin-bottom:14px}
+.spec-card ul{list-style:none}
+.spec-card li{padding:11px 0 11px 28px;position:relative;color:#cfc9ba;border-bottom:1px dashed rgba(201,162,39,.12)}
+.spec-card li:last-child{border:0}
+.spec-card li::before{content:"✦";position:absolute;left:0;color:var(--gold)}
+.spec-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.spec-m{position:relative;text-align:center;border-radius:18px;padding:30px 20px;overflow:hidden;
+  background:linear-gradient(160deg,rgba(24,39,30,.78),rgba(16,26,19,.5));
+  border:1px solid rgba(201,162,39,.22);
+  backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
+  transition:transform .35s cubic-bezier(.16,.84,.34,1),border-color .35s,box-shadow .35s}
+.spec-m::before{content:"";position:absolute;inset:0;border-radius:18px;padding:1px;pointer-events:none;opacity:.7;
+  background:linear-gradient(150deg,rgba(233,207,114,.55),transparent 42%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude}
+.spec-m::after{content:"";position:absolute;top:-45%;left:50%;transform:translateX(-50%);
+  width:140px;height:140px;opacity:0;transition:opacity .4s;pointer-events:none;
+  background:radial-gradient(circle,rgba(201,162,39,.20),transparent 70%)}
+.spec-m:hover{transform:translateY(-6px);border-color:rgba(201,162,39,.5);box-shadow:0 20px 44px rgba(0,0,0,.45)}
+.spec-m:hover::after{opacity:1}
+.spec-m .ic{font-size:1.45rem;line-height:1;margin-bottom:12px;opacity:.92;
+  filter:drop-shadow(0 0 10px rgba(201,162,39,.25))}
+.spec-m b{display:block;font-family:"Forum",serif;font-size:2.25rem;color:var(--gold-l);line-height:1;
+  text-shadow:0 2px 20px rgba(201,162,39,.3)}
+.spec-m span{display:block;color:var(--muted);font-size:.86rem;margin-top:11px;line-height:1.45}
+@media(max-width:880px){.spec-grid{grid-template-columns:repeat(2,1fr);gap:14px}}
+@media(max-width:460px){.spec-grid{grid-template-columns:1fr}}
+
+/* ===== TECH FLOW ===== */
+.flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:16px;align-items:stretch}
+.flow .step{background:linear-gradient(165deg,var(--panel),var(--bg-2));border:1px solid var(--line);
+  border-radius:16px;padding:30px 26px;transition:.3s}
+.flow .step:hover{transform:translateY(-5px);border-color:rgba(201,162,39,.4);box-shadow:var(--shadow)}
+.flow .step .ic{font-size:1.9rem;margin-bottom:12px}
+.flow .step h3{color:var(--gold);font-size:1.2rem;margin-bottom:10px}
+.flow .step p{color:#cbc6b8;font-size:.95rem}
+.flow .arrow{display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1.7rem;opacity:.7}
+.flow .step.accent{border-color:rgba(201,162,39,.4);background:linear-gradient(165deg,var(--panel-2),var(--bg))}
+
+/* ===== PARTNERS / AWARDS ===== */
+.partners{background:var(--bg-2)}
+.awards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;margin-bottom:42px}
+.award{background:linear-gradient(165deg,var(--panel),var(--bg));border:1px solid var(--line);
+  border-radius:16px;padding:32px;position:relative;transition:.3s}
+.award:hover{transform:translateY(-4px);border-color:rgba(201,162,39,.45);box-shadow:var(--shadow)}
+.award .medal{font-size:2.1rem;margin-bottom:12px}
+.award .yr{color:var(--gold);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase}
+.award h3{color:var(--gold-l);font-size:1.25rem;margin:4px 0 10px}
+.award p{color:#cbc6b8;font-size:.94rem}
+.partners-title{font-family:"Forum",serif;color:var(--gold);text-align:center;font-size:1.05rem;
+  letter-spacing:.16em;text-transform:uppercase;margin-bottom:26px}
+.partners-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:16px}
+.partner{position:relative;display:flex;align-items:center;gap:14px;flex:1 1 250px;max-width:300px;
+  border-radius:14px;padding:16px 18px;overflow:hidden;
+  background:linear-gradient(160deg,rgba(24,39,30,.72),rgba(16,26,19,.5));
+  border:1px solid rgba(201,162,39,.18);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  transition:transform .35s cubic-bezier(.16,.84,.34,1),border-color .35s,box-shadow .35s}
+.partner::before{content:"";position:absolute;inset:0;border-radius:14px;padding:1px;pointer-events:none;opacity:.55;
+  background:linear-gradient(150deg,rgba(233,207,114,.45),transparent 50%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.partner:hover{transform:translateY(-5px);border-color:rgba(201,162,39,.45);box-shadow:0 16px 36px rgba(0,0,0,.4)}
+.partner .mono{flex-shrink:0;width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  font-family:"Forum",serif;font-size:.92rem;letter-spacing:0;color:var(--gold-l);
+  background:linear-gradient(160deg,rgba(201,162,39,.22),rgba(201,162,39,.05));border:1px solid rgba(201,162,39,.3);
+  text-shadow:0 1px 8px rgba(201,162,39,.3)}
+.partner .pt{min-width:0}
+.partner b{display:block;color:var(--ink);font-weight:400;font-family:"Forum",serif;font-size:1.02rem;letter-spacing:.02em;line-height:1.2}
+.partner span{display:block;color:var(--muted);font-size:.82rem;margin-top:3px}
+
+@media(max-width:880px){
+  .spec-lead,.flow{grid-template-columns:1fr}
+  .flow .arrow{transform:rotate(90deg);padding:4px 0}
+}
+
+/* ===== MOTION & POLISH (inspired by AOS / Lenis / GSAP) ===== */
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important;
+    transition-duration:.001ms!important;scroll-behavior:auto!important}
+}
+
+/* scroll progress bar */
+.progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:300;
+  background:linear-gradient(90deg,var(--bronze),var(--gold),var(--gold-l));
+  box-shadow:0 0 14px rgba(201,162,39,.65);transition:width .12s linear}
+
+/* nav: shrink + glass on scroll, animated underline, active state */
+nav{transition:padding .35s ease,background .35s ease,box-shadow .35s ease}
+nav.scrolled{padding:9px 28px;background:rgba(8,12,10,.92);box-shadow:0 10px 34px rgba(0,0,0,.45)}
+.nav-links a{position:relative}
+.nav-links a::after{content:"";position:absolute;left:12px;right:12px;bottom:2px;height:1.5px;
+  background:linear-gradient(90deg,var(--gold),var(--gold-l));border-radius:2px;
+  transform:scaleX(0);transform-origin:center;transition:transform .32s cubic-bezier(.16,.84,.34,1)}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+.nav-links a.active{color:var(--gold)}
+
+/* refined reveal + directional variants */
+.reveal{opacity:0;transform:translateY(36px);
+  transition:opacity .9s cubic-bezier(.16,.84,.34,1),transform .9s cubic-bezier(.16,.84,.34,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal.r-left{transform:translateX(-48px)}
+.reveal.r-right{transform:translateX(48px)}
+.reveal.r-scale{transform:scale(.92)}
+.reveal.in.r-left,.reveal.in.r-right,.reveal.in.r-scale{transform:none}
+
+/* 3D tilt cards */
+.tilt{transition:transform .2s ease,box-shadow .28s ease,border-color .28s ease;
+  transform-style:preserve-3d;will-change:transform}
+
+/* button shimmer sweep */
+.btn{position:relative;overflow:hidden}
+.btn::after{content:"";position:absolute;top:0;left:-130%;width:65%;height:100%;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,.45),transparent);
+  transform:skewX(-20deg);transition:left .6s ease}
+.btn:hover::after{left:150%}
+
+/* animated gold gradient text */
+.gold{background:linear-gradient(90deg,var(--gold),var(--gold-l) 45%,var(--gold));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  background-size:220% auto;animation:shine 7s linear infinite}
+@keyframes shine{to{background-position:220% center}}
+
+/* hero entrance + ambient float */
+@keyframes riseIn{from{opacity:0;transform:translateY(42px)}to{opacity:1;transform:none}}
+.hero h1{animation:riseIn 1s cubic-bezier(.16,.84,.34,1) both}
+.hero .sub{animation:riseIn 1s .14s cubic-bezier(.16,.84,.34,1) both}
+.hero p.lead{animation:riseIn 1s .28s cubic-bezier(.16,.84,.34,1) both}
+.hero .stats{animation:riseIn 1s .42s cubic-bezier(.16,.84,.34,1) both}
+.hero .ribbon{animation:riseIn .8s both}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.floaty{animation:float 7s ease-in-out infinite}
+
+/* ambient drift of background aurora */
+body::before{animation:aurora 22s ease-in-out infinite alternate}
+@keyframes aurora{0%{transform:translate3d(0,0,0) scale(1)}100%{transform:translate3d(0,-2.5%,0) scale(1.06)}}
+
+/* marker face glow */
+.marker .face{filter:drop-shadow(0 4px 8px rgba(0,0,0,.5))}
+.marker:hover{filter:drop-shadow(0 0 12px rgba(154,111,194,.6))}
+
+.will-anim{will-change:transform,opacity}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="brand"><span class="flame"></span> Аллея Славы</div>
+  <button class="burger" onclick="document.querySelector('.nav-links').classList.toggle('show')">☰</button>
+  <div class="nav-links">
+    <a href="#decl">Идея</a>
+    <a href="#trees">Деревья</a>
+    <a href="#species">Дерево</a>
+    <a href="#media">Ролик</a>
+    <a href="#tech">Технологии</a>
+    <a href="#map">Карта</a>
+    <a href="#care">Уход</a>
+    <a href="#partners">Партнёры</a>
+    <a href="#events">Мероприятия</a>
+    <a href="#reviews">Отзывы</a>
+    <a href="#contacts">Контакты</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="ribbon"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <h1>Аллея Славы</h1>
+  <div class="sub">Герои Военных Операций</div>
+  <p class="lead">Мемориальный сайт в честь героев, отдавших свои жизни за Родину. Их подвиги навсегда останутся в наших сердцах.</p>
+  <div class="stats">
+    <div class="stat"><b id="stat-heroes">3</b><span>Героев</span></div>
+    <div class="stat"><b id="stat-trees">3</b><span>Деревьев Славы</span></div>
+    <div class="stat"><b>∞</b><span>Память</span></div>
+  </div>
+  <div class="scroll-hint">Листайте вниз</div>
+</header>
+
+<div class="quote-band"><q>Никто не забыт, ничто не забыто</q></div>
+
+<!-- DECLARATION -->
+<section class="section declaration" id="decl">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Декларация идеи</div>
+      <h2>Живая память, <span class="gold">растущая в веках</span></h2>
+      <div class="rule"></div>
+    </div>
+    <div class="decl-grid">
+      <div class="decl-text reveal">
+        <p class="big">Каждое дерево этой Аллеи посажено в честь героя. Оно растёт, как растёт и наша благодарность — год за годом, поколение за поколением.</p>
+        <p>«Аллея Славы» — это не просто памятник из камня. Это живой мемориал, где имя каждого героя соединено с деревом, которое будет жить десятилетиями. Мы создаём пространство, куда можно прийти, прикоснуться к коре, постоять в тишине и вспомнить тех, кто отдал самое дорогое ради нашего будущего.</p>
+        <p>Наша идея проста и вечна: память должна быть живой. Пока растут эти деревья — жива и память о подвиге. Мы приглашаем семьи, школы и неравнодушных людей стать частью этого дела.</p>
+        <div class="pledge">
+          <span>Помним</span><span>Гордимся</span><span>Чтим</span>
+        </div>
+      </div>
+      <div class="decl-card reveal">
+        <h3>Наши принципы</h3>
+        <ul>
+          <li>Одно дерево — одна судьба, одно имя, одна история.</li>
+          <li>Открытость: каждый может узнать, кто посадил дерево и в честь кого.</li>
+          <li>Бережный уход за каждой культурой на протяжении всей её жизни.</li>
+          <li>Вовлечение молодёжи и сохранение памяти для будущих поколений.</li>
+          <li>Достоверность сведений о каждом герое и каждом дереве.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TREES + SUBGROUPS -->
+<section class="section" id="trees">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Деревья Славы</div>
+      <h2>Герои <span class="gold">и их деревья</span></h2>
+      <p>Выберите подгруппу аллеи и нажмите на карточку героя, чтобы узнать его историю и данные о посадке.</p>
+      <div class="rule"></div>
+    </div>
+    <div class="tabs" id="tabs"></div>
+    <div class="subgroup-title" id="subgroupTitle"></div>
+    <div class="tree-grid" id="treeGrid"></div>
+  </div>
+</section>
+
+<!-- SPECIES: WOODMAX-8 -->
+<section class="section species" id="species">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Биотех · Дерево аллеи</div>
+      <h2>Павловния <span class="gold">«Вудмакс-8»</span></h2>
+      <p>Дерево, которое мы сажаем в память о героях, — не просто символ. Это самое быстрорастущее дерево в мире, укрепляющее берег и очищающее воздух для будущих поколений.</p>
+      <div class="rule"></div>
+    </div>
+    <div class="spec-lead reveal">
+      <div class="txt">
+        <p class="big">«Дерево семи жизней» — селекционный сорт павловнии «Вудмакс-8», над которым работали более 35 лет.</p>
+        <p>Стержневой корень уходит на 5–9 метров вглубь, формируя естественный противоэрозионный каркас берега и снижая аварийность прибрежных домов. Растёт со скоростью 3–5 метров в год: всего за 7 лет достигает размеров столетнего дерева первой величины.</p>
+        <p>По очистке воздуха павловния — чемпион среди деревьев. Сорт неинвазивный, пожароустойчивый и способен полностью восстанавливаться из корня после рубки — поэтому одно посаженное дерево живёт и служит десятилетиями.</p>
+        <div class="nick"><span>Адамово дерево</span><span>Фабрика кислорода</span><span>Biotech · «Интегро плюс»</span></div>
+      </div>
+      <div class="spec-card">
+        <h3>Почему именно павловния</h3>
+        <ul>
+          <li>Укрепляет берег: глубокий стержневой корень против эрозии.</li>
+          <li>Очищает воздух лучше большинства деревьев-аналогов.</li>
+          <li>Восстанавливается из корня — не нужна повторная посадка.</li>
+          <li>Неинвазивный сорт — нулевой риск для местной экосистемы.</li>
+          <li>Пожароустойчивость и устойчивость к ветру.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="spec-grid reveal">
+      <div class="spec-m"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 21v-9"/><path d="M12 13C12 8.5 9 6 4 6c0 4.5 3 7 8 7z"/><path d="M12 15c0-3.5 3-6 8-6 0 3.5-3 6-8 6z"/></svg></div><b>3–5 м</b><span>прирост в год — самое быстрое дерево в мире</span></div>
+      <div class="spec-m"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3v17"/><path d="M12 8c-2.5 3-5.5 4.5-9 4.5M12 8c2.5 3 5.5 4.5 9 4.5"/><path d="M12 14c-1.5 3.5-4.5 5.5-8 6.5M12 14c1.5 3.5 4.5 5.5 8 6.5"/></svg></div><b>5–9 м</b><span>стержневой корень против эрозии берега</span></div>
+      <div class="spec-m"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 8h9a2.5 2.5 0 1 0-2.5-2.5"/><path d="M3 12h13a2.5 2.5 0 1 1-2.5 2.5"/><path d="M3 16h7a2 2 0 1 1-2 2"/></svg></div><b>×4</b><span>кислорода выше аналогов</span></div>
+      <div class="spec-m"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4.5 12a7.5 7.5 0 0 1 12.7-5.4L20 9"/><path d="M20 4.5V9h-4.5"/><path d="M19.5 12a7.5 7.5 0 0 1-12.7 5.4L4 15"/><path d="M4 19.5V15h4.5"/></svg></div><b>×7</b><span>регенерация из корня после рубки</span></div>
+      <div class="spec-m"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 13.5V9M12 13.5l3.5 2"/><path d="M9.5 2.5h5"/></svg></div><b>7 лет</b><span>= рост 100-летнего дерева первой величины</span></div>
+      <div class="spec-m"><div class="ic"><svg viewBox="0 0 24 24"><path d="M9.5 3h5"/><path d="M10.5 3v6L5 18.5A2 2 0 0 0 6.7 21.5h10.6A2 2 0 0 0 19 18.5L13.5 9V3"/><path d="M8 15.5h8"/></svg></div><b>35+ лет</b><span>срок селекции сорта</span></div>
+      <div class="spec-m"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l7.5 3v5c0 5-3.2 8.5-7.5 10.5C7.7 19.5 4.5 16 4.5 11V6z"/><path d="M9 12l2 2 4-4.5"/></svg></div><b>100%</b><span>пожароустойчивость</span></div>
+      <div class="spec-m"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.8 2.8 2.8 15.2 0 18M12 3c-2.8 2.8-2.8 15.2 0 18"/></svg></div><b>0</b><span>риск инвазии — неинвазивный сорт</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- MEDIA: VIDEO + AVATAR + QR -->
+<section class="section media" id="media">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Видеоролик · Цифровой аватар</div>
+      <h2>Живое слово <span class="gold">памяти</span></h2>
+      <p>Видеоролик с нашим цифровым аватаром. Посмотрите его здесь или отсканируйте QR-код, чтобы открыть на телефоне.</p>
+      <div class="rule"></div>
+    </div>
+    <div class="media-wrap reveal">
+      <div class="video-frame" id="videoFrame" data-src="https://drive.google.com/file/d/1eQB6miFe9L2bpirjqdxnJLXzawgEgWXf/preview">
+        <div class="corner"><span class="pulse"></span> Цифровой аватар</div>
+        <button class="video-poster" id="videoPoster" type="button" aria-label="Воспроизвести видеоролик с цифровым аватаром">
+          <div class="vp-bg"></div>
+          <svg class="vp-trees" viewBox="0 0 600 240" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+            <defs><radialGradient id="vpc" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="#7fae8f"/><stop offset="1" stop-color="#2c4a37"/></radialGradient></defs>
+            <g opacity=".9">
+              <rect x="92" y="150" width="10" height="70" fill="#3a2c17"/><ellipse cx="97" cy="135" rx="42" ry="46" fill="url(#vpc)"/>
+              <rect x="292" y="120" width="14" height="100" fill="#3a2c17"/><ellipse cx="299" cy="100" rx="60" ry="64" fill="url(#vpc)"/>
+              <rect x="498" y="150" width="10" height="70" fill="#3a2c17"/><ellipse cx="503" cy="135" rx="42" ry="46" fill="url(#vpc)"/>
+            </g>
+          </svg>
+          <div class="vp-content">
+            <span class="vp-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg></span>
+            <span class="vp-title">Цифровой аватар проекта</span>
+            <span class="vp-sub">Видеоролик памяти · смотреть</span>
+          </div>
+        </button>
+      </div>
+      <div class="qr-card">
+        <h3>Сканируйте код</h3>
+        <p>Наведите камеру телефона — откроется ролик с цифровым аватаром</p>
+        <div class="qr-img"><img id="qrImg" alt="QR-код на видеоролик"></div>
+        <div class="avatar-note"><span class="ava"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0"/><path d="M12 17v3.5M9 20.5h6"/></svg></span> Озвучено цифровым аватаром проекта</div>
+        <a class="btn" href="https://drive.google.com/file/d/1eQB6miFe9L2bpirjqdxnJLXzawgEgWXf/view" target="_blank" rel="noopener">Открыть ролик</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH: METAVERSE OF MEMORY -->
+<section class="section" id="tech">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">IT · Метавселенная памяти</div>
+      <h2>От разрозненных архивов <span class="gold">к живому диалогу поколений</span></h2>
+      <p>Сегодня память о героях рассеяна по десяткам источников. Мы собираем её в единый цифровой архив и оживляем — чтобы внуки могли поговорить с цифровыми аватарами дедов.</p>
+      <div class="rule"></div>
+    </div>
+    <div class="flow reveal">
+      <div class="step">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 7l1.6-2.6A1 1 0 0 1 5.5 4h4l2 3h7a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M3 11h18"/></svg></div>
+        <h3>Разрозненные архивы</h3>
+        <p>«Бессмертный полк», «Память народа», mil.ru, полк.рф, таблички у деревьев — данные разрознены и статичны.</p>
+      </div>
+      <div class="arrow">→</div>
+      <div class="step accent">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M9.5 4A2.8 2.8 0 0 0 6.7 6.8 2.8 2.8 0 0 0 5.2 12a2.8 2.8 0 0 0 1.6 4.6A2.6 2.6 0 0 0 12 18V5.5A2.5 2.5 0 0 0 9.5 4z"/><path d="M14.5 4A2.8 2.8 0 0 1 17.3 6.8 2.8 2.8 0 0 1 18.8 12a2.8 2.8 0 0 1-1.6 4.6A2.6 2.6 0 0 1 12 18"/><path d="M9 9.5h1.5M9 13h1M14 9h1M13.5 12.5H15"/></svg></div>
+        <h3>Ноосферный ИИ</h3>
+        <p>Объединение массивов в единый цифровой архив и визуализация носителей памяти на новом качественном уровне.</p>
+      </div>
+      <div class="arrow">→</div>
+      <div class="step">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 21v-6"/><path d="M12 15a5.5 5.5 0 0 0 4.2-9 4.3 4.3 0 0 0-8.4 0A5.5 5.5 0 0 0 12 15z"/><path d="M9.5 21h5"/></svg></div>
+        <h3>Цифровые аватары</h3>
+        <p>Живое общение поколений в метавселенной памяти: внуки говорят с цифровыми аватарами дедов. Новые методики межпоколенческой коммуникации.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section class="section map" id="map">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Интерактивная карта</div>
+      <h2>План аллеи <span class="gold">и координаты</span></h2>
+      <p>Наведите или нажмите на дерево на схеме, чтобы увидеть, кто его посадил, и его точные координаты.</p>
+      <div class="rule"></div>
+    </div>
+    <div class="map-wrap reveal">
+      <div>
+        <div class="map-stage">
+          <svg id="mapSvg" viewBox="0 0 680 460" xmlns="http://www.w3.org/2000/svg" aria-label="План аллеи">
+            <defs>
+              <radialGradient id="terrain" cx="50%" cy="40%" r="75%">
+                <stop offset="0" stop-color="#1a2c20"/><stop offset="60%" stop-color="#142219"/><stop offset="100%" stop-color="#0c1410"/>
+              </radialGradient>
+              <linearGradient id="path" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#cdb066" stop-opacity=".34"/><stop offset="1" stop-color="#9a7b3f" stop-opacity=".16"/>
+              </linearGradient>
+              <radialGradient id="canopyP" cx="38%" cy="32%" r="72%">
+                <stop offset="0" stop-color="#d7bdee"/><stop offset="48%" stop-color="#9a6fc2"/><stop offset="100%" stop-color="#523472"/>
+              </radialGradient>
+              <linearGradient id="badgeG" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#e9cf72"/><stop offset="1" stop-color="#9a7b3f"/>
+              </linearGradient>
+              <radialGradient id="canopyBg" cx="40%" cy="34%" r="70%">
+                <stop offset="0" stop-color="#3f6e51"/><stop offset="100%" stop-color="#21402f"/>
+              </radialGradient>
+              <radialGradient id="lawn" cx="50%" cy="40%" r="62%">
+                <stop offset="0" stop-color="#1f3526"/><stop offset="100%" stop-color="#16291d"/>
+              </radialGradient>
+              <linearGradient id="water" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#2f5d68"/><stop offset="100%" stop-color="#193740"/>
+              </linearGradient>
+              <radialGradient id="rondel" cx="50%" cy="45%" r="60%">
+                <stop offset="0" stop-color="#223527" stop-opacity=".55"/><stop offset="100%" stop-color="#11201a"/>
+              </radialGradient>
+              <radialGradient id="flameG" cx="50%" cy="62%" r="62%">
+                <stop offset="0" stop-color="#ffe6a0"/><stop offset="55%" stop-color="#d57b1e"/><stop offset="100%" stop-color="#d57b1e" stop-opacity="0"/>
+              </radialGradient>
+              <pattern id="grid" width="34" height="34" patternUnits="userSpaceOnUse">
+                <path d="M34 0H0V34" fill="none" stroke="rgba(201,162,39,.045)" stroke-width="1"/>
+              </pattern>
+            </defs>
+
+            <rect x="0" y="0" width="680" height="460" rx="12" fill="url(#terrain)"/>
+            <rect x="0" y="0" width="680" height="460" rx="12" fill="url(#grid)"/>
+
+            <!-- faint topographic contours -->
+            <g fill="none" stroke="rgba(105,160,126,.10)" stroke-width="1.5">
+              <path d="M40 110 C160 70 300 95 360 60 C460 100 560 70 640 120"/>
+              <path d="M40 150 C170 115 300 140 380 110 C470 145 560 120 640 165"/>
+              <path d="M40 360 C150 330 280 360 360 335 C470 370 560 345 640 385"/>
+              <path d="M40 400 C160 375 290 400 370 380 C470 410 560 390 640 420"/>
+            </g>
+
+            <!-- pond / water feature -->
+            <g>
+              <path d="M512 392 C470 388 452 360 478 342 C512 320 580 326 604 350 C624 372 600 402 560 404 C540 405 528 393 512 392 Z" fill="url(#water)" stroke="rgba(120,180,170,.25)"/>
+              <path d="M495 358 C520 348 555 350 575 360" fill="none" stroke="rgba(190,225,220,.20)" stroke-width="1.2"/>
+              <path d="M505 372 C530 364 560 366 580 374" fill="none" stroke="rgba(190,225,220,.14)" stroke-width="1.2"/>
+              <text x="540" y="388" text-anchor="middle" fill="rgba(150,195,190,.5)" font-size="9" font-family="PT Serif" font-style="italic">пруд</text>
+            </g>
+
+            <!-- decorative lawn parterres -->
+            <ellipse cx="150" cy="150" rx="88" ry="58" fill="url(#lawn)" stroke="rgba(201,162,39,.10)"/>
+            <ellipse cx="530" cy="150" rx="88" ry="58" fill="url(#lawn)" stroke="rgba(201,162,39,.10)"/>
+            <ellipse cx="150" cy="360" rx="88" ry="60" fill="url(#lawn)" stroke="rgba(201,162,39,.10)"/>
+
+            <!-- winding secondary trails -->
+            <g fill="none" stroke="url(#path)" stroke-width="11" stroke-linecap="round">
+              <path d="M150 208 C150 230 210 244 250 250"/>
+              <path d="M150 302 C150 280 210 266 250 260"/>
+              <path d="M530 208 C530 236 470 250 430 256"/>
+            </g>
+
+            <!-- paths: central alley + cross axis -->
+            <rect x="310" y="118" width="60" height="324" rx="10" fill="url(#path)" stroke="rgba(201,162,39,.26)"/>
+            <line x1="340" y1="132" x2="340" y2="432" stroke="rgba(201,162,39,.22)" stroke-dasharray="6 10"/>
+            <rect x="56" y="250" width="568" height="40" rx="14" fill="url(#path)" stroke="rgba(201,162,39,.18)"/>
+
+            <!-- memorial rondel + eternal flame -->
+            <circle cx="340" cy="80" r="56" fill="url(#rondel)" stroke="rgba(201,162,39,.34)"/>
+            <circle cx="340" cy="80" r="40" fill="none" stroke="rgba(201,162,39,.20)" stroke-dasharray="3 7"/>
+            <g fill="#c9a22733"><path d="M340 36 L346 56 L340 52 L334 56 Z"/><path d="M384 80 L364 86 L368 80 L364 74 Z"/><path d="M296 80 L316 86 L312 80 L316 74 Z"/></g>
+            <circle cx="340" cy="84" r="28" fill="url(#flameG)" opacity=".9"/>
+            <path d="M340 66 C348 75 348 88 340 97 C332 88 332 75 340 66 Z" fill="#d57b1e"/>
+            <path d="M340 73 C344 79 344 88 340 93 C336 88 336 79 340 73 Z" fill="#ffe6a0"/>
+            <text x="340" y="28" text-anchor="middle" fill="#c9a227" font-size="12" font-family="Forum" letter-spacing="1">Мемориал · Вечный огонь</text>
+
+            <!-- background tree clusters (scattered, как в реальном парке) -->
+            <g fill="url(#canopyBg)" opacity=".55">
+              <circle cx="96" cy="120" r="12"/><circle cx="118" cy="180" r="10"/><circle cx="186" cy="118" r="11"/>
+              <circle cx="200" cy="186" r="9"/><circle cx="476" cy="118" r="11"/><circle cx="560" cy="116" r="12"/>
+              <circle cx="584" cy="178" r="10"/><circle cx="100" cy="332" r="11"/><circle cx="112" cy="392" r="10"/>
+              <circle cx="196" cy="392" r="9"/><circle cx="60" cy="200" r="9"/><circle cx="620" cy="210" r="9"/>
+              <circle cx="624" cy="120" r="8"/><circle cx="58" cy="120" r="8"/>
+            </g>
+
+            <!-- decorative павловния (violet canopies) -->
+            <g fill="url(#canopyP)" opacity=".92">
+              <g><line x1="150" y1="150" x2="150" y2="170" stroke="#3a2c17" stroke-width="3"/><circle cx="150" cy="146" r="22"/></g>
+              <g><line x1="530" y1="150" x2="530" y2="170" stroke="#3a2c17" stroke-width="3"/><circle cx="530" cy="146" r="22"/></g>
+              <g><line x1="150" y1="360" x2="150" y2="380" stroke="#3a2c17" stroke-width="3"/><circle cx="150" cy="356" r="24"/></g>
+              <g opacity=".85"><line x1="585" y1="262" x2="585" y2="276" stroke="#3a2c17" stroke-width="2"/><circle cx="585" cy="260" r="14"/></g>
+              <g opacity=".85"><line x1="95"  y1="262" x2="95"  y2="276" stroke="#3a2c17" stroke-width="2"/><circle cx="95"  cy="260" r="14"/></g>
+            </g>
+
+            <!-- benches + lanterns -->
+            <g fill="#5b4326" opacity=".85">
+              <rect x="372" y="200" width="22" height="7" rx="2"/>
+              <rect x="286" y="200" width="22" height="7" rx="2"/>
+              <rect x="372" y="330" width="22" height="7" rx="2"/>
+              <rect x="286" y="330" width="22" height="7" rx="2"/>
+            </g>
+            <g fill="#e9cf72">
+              <circle cx="305" cy="160" r="2.6"/><circle cx="375" cy="160" r="2.6"/>
+              <circle cx="305" cy="240" r="2.6"/><circle cx="375" cy="240" r="2.6"/>
+              <circle cx="305" cy="300" r="2.6"/><circle cx="375" cy="300" r="2.6"/>
+              <circle cx="305" cy="400" r="2.6"/><circle cx="375" cy="400" r="2.6"/>
+            </g>
+
+            <!-- future planting slots -->
+            <g fill="none" stroke="rgba(201,162,39,.45)" stroke-dasharray="3 5">
+              <circle cx="430" cy="335" r="11"/>
+              <circle cx="250" cy="255" r="11"/>
+            </g>
+            <text x="430" y="339" text-anchor="middle" font-size="11" font-family="Forum" fill="rgba(233,207,114,.6)">+</text>
+            <text x="250" y="259" text-anchor="middle" font-size="11" font-family="Forum" fill="rgba(233,207,114,.6)">+</text>
+
+            <!-- entrance -->
+            <rect x="300" y="438" width="80" height="7" rx="3" fill="rgba(201,162,39,.4)"/>
+            <text x="340" y="456" text-anchor="middle" fill="#7c8a7f" font-size="11" font-family="PT Serif">Главный вход</text>
+
+            <g id="markers"></g>
+
+            <!-- compass rose -->
+            <g transform="translate(632,52)" opacity=".9">
+              <circle r="21" fill="rgba(12,20,15,.7)" stroke="rgba(201,162,39,.32)"/>
+              <path d="M0 -15 L4.5 0 L0 15 L-4.5 0 Z" fill="rgba(201,162,39,.35)"/>
+              <path d="M0 -15 L4.5 0 L0 0 Z" fill="#e9cf72"/>
+              <text x="0" y="-7.5" text-anchor="middle" fill="#0c140f" font-size="7" font-weight="bold" font-family="Forum">С</text>
+            </g>
+
+            <!-- scale bar -->
+            <g transform="translate(40,428)">
+              <g stroke="rgba(233,207,114,.55)" stroke-width="2"><line x1="0" y1="0" x2="64" y2="0"/></g>
+              <g stroke="rgba(233,207,114,.55)" stroke-width="1.4"><line x1="0" y1="-4" x2="0" y2="4"/><line x1="32" y1="-3" x2="32" y2="3"/><line x1="64" y1="-4" x2="64" y2="4"/></g>
+              <text x="0" y="-8" fill="#7c8a7f" font-size="9" font-family="PT Serif">0 · 25 · 50 м</text>
+            </g>
+
+            <text x="20" y="250" fill="#7c8a7f" font-size="11" font-family="PT Serif">Запад</text>
+            <text x="660" y="250" fill="#7c8a7f" font-size="11" font-family="PT Serif" text-anchor="end">Восток</text>
+          </svg>
+        </div>
+        <div class="legend">
+          <div><i style="background:#9a6fc2"></i>Павловния «Вудмакс-8»</div>
+          <div><i style="background:#69a07e"></i>Подгруппа «Защитники»</div>
+          <div><i style="background:#c9a227"></i>Подгруппа «Память поколений»</div>
+          <div><i style="background:#d57b1e"></i>Вечный огонь</div>
+          <div><i style="background:transparent;border:1px dashed rgba(201,162,39,.6)"></i>Место для будущих деревьев</div>
+        </div>
+      </div>
+      <div class="map-info" id="mapInfo">
+        <div class="badge">Дерево №—</div>
+        <h3>Выберите дерево</h3>
+        <p style="color:var(--muted)">Нажмите на любой маркер на схеме слева, чтобы увидеть подробности.</p>
+        <div class="hint"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> Общие координаты аллеи: 55.751244, 37.618423</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CARE -->
+<section class="section" id="care">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Рекомендации и уход</div>
+      <h2>Уход <span class="gold">за павловнией</span></h2>
+      <p>Павловния «Вудмакс-8» нетребовательна, но в первые годы быстрый рост требует внимания. Бережный уход — и дерево памяти будет жить десятилетиями.</p>
+      <div class="rule"></div>
+    </div>
+    <div class="care-grid">
+      <div class="care-card reveal"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3c3.2 4.3 6 7.4 6 11a6 6 0 0 1-12 0c0-3.6 2.8-6.7 6-11z"/><path d="M9 13.5a3 3 0 0 0 3 3"/></svg></div><h3>Полив</h3><p>В первые 2 года быстрого роста (3–5 м/год) павловния требует обильного полива, особенно в жару. Взрослое дерево со стержневым корнем 5–9 м само добывает влагу — достаточно глубокого полива в сильную засуху.</p></div>
+      <div class="care-card reveal"><div class="ic"><svg viewBox="0 0 24 24"><path d="M5 18c0-7.5 6-13 14-13 0 8-6 13-14 13z"/><path d="M5 18c3-4.5 6.5-7 11-9"/></svg></div><h3>Мульчирование</h3><p>Слой мульчи (кора, щепа, торф) 5–8 см удерживает влагу и защищает корневую зону. Не присыпайте корневую шейку — оставляйте зазор 5 см вокруг ствола.</p></div>
+      <div class="care-card reveal"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="6.5" cy="17.5" r="2.5"/><path d="M8.7 7.8 20 16M8.7 16.2 20 8M11 12l9 0"/></svg></div><h3>Обрезка и формировка</h3><p>Санитарную и формирующую обрезку проводят ранней весной до сокодвижения. Сорт отлично переносит рубку «на пень»: благодаря ×7 регенерации из корня даёт новый мощный ствол без пересадки.</p></div>
+      <div class="care-card reveal"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l7.5 3v5c0 5-3.2 8.5-7.5 10.5C7.7 19.5 4.5 16 4.5 11V6z"/><path d="M9 12l2 2 4-4.5"/></svg></div><h3>Защита</h3><p>Молодые саженцы в первые зимы укрывают от сильных морозов; ствол обвязывают от грызунов. Сорт «Вудмакс-8» пожароустойчив и неинвазивен — мер по сдерживанию не требует.</p></div>
+    </div>
+    <div class="season reveal">
+      <div class="s"><h4>Весна</h4><p>Снятие зимней обвязки, обрезка и формировка до сокодвижения, подкормка азотом, первый осмотр.</p></div>
+      <div class="s"><h4>Лето</h4><p>Обильный полив молодых деревьев, рыхление, прополка приствольного круга, контроль состояния.</p></div>
+      <div class="s"><h4>Осень</h4><p>Влагозарядный полив, обновление мульчи, фосфорно-калийная подкормка для вызревания древесины.</p></div>
+      <div class="s"><h4>Зима</h4><p>Защита молодых саженцев от морозов и грызунов, стряхивание мокрого снега с кроны.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section class="section events" id="events">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Мероприятия</div>
+      <h2>События <span class="gold">и предложения</span></h2>
+      <p>Присоединяйтесь к памятным мероприятиям или предложите своё — мы рассмотрим каждую идею.</p>
+      <div class="rule"></div>
+    </div>
+    <div class="ev-grid" id="evGrid"></div>
+    <div class="chron-head reveal">
+      <h3>Календарь событий проекта</h3>
+      <p>Хроника пройденного пути — от первых памятных посадок до признания на государственном уровне.</p>
+    </div>
+    <div class="timeline reveal" id="timeline"></div>
+    <div class="propose reveal">
+      <h3>Предложить мероприятие</h3>
+      <p class="s">Хотите организовать посадку дерева, субботник или памятную встречу? Расскажите нам.</p>
+      <form onsubmit="return submitForm(event,'proposeMsg')">
+        <div class="two">
+          <div class="field"><label>Ваше имя</label><input required placeholder="Имя и фамилия"></div>
+          <div class="field"><label>Контакт</label><input required placeholder="Телефон или e-mail"></div>
+        </div>
+        <div class="field"><label>Тип мероприятия</label>
+          <select><option>Посадка дерева</option><option>Памятная встреча</option><option>Субботник / уход за аллеей</option><option>Экскурсия для школьников</option><option>Другое</option></select>
+        </div>
+        <div class="field"><label>Описание идеи</label><textarea required placeholder="Опишите вашу идею, желаемую дату и количество участников"></textarea></div>
+        <div style="text-align:center"><button class="btn" type="submit">Отправить предложение</button></div>
+        <div class="form-msg" id="proposeMsg"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section" id="reviews">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Отзывы</div>
+      <h2>Голоса <span class="gold">благодарности</span></h2>
+      <p>Слова посетителей, семей героев и волонтёров нашей Аллеи Славы.</p>
+      <div class="rule"></div>
+    </div>
+    <div class="rev-grid" id="revGrid"></div>
+    <div class="add-rev reveal">
+      <h3>Оставить отзыв</h3>
+      <div class="rate" id="rate"><span data-v="1">★</span><span data-v="2">★</span><span data-v="3">★</span><span data-v="4">★</span><span data-v="5">★</span></div>
+      <form onsubmit="return addReview(event)">
+        <div class="two">
+          <div class="field"><label>Имя</label><input id="revName" required placeholder="Как вас зовут"></div>
+          <div class="field"><label>Кто вы</label><input id="revRole" placeholder="Напр.: посетитель, волонтёр"></div>
+        </div>
+        <div class="field"><label>Ваш отзыв</label><textarea id="revText" required placeholder="Поделитесь впечатлениями"></textarea></div>
+        <div style="text-align:center"><button class="btn" type="submit">Опубликовать отзыв</button></div>
+        <div class="form-msg" id="revMsg"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS / RECOGNITION -->
+<section class="section partners" id="partners">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Признание · Партнёрская экосистема</div>
+      <h2>Награды <span class="gold">и партнёры</span></h2>
+      <p>За проектом стоит подтверждённый трек-рекорд и сильная коалиция науки, бизнеса и общественных объединений.</p>
+      <div class="rule"></div>
+    </div>
+    <div class="awards reveal">
+      <div class="award">
+        <div class="medal"><svg viewBox="0 0 24 24"><path d="M8 4h8v4.5a4 4 0 0 1-8 0z"/><path d="M8 5.5H5V8a3 3 0 0 0 3 3M16 5.5h3V8a3 3 0 0 1-3 3"/><path d="M12 12.5v3.5M9.5 20h5M10 20l.6-4h2.8l.6 4"/></svg></div>
+        <div class="yr">Lesprom Awards · 2018 · Победитель</div>
+        <h3>Лучшая стратегия в области охраны окружающей среды</h3>
+        <p>За инновационные технологии быстрорастущей древесины — признание павловнии как прогрессивного технологического решения.</p>
+      </div>
+      <div class="award">
+        <div class="medal"><svg viewBox="0 0 24 24"><path d="M8.5 2.5 12 8.5 15.5 2.5"/><circle cx="12" cy="15" r="6"/><path d="M12 11.5l1.1 2.2 2.4.3-1.7 1.7.4 2.4-2.2-1.2-2.2 1.2.4-2.4-1.7-1.7 2.4-.3z"/></svg></div>
+        <div class="yr">«Лучшие социальные проекты России» · 2017 · Лауреат</div>
+        <h3>Программа поддержки социального предпринимательства</h3>
+        <p>Признание метода озеленения пространств в рамках V ежегодной программы поддержки социального предпринимательства РФ.</p>
+      </div>
+    </div>
+    <div class="partners-title reveal">Ключевые партнёры</div>
+    <div class="partners-grid reveal">
+      <div class="partner"><span class="mono">ЭИ</span><div class="pt"><b>«Экологические Инвестиции»</b><span>инициатор · патенты · технологии</span></div></div>
+      <div class="partner"><span class="mono">ИП</span><div class="pt"><b>«Интегро плюс»</b><span>селекция сорта «Вудмакс-8»</span></div></div>
+      <div class="partner"><span class="mono">РГ</span><div class="pt"><b>РГАУ-МСХА им. Тимирязева</b><span>научное сопровождение</span></div></div>
+      <div class="partner"><span class="mono">МГУ</span><div class="pt"><b>Научный парк МГУ</b><span>НИОКР и испытания</span></div></div>
+      <div class="partner"><span class="mono">АБ</span><div class="pt"><b>Альфа-Банк</b><span>финансовый партнёр</span></div></div>
+      <div class="partner"><span class="mono">ОНФ</span><div class="pt"><b>ОНФ · ветеранские объединения</b><span>социальная коалиция</span></div></div>
+      <div class="partner"><span class="mono">РЖД</span><div class="pt"><b>РЖД · дорожное строительство</b><span>реальный сектор · озеленение</span></div></div>
+      <div class="partner"><span class="mono">ВД</span><div class="pt"><b>Волонтёрские движения</b><span>уход и масштабирование</span></div></div>
+      <div class="partner"><span class="mono">ИУ</span><div class="pt"><b>ИУБИП</b><span>образование и подготовка кадров</span></div></div>
+      <div class="partner"><span class="mono">ДГТУ</span><div class="pt"><b>ДГТУ</b><span>инжиниринг и НИОКР</span></div></div>
+      <div class="partner"><span class="mono">НИМИ</span><div class="pt"><b>НИМИ ДонГАУ</b><span>мелиорация и агронаука</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTS -->
+<section class="section contacts" id="contacts">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Наши контакты</div>
+      <h2>Свяжитесь <span class="gold">с нами</span></h2>
+      <div class="rule"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="c-item"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div><div><b>Адрес аллеи</b><span>Парк Памяти, центральная аллея · координаты 55.751244, 37.618423</span></div></div>
+        <div class="c-item"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg></div><div><b>Электронная почта</b><span>info@alley-of-glory.ru</span></div></div>
+        <div class="c-item"><div class="ic"><svg viewBox="0 0 24 24"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 5 5L16 12l5 2v4a2 2 0 0 1-2.2 2A16 16 0 0 1 3 5.2 2 2 0 0 1 5 3z"/></svg></div><div><b>Телефон</b><span>+7 (000) 000-00-00</span></div></div>
+        <div class="c-item"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div><div><b>Часы доступа</b><span>Ежедневно, круглосуточно · экскурсии по записи</span></div></div>
+        <div class="socials">
+          <a href="#" title="ВКонтакте">VK</a>
+          <a href="#" title="Telegram">TG</a>
+          <a href="#" title="YouTube">YT</a>
+          <a href="#" title="Одноклассники">OK</a>
+        </div>
+      </div>
+      <div class="contact-form reveal">
+        <h3>Написать организаторам</h3>
+        <form onsubmit="return submitForm(event,'contactMsg')">
+          <div class="field"><label>Имя</label><input required placeholder="Ваше имя"></div>
+          <div class="field"><label>E-mail</label><input type="email" required placeholder="email@example.com"></div>
+          <div class="field"><label>Сообщение</label><textarea required placeholder="Ваш вопрос или предложение"></textarea></div>
+          <button class="btn" type="submit">Отправить</button>
+          <div class="form-msg" id="contactMsg"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="flame"></div>
+  <div class="pledge" style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center">
+    <span style="font-family:Forum;letter-spacing:.16em;text-transform:uppercase;font-size:.82rem;border:1px solid var(--line);color:var(--gold);padding:8px 18px;border-radius:30px">Помним</span>
+    <span style="font-family:Forum;letter-spacing:.16em;text-transform:uppercase;font-size:.82rem;border:1px solid var(--line);color:var(--gold);padding:8px 18px;border-radius:30px">Гордимся</span>
+    <span style="font-family:Forum;letter-spacing:.16em;text-transform:uppercase;font-size:.82rem;border:1px solid var(--line);color:var(--gold);padding:8px 18px;border-radius:30px">Чтим</span>
+  </div>
+  <p class="cr">Аллея Славы © 2026. Вечная память героям.</p>
+</footer>
+
+<!-- MODAL -->
+<div class="modal" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal-card">
+    <button class="x" onclick="closeModal()">×</button>
+    <div class="badge" id="mBadge">Дерево</div>
+    <h2 id="mName"></h2>
+    <div class="role" id="mRole"></div>
+    <div id="mVideoWrap"></div>
+    <p class="bio" id="mBio"></p>
+    <div class="grid">
+      <div class="b"><span>Кто посадил</span><b id="mPlanter"></b></div>
+      <div class="b"><span>Дата посадки</span><b id="mDate"></b></div>
+      <div class="b"><span>Культура (вид)</span><b id="mSpecies"></b></div>
+      <div class="b"><span>Координаты</span><b id="mCoords"></b></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============ DATA ============ */
+/* Замените тексты биографий и данные на достоверные сведения о ваших героях. */
+const subgroups = [
+  {id:"all", name:"Все деревья"},
+  {id:"def", name:"Подгруппа «Защитники»", color:"#69a07e"},
+  {id:"mem", name:"Подгруппа «Память поколений»", color:"#c9a227"}
+];
+
+const trees = [
+  {
+    id:1, name:"Некрасов", role:"Герой военной операции", group:"def",
+    bio:"Проявил исключительное мужество, защищая своих товарищей. Здесь приведены сведения для заполнения администратором — добавьте подлинную биографию героя.",
+    planter:"Семья и однополчане", date:"9 мая 2024", species:"Павловния «Вудмакс-8»",
+    lat:55.75131, lng:37.61852, x:250, y:175, color:"#69a07e",
+    video:"https://drive.google.com/file/d/1eQB6miFe9L2bpirjqdxnJLXzawgEgWXf/preview", avatar:true
+  },
+  {
+    id:2, name:"Поздеев", role:"Герой военной операции", group:"def",
+    bio:"Отдал свою жизнь, выполняя боевую задачу. Замените этот текст реальной историей подвига героя.",
+    planter:"Школа №— и волонтёры", date:"22 июня 2024", species:"Павловния «Вудмакс-8»",
+    lat:55.75119, lng:37.61833, x:430, y:255, color:"#69a07e"
+  },
+  {
+    id:3, name:"Георгиевич", role:"Герой военной операции", group:"mem",
+    bio:"Навсегда остался в памяти боевых товарищей и близких. Добавьте подлинные сведения о герое.",
+    planter:"Городской совет ветеранов", date:"3 декабря 2024", species:"Павловния «Вудмакс-8»",
+    lat:55.75108, lng:37.61870, x:250, y:335, color:"#c9a227"
+  }
+];
+
+/* ============ HERO AVATARS (мультяшные, в стиле Memoji) ============ */
+function heroFace(t,pfx){
+  const P=(pfx||'')+t.id;
+  const V={
+    1:{skin:'#f1c599',sh:'#d99e72',hair:'#5a3d24',brow:'#3f2a16',beard:null,uni:'#3c5a44',uni2:'#2e4736'},
+    2:{skin:'#e3a978',sh:'#c5895c',hair:'#2b2722',brow:'#241f1a',beard:'full',beardC:'#2b2722',uni:'#46785a',uni2:'#335a44'},
+    3:{skin:'#f2c9a0',sh:'#dca878',hair:'#9a9388',brow:'#86806f',beard:'mous',beardC:'#9a9388',uni:'#5b4a2c',uni2:'#473922'}
+  };
+  const c=V[t.id]||{skin:'#eebd92',sh:'#d59e70',hair:'#5a3d24',brow:'#3f2a16',beard:null,uni:'#3c5a44',uni2:'#2e4736'};
+  const beard = c.beard==='full'
+    ? `<path d="M32 50C32 70 41 76 50 76C59 76 68 70 68 50C63 60 57 63 50 63C43 63 37 60 32 50Z" fill="${c.beardC}"/>`
+    : '';
+  const mous = c.beard==='mous'
+    ? `<path d="M41 58C45 56 48 57 50 58C52 57 55 56 59 58C55 62 52 60 50 59C48 60 45 62 41 58Z" fill="${c.beardC}"/>`
+    : '';
+  return `<svg viewBox="0 0 100 100" aria-hidden="true">
+    <defs>
+      <radialGradient id="abg${P}" cx="42%" cy="34%" r="75%">
+        <stop offset="0" stop-color="#1d3326"/><stop offset="1" stop-color="#0d1813"/>
+      </radialGradient>
+      <clipPath id="aclip${P}"><circle cx="50" cy="50" r="46"/></clipPath>
+    </defs>
+    <circle cx="50" cy="50" r="48" fill="url(#abg${P})"/>
+    <g clip-path="url(#aclip${P})">
+      <path d="M18 100C18 80 32 71 50 71C68 71 82 80 82 100Z" fill="${c.uni}"/>
+      <path d="M50 71L43 84L40 74C44 72 47 71 50 71ZM50 71L57 84L60 74C56 72 53 71 50 71Z" fill="${c.uni2}"/>
+      <rect x="44.5" y="62" width="11" height="12" rx="4" fill="${c.sh}"/>
+      <ellipse cx="50" cy="46" rx="19" ry="22" fill="${c.skin}"/>
+      <ellipse cx="31" cy="48" rx="4.5" ry="5.5" fill="${c.skin}"/>
+      <ellipse cx="69" cy="48" rx="4.5" ry="5.5" fill="${c.skin}"/>
+      ${beard}
+      <path d="M29 44C29 22 71 22 71 44C66 34 58 30 50 30C42 30 34 34 29 44Z" fill="${c.hair}"/>
+      <path d="M37 40Q42 37.5 47 40" stroke="${c.brow}" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+      <path d="M53 40Q58 37.5 63 40" stroke="${c.brow}" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+      <ellipse cx="42" cy="47" rx="3" ry="3.5" fill="#2a2320"/>
+      <ellipse cx="58" cy="47" rx="3" ry="3.5" fill="#2a2320"/>
+      <circle cx="43" cy="46" r="1" fill="#fff" opacity=".85"/>
+      <circle cx="59" cy="46" r="1" fill="#fff" opacity=".85"/>
+      <path d="M50 49L47.5 55Q50 57 52.5 55" stroke="${c.sh}" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M44 60Q50 64 56 60" stroke="#9a5648" stroke-width="2" fill="none" stroke-linecap="round"/>
+      ${mous}
+    </g>
+    <circle cx="50" cy="50" r="46.5" fill="none" stroke="${t.color}" stroke-width="2.2" opacity=".9"/>
+    <circle cx="50" cy="50" r="43" fill="none" stroke="rgba(233,207,114,.35)" stroke-width="1"/>
+  </svg>`;
+}
+
+/* ============ TREES + SUBGROUPS ============ */
+const tabsEl=document.getElementById('tabs');
+const gridEl=document.getElementById('treeGrid');
+const sgTitle=document.getElementById('subgroupTitle');
+let activeGroup="all";
+
+function countGroup(id){return id==="all"?trees.length:trees.filter(t=>t.group===id).length}
+
+subgroups.forEach(s=>{
+  const b=document.createElement('button');
+  b.className='tab'+(s.id===activeGroup?' active':'');
+  b.innerHTML=s.name+`<span class="cnt">${countGroup(s.id)}</span>`;
+  b.onclick=()=>{activeGroup=s.id;renderTabs();renderTrees();};
+  b.dataset.id=s.id;
+  tabsEl.appendChild(b);
+});
+function renderTabs(){[...tabsEl.children].forEach(b=>b.classList.toggle('active',b.dataset.id===activeGroup));}
+
+function renderTrees(){
+  const list=activeGroup==="all"?trees:trees.filter(t=>t.group===activeGroup);
+  const sg=subgroups.find(s=>s.id===activeGroup);
+  sgTitle.textContent=activeGroup==="all"?"Полный список Аллеи Славы":sg.name;
+  sgTitle.style.opacity=1;
+  gridEl.innerHTML='';
+  list.forEach(t=>{
+    const c=document.createElement('div');
+    c.className='tree-card';
+    c.onclick=()=>openModal(t.id);
+    c.innerHTML=`
+      <div class="tree-vis">
+        <div class="ava-face">${heroFace(t,'c')}<span class="num-badge">${t.id}</span></div>
+      </div>
+      <h3>${t.name}</h3>
+      <div class="role">${t.role}</div>
+      ${t.video?'<div class="modal-avatar-tag" style="margin-top:10px">▶ Видео · цифровой аватар</div>':''}
+      <div class="meta"><svg viewBox="0 0 24 24"><path d="M12 21v-6"/><path d="M12 15a5.5 5.5 0 0 0 4.2-9 4.3 4.3 0 0 0-8.4 0A5.5 5.5 0 0 0 12 15z"/></svg> <b>${t.species}</b><br><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5 20c0-3.9 3.1-7 7-7s7 3.1 7 7"/></svg> Посадил: <b>${t.planter}</b></div>
+      <div class="more">Подробнее →</div>`;
+    gridEl.appendChild(c);
+  });
+}
+renderTrees();
+
+/* ============ MAP ============ */
+const markersG=document.getElementById('markers');
+const mapInfo=document.getElementById('mapInfo');
+trees.forEach(t=>{
+  const g=document.createElementNS('http://www.w3.org/2000/svg','g');
+  g.setAttribute('class','marker');g.dataset.id=t.id;
+  g.innerHTML=`
+    <circle cx="${t.x}" cy="${t.y}" r="27" fill="url(#canopyP)" opacity=".28"/>
+    <circle cx="${t.x}" cy="${t.y}" r="20" fill="url(#canopyP)" opacity=".5"/>
+    <circle class="ring" cx="${t.x}" cy="${t.y}" r="20.5" fill="none" stroke="${t.color}" stroke-width="2" stroke-opacity=".7"/>
+    <svg class="face" x="${t.x-18}" y="${t.y-18}" width="36" height="36" viewBox="0 0 100 100">${heroFace(t,'m')}</svg>
+    <circle cx="${t.x+13}" cy="${t.y+13}" r="8.5" fill="#1a140a"/>
+    <circle cx="${t.x+13}" cy="${t.y+13}" r="8.5" fill="url(#badgeG)" opacity=".95"/>
+    <text x="${t.x+13}" y="${t.y+16.5}" text-anchor="middle" font-size="9.5" font-family="Forum" fill="#1a140a">${t.id}</text>
+    <text x="${t.x}" y="${t.y-27}" text-anchor="middle" font-size="11" font-family="PT Serif" fill="#ede6d6">${t.name}</text>`;
+  g.onclick=()=>selectMarker(t.id);
+  g.onmouseenter=()=>showMapInfo(t);
+  markersG.appendChild(g);
+});
+function selectMarker(id){
+  document.querySelectorAll('.marker').forEach(m=>m.classList.toggle('sel',m.dataset.id==id));
+  showMapInfo(trees.find(t=>t.id===id));
+}
+function showMapInfo(t){
+  const sg=subgroups.find(s=>s.id===t.group);
+  mapInfo.innerHTML=`
+    <div class="badge">Дерево №${t.id} · ${sg.name}</div>
+    <h3>${t.name}</h3>
+    <div class="row"><span>Культура</span><b>${t.species}</b></div>
+    <div class="row"><span>Кто посадил</span><b>${t.planter}</b></div>
+    <div class="row"><span>Дата посадки</span><b>${t.date}</b></div>
+    <div class="row"><span>Широта</span><b class="coord">${t.lat.toFixed(5)}° N</b></div>
+    <div class="row"><span>Долгота</span><b class="coord">${t.lng.toFixed(5)}° E</b></div>
+    <button class="btn ghost" style="margin-top:18px" onclick="openModal(${t.id})">История героя</button>
+    <div class="hint"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> Общие координаты аллеи: 55.751244, 37.618423</div>`;
+}
+
+/* ============ MODAL ============ */
+const modal=document.getElementById('modal');
+function openModal(id){
+  const t=trees.find(x=>x.id===id);const sg=subgroups.find(s=>s.id===t.group);
+  document.getElementById('mBadge').textContent=`Дерево №${t.id} · ${sg.name}`;
+  document.getElementById('mName').textContent=t.name;
+  document.getElementById('mRole').textContent=t.role;
+  const vw=document.getElementById('mVideoWrap');
+  if(t.video){
+    vw.innerHTML=`<div class="modal-avatar-tag"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0"/><path d="M12 17v3.5M9 20.5h6"/></svg> Цифровой аватар</div>
+      <div class="modal-video"><iframe src="${t.video}" allow="autoplay; fullscreen" allowfullscreen title="Видеоролик"></iframe></div>`;
+  }else{vw.innerHTML='';}
+  document.getElementById('mBio').textContent=t.bio;
+  document.getElementById('mPlanter').textContent=t.planter;
+  document.getElementById('mDate').textContent=t.date;
+  document.getElementById('mSpecies').textContent=t.species;
+  document.getElementById('mCoords').textContent=`${t.lat.toFixed(5)}, ${t.lng.toFixed(5)}`;
+  modal.classList.add('open');
+}
+function closeModal(){modal.classList.remove('open');document.getElementById('mVideoWrap').innerHTML='';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+/* ============ VIDEO COVER ============ */
+(function(){
+  const frame=document.getElementById('videoFrame');
+  const poster=document.getElementById('videoPoster');
+  if(!frame||!poster)return;
+  poster.addEventListener('click',()=>{
+    const ifr=document.createElement('iframe');
+    ifr.src=frame.dataset.src;
+    ifr.allow='autoplay; fullscreen';ifr.allowFullscreen=true;
+    ifr.title='Видеоролик с цифровым аватаром';
+    ifr.style.cssText='width:100%;height:100%;border:0;display:block';
+    poster.remove();
+    frame.appendChild(ifr);
+  });
+})();
+
+/* ============ EVENTS ============ */
+const events=[
+  {d:"09",m:"Мая",yr:"ежегодно",title:"День Победы: возложение цветов",desc:"Торжественная церемония памяти у Вечного огня и деревьев Славы с участием ветеранов.",where:"Центральная аллея"},
+  {d:"22",m:"Июня",yr:"ежегодно",title:"День памяти и скорби",desc:"Свечи памяти и минута молчания в честь всех павших героев.",where:"Аллея Славы"},
+  {d:"01",m:"Июля",yr:"ежегодно",title:"День ветеранов боевых действий",desc:"Чествование ветеранов боевых действий: встречи поколений, уход за деревьями Славы и закладка новых именных аллей.",where:"Аллея Славы"},
+  {d:"15",m:"Сент.",yr:"ежегодно",title:"Посадка новых деревьев",desc:"Общественная акция: каждый может посадить дерево в честь героя и стать частью аллеи.",where:"Восточная часть парка"},
+  {d:"03",m:"Дек.",yr:"ежегодно",title:"День Неизвестного Солдата",desc:"Памятный митинг и уход за деревьями перед наступлением зимы.",where:"Парк Памяти"}
+];
+const evGrid=document.getElementById('evGrid');
+events.forEach(e=>{
+  const d=document.createElement('div');d.className='ev';
+  d.innerHTML=`<div class="date"><span class="d">${e.d}</span><span class="m">${e.m}</span>${e.yr?`<span class="yr">${e.yr}</span>`:''}</div>
+    <div class="body"><h3>${e.title}</h3><p>${e.desc}</p><div class="where"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> ${e.where}</div></div>`;
+  evGrid.appendChild(d);
+});
+
+/* ============ CHRONICLE / TIMELINE ============ */
+const chronicle=[
+  {year:"2024",date:"2024 г.",tag:"Признание",cls:"award",title:"Финалист курса «Новые возможности»",desc:"Андрей Климов прошёл обучающий курс, инициированный правительством и Минпромом РО для участников СВО, и представил проект «Организация многоцелевых природных экокластеров»."},
+  {year:"2024",date:"Апрель 2024",tag:"Посадка",cls:"plant",title:"Первая высадка павловний у храма",desc:"Совместно с активистами ОНФ и членами АВБД на территории храма святого апостола Андрея Первозванного в Ростове-на-Дону.",trees:5},
+  {year:"2025",date:"22 февраля 2025",tag:"Съезд",title:"Первый съезд волонтёров",desc:"Старт волонтёрского движения проекта — встреча единомышленников и партнёров."},
+  {year:"2025",date:"16 мая 2025",tag:"Встреча",title:"Благословение на День ветеранов боевых действий",desc:"Встреча с настоятелем храма Георгия Победоносца о. Валерием Волощуком: благословение на мероприятие 1 июля с награждением участников СВО и передачей деревьев-аватаров."},
+  {year:"2025",date:"4 июня 2025",tag:"Встреча",title:"Встреча с депутатом Госдумы С. Бурлаковым",desc:"Таганрог, Общественная приёмная «Единой России»: обсуждение хода проекта в формате «депутатского треугольника»."},
+  {year:"2025",date:"1 июля 2025",tag:"Праздник",cls:"award",title:"День ветеранов боевых действий",desc:"Чествование ветеранов и воспитание уважения у молодёжи к тем, кто отстаивает интересы Родины."},
+  {year:"2025",date:"22 августа 2025",tag:"Съезд",title:"Второй съезд волонтёров Дона #СВОих",desc:"Площадка для новых идей и партнёрских связей под руководством зампредседателя АВБД А. А. Климова."},
+  {year:"2025",date:"27 августа 2025",tag:"Встреча",title:"Встреча с депутатом Е. В. Сирота",desc:"Таганрог: обсуждение создания мемориальных аллей, парков памяти и посадок деревьев-аватаров в честь воинов."},
+  {year:"2025",date:"7 октября 2025",tag:"Признание",cls:"award",title:"Лауреат XII конкурса Общественной палаты РО",desc:"Проект получил приглашение в правительство области для детального обсуждения от руководства Законодательного Собрания РО."},
+  {year:"2025",date:"8 октября 2025",tag:"Встреча",title:"Совещание с замгубернатора Д. Водолацким",desc:"С участием министра природных ресурсов и экологии Ростовской области Аллы Кушнарёвой."},
+  {year:"2025",date:"18 октября 2025",tag:"Посадка",cls:"plant",title:"Высадка павловний в сквере Героев",desc:"Хутор Победа, Азовский район, у ДК — совместно с ОНФ, местными жителями и молодёжью.",trees:20},
+  {year:"2025",date:"20 октября 2025",tag:"Посадка",cls:"plant",title:"Высадка павловний у школы",desc:"Средняя школа Задонского сельского поселения, Азовский район.",trees:50},
+  {year:"2025",date:"20 октября 2025",tag:"Встреча",title:"Благословение в храме Георгия Победоносца",desc:"Получено благословение о. Валерия Волощука на высадку мемориальных деревьев на территории храма в присутствии министра экологии РО."},
+  {year:"2025",date:"4 ноября 2025",tag:"Посадка",cls:"plant",title:"Высадка павловний у храма Георгия Победоносца",desc:"Ростов-на-Дону, ул. 339-й Стрелковой дивизии — совместно с ОНФ, жителями и молодёжью.",trees:10},
+  {year:"2025",date:"26 ноября 2025",tag:"Конференция",title:"Проект на «Докучаевской конференции»",desc:"Москва, Всероссийская конференция по реабилитации экосистем Донбасса и Новороссии. Подписано соглашение с международной акцией «Сад памяти»."},
+  {year:"2026",date:"18 апреля 2026",tag:"Посадка",cls:"plant",title:"Высадка павловний в ЖК «Плевен»",desc:"Ростов-на-Дону, ул. Стачки, 215 — совместно с ОНФ, жителями и молодёжью."},
+  {year:"2026",date:"25 апреля 2026",tag:"Встреча",title:"Партнёрство с университетом ИУБиП",desc:"Ректор Имран Гурруевич Акперов одобрил сотрудничество по цифровизации деревьев-аватаров в честь павших воинов."},
+  {year:"2026",date:"30 апреля 2026",tag:"Встреча",title:"Совещание в Шахтах с ТСМ",desc:"Об использовании павловнии сорта Вудмакс-8 в компенсационном озеленении при реконструкции автодороги М-4 «Дон»."},
+  {year:"2026",date:"22 мая 2026",tag:"Встреча",title:"Совещание в Донецке (ДНР)",desc:"С руководством правительства ДНР об увековечивании памяти погибших воинов с использованием павловнии Вудмакс-8."},
+  {year:"2026",date:"4 июня 2026",tag:"Встреча",title:"Встреча с замминистра сельского хозяйства РО",desc:"Святослав Харитонов — о берегоукрепляющих посадках деревьев-аватаров вдоль Азовского моря в рамках компенсационного озеленения."}
+];
+const tlEl=document.getElementById('timeline');
+const treeIcon='<svg viewBox="0 0 24 24"><path d="M12 21v-6"/><path d="M12 15a5.5 5.5 0 0 0 4.2-9 4.3 4.3 0 0 0-8.4 0A5.5 5.5 0 0 0 12 15z"/></svg>';
+let lastYear=null;
+chronicle.forEach(e=>{
+  if(e.year!==lastYear){
+    const y=document.createElement('div');y.className='tl-year';
+    y.innerHTML=`<span class="yv">${e.year}</span><span class="yl"></span>`;
+    tlEl.appendChild(y);lastYear=e.year;
+  }
+  const it=document.createElement('div');it.className='tl-item';
+  it.innerHTML=`<span class="tl-date">${e.date}</span>
+    <div class="tl-card">
+      <span class="tag ${e.cls||''}">${e.tag}</span>
+      <h4>${e.title}</h4>
+      <p>${e.desc}</p>
+      ${e.trees?`<div class="trees">${treeIcon} Высажено деревьев: <b>${e.trees}</b></div>`:''}
+    </div>`;
+  tlEl.appendChild(it);
+});
+
+/* ============ REVIEWS ============ */
+let reviews=[
+  {name:"Анна М.",role:"посетитель",text:"Невероятно трогательное место. Идея живой памяти через деревья пробирает до глубины души.",stars:5},
+  {name:"Сергей К.",role:"волонтёр",text:"Горжусь, что помогаю ухаживать за аллеей. Здесь чувствуешь связь поколений.",stars:5},
+  {name:"Семья Поздеевых",role:"родные героя",text:"Спасибо за память о нашем сыне. Его дерево растёт, и это даёт нам силы.",stars:5}
+];
+const revGrid=document.getElementById('revGrid');
+function renderReviews(){
+  revGrid.innerHTML='';
+  reviews.forEach(r=>{
+    const el=document.createElement('div');el.className='rev';
+    el.innerHTML=`<div class="stars">${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)}</div>
+      <p>«${r.text}»</p>
+      <div class="who"><div class="av">${r.name[0]}</div><div><b>${r.name}</b><span>${r.role||'посетитель'}</span></div></div>`;
+    revGrid.appendChild(el);
+  });
+}
+renderReviews();
+
+/* rating widget */
+let curRate=5;
+const rateEl=document.getElementById('rate');
+function paintRate(){[...rateEl.children].forEach(s=>s.classList.toggle('on',+s.dataset.v<=curRate));}
+[...rateEl.children].forEach(s=>{
+  s.onclick=()=>{curRate=+s.dataset.v;paintRate();};
+  s.onmouseenter=()=>{[...rateEl.children].forEach(x=>x.classList.toggle('on',+x.dataset.v<=+s.dataset.v));};
+});
+rateEl.onmouseleave=paintRate;paintRate();
+
+function addReview(e){
+  e.preventDefault();
+  const name=document.getElementById('revName').value.trim();
+  const role=document.getElementById('revRole').value.trim();
+  const text=document.getElementById('revText').value.trim();
+  if(!name||!text)return false;
+  reviews.unshift({name,role,text,stars:curRate});
+  renderReviews();
+  document.getElementById('revMsg').textContent='Спасибо! Ваш отзыв опубликован.';
+  e.target.reset();curRate=5;paintRate();
+  setTimeout(()=>document.getElementById('revMsg').textContent='',4000);
+  return false;
+}
+
+/* ============ GENERIC FORM ============ */
+function submitForm(e,msgId){
+  e.preventDefault();
+  document.getElementById(msgId).textContent='Спасибо! Ваше сообщение получено. Мы свяжемся с вами.';
+  e.target.reset();
+  setTimeout(()=>document.getElementById(msgId).textContent='',5000);
+  return false;
+}
+
+
+/* ============ QR ============ */
+const QR_B64="data:image/png;base64,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";
+document.getElementById('qrImg').src=QR_B64;
+
+/* ============ STATS ============ */
+document.getElementById('stat-heroes').textContent=trees.length;
+document.getElementById('stat-trees').textContent=trees.length;
+
+/* ============ MOTION SUITE ============ */
+const mq=q=>window.matchMedia?window.matchMedia(q):{matches:false};
+const reduce=mq('(prefers-reduced-motion:reduce)').matches;
+
+/* directional reveal accents */
+const dir=(sel,cls)=>document.querySelectorAll(sel).forEach(e=>e.classList.add(cls));
+dir('.decl-text','r-left');dir('.decl-card','r-right');
+dir('.contact-info','r-left');dir('.contact-form','r-right');
+dir('.qr-card','r-right');dir('.spec-card','r-right');
+
+/* reveal on scroll */
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* staggered entrance for grids */
+function staggerIn(container,d=0.08){
+  if(!container)return;
+  container.classList.remove('reveal','in');
+  const kids=[...container.children];
+  if(reduce)return;
+  kids.forEach((c,i)=>{c.classList.add('will-anim');c.style.opacity='0';c.style.transform='translateY(28px)';
+    c.style.transition=`opacity .7s cubic-bezier(.16,.84,.34,1) ${i*d}s, transform .7s cubic-bezier(.16,.84,.34,1) ${i*d}s`;});
+  const o=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){
+    kids.forEach(c=>{c.style.opacity='1';c.style.transform='none';});
+    setTimeout(()=>kids.forEach(c=>{c.style.transition='';c.classList.remove('will-anim');}),800+kids.length*d*1000);
+    o.disconnect();}})},{threshold:.1,rootMargin:'0px 0px -6% 0px'});
+  o.observe(container);
+}
+['.spec-grid','.care-grid','.awards','.partners-grid','.season','.flow','#treeGrid','#evGrid','#revGrid']
+  .forEach(sel=>staggerIn(document.querySelector(sel)));
+
+/* 3D tilt micro-interaction */
+if(!reduce && mq('(hover:hover)').matches){
+  const TILT='.tree-card,.award,.spec-m,.partner,.care-card,.ev,.flow .step,.spec-card,.decl-card,.qr-card,.rev';
+  document.querySelectorAll(TILT).forEach(card=>{
+    card.classList.add('tilt');
+    card.addEventListener('pointermove',e=>{
+      const r=card.getBoundingClientRect();
+      const px=(e.clientX-r.left)/r.width-.5, py=(e.clientY-r.top)/r.height-.5;
+      card.style.transform=`perspective(820px) rotateY(${px*6}deg) rotateX(${-py*6}deg) translateY(-5px)`;
+    });
+    card.addEventListener('pointerleave',()=>{card.style.transform='';});
+  });
+}
+
+/* magnetic buttons */
+if(!reduce && mq('(hover:hover)').matches){
+  document.querySelectorAll('.btn').forEach(b=>{
+    b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();
+      b.style.transform=`translate(${((e.clientX-r.left)/r.width-.5)*10}px,${((e.clientY-r.top)/r.height-.5)*8}px)`;});
+    b.addEventListener('pointerleave',()=>{b.style.transform='';});
+  });
+}
+
+/* scroll progress + nav shrink */
+const progress=document.createElement('div');progress.className='progress';document.body.appendChild(progress);
+const navEl=document.querySelector('nav');
+function onScroll(){
+  const st=window.scrollY||document.documentElement.scrollTop;
+  const h=document.documentElement.scrollHeight-window.innerHeight;
+  progress.style.width=(h>0?st/h*100:0)+'%';
+  navEl.classList.toggle('scrolled',st>40);
+  if(!reduce){const f=Math.max(0,1-st/(window.innerHeight*0.85));
+    hero.style.opacity=String(f);hero.style.transform=`translateY(${st*0.18}px)`;}
+}
+const hero=document.querySelector('.hero');
+window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+/* active nav link by section */
+const navMap={};document.querySelectorAll('.nav-links a').forEach(a=>navMap[a.getAttribute('href').slice(1)]=a);
+const secObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){
+  Object.values(navMap).forEach(a=>a.classList.remove('active'));
+  const a=navMap[e.target.id];if(a)a.classList.add('active');}})},{rootMargin:'-45% 0px -50% 0px'});
+document.querySelectorAll('section[id]').forEach(s=>secObs.observe(s));
+
+/* count-up hero stats */
+function countUp(el,to,dur=1500){if(!el)return;if(reduce){el.textContent=to;return;}
+  const t0=performance.now();
+  (function tick(now){const p=Math.min(1,(now-t0)/dur);const e=1-Math.pow(1-p,3);
+    el.textContent=Math.round(to*e);if(p<1)requestAnimationFrame(tick);})(t0);
+}
+countUp(document.getElementById('stat-heroes'),trees.length);
+countUp(document.getElementById('stat-trees'),trees.length);
+
+/* floaty accents */
+document.querySelector('.hero .ribbon')?.classList.add('floaty');
+
+/* close mobile menu on click */
+document.querySelectorAll('.nav-links a').forEach(a=>a.onclick=()=>document.querySelector('.nav-links').classList.remove('show'));
+</script>
+</body>
+</html>
