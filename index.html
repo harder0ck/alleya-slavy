@@ -1506,7 +1506,8 @@ function initAzovMap(){
   if(!el)return;
   if(!window.L){window.addEventListener('load',initAzovMap,{once:true});return;}
   if(el._leaflet_id)return;
-  const map=L.map(el,{scrollWheelZoom:false}).setView([46.97,38.62],9);
+  const map=L.map(el,{scrollWheelZoom:false,attributionControl:false}).setView([46.97,38.62],9);
+  L.control.attribution({prefix:false}).addTo(map);
   L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{
     attribution:'&copy; OpenStreetMap · &copy; CARTO',subdomains:'abcd',maxZoom:18}).addTo(map);
   const bounds=[];
