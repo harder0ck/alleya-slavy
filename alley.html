@@ -8,6 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Forum&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Marck+Script&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
 <style>
 :root{
   --bg:#0c120e;
@@ -176,6 +178,16 @@ nav{
 .map-info .row b{color:#d8d2c2;font-weight:400;text-align:right}
 .map-info .coord{font-family:"PT Serif";color:var(--gold-l)}
 .map-info .hint{margin-top:auto;padding-top:18px;color:var(--muted);font-size:.85rem;font-style:italic}
+.map-info .map-open{margin-top:18px;align-self:flex-start;background:linear-gradient(135deg,var(--gold),var(--bronze));color:#0c120e;border:0;border-radius:10px;padding:10px 18px;font-family:"Forum",serif;letter-spacing:.04em;font-size:.95rem;cursor:pointer;transition:filter .2s,transform .2s}
+.map-info .map-open:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.map-toggle{display:inline-flex;gap:6px;padding:5px;margin-bottom:16px;background:linear-gradient(160deg,var(--panel),var(--bg));border:1px solid var(--line);border-radius:13px}
+.map-toggle .mt{display:inline-flex;align-items:center;gap:8px;border:0;background:transparent;color:var(--muted);font-family:"Forum",serif;letter-spacing:.03em;font-size:.95rem;padding:9px 16px;border-radius:9px;cursor:pointer;transition:background .2s,color .2s}
+.map-toggle .mt svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.map-toggle .mt:hover{color:var(--ink)}
+.map-toggle .mt.active{background:linear-gradient(135deg,var(--gold),var(--bronze));color:#0c120e}
+.map-view[hidden]{display:none}
+.map-marker .mk-dot{transition:r .15s ease}
+.map-marker:hover .mk-dot{r:16}
 
 /* ===== CARE ===== */
 .care-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px}
@@ -549,6 +561,43 @@ body::before{animation:aurora 22s ease-in-out infinite alternate}
 
 .will-anim{will-change:transform,opacity}
 
+/* ===== REAL AZOV LEAFLET MAP ===== */
+.leaflet-stage{height:520px;border-radius:14px;overflow:hidden;border:1px solid var(--line);
+  box-shadow:inset 0 0 60px rgba(0,0,0,.5);background:#0a120d}
+.leaflet-stage .leaflet-tile{filter:saturate(.85) brightness(.92)}
+.leaflet-container{background:#0a120d;font-family:"PT Serif",serif}
+.leaflet-control-zoom a{background:#13201a!important;color:var(--gold-l)!important;border-color:var(--line)!important}
+.leaflet-control-zoom a:hover{background:#1c2c24!important;color:#fff!important}
+.leaflet-control-attribution{background:rgba(12,18,14,.7)!important;color:#7c8a7f!important}
+.leaflet-control-attribution a{color:var(--green-l)!important}
+.leaflet-popup-content-wrapper{background:linear-gradient(165deg,#16241c,#0e1813);color:var(--ink);
+  border:1px solid rgba(201,162,39,.35);border-radius:14px;box-shadow:0 14px 40px rgba(0,0,0,.55)}
+.leaflet-popup-tip{background:#13201a;border:1px solid rgba(201,162,39,.35)}
+.leaflet-popup-content{margin:14px 16px;font-size:.9rem;line-height:1.5}
+.leaflet-popup-content h4{font-family:"Forum",serif;color:var(--gold-l);font-size:1.12rem;margin-bottom:2px}
+.leaflet-popup-content .reg{color:var(--green-l);font-size:.78rem;margin-bottom:9px;display:block}
+.leaflet-popup-content .pr{display:flex;gap:8px;margin-top:6px;color:var(--muted)}
+.leaflet-popup-content .pr b{color:var(--bronze);font-weight:600;flex:0 0 auto}
+.leaflet-popup-content a{color:var(--gold-l);text-decoration:none}
+.leaflet-popup-content a:hover{text-decoration:underline}
+.az-pin{display:grid;place-items:center}
+.az-pin svg{filter:drop-shadow(0 4px 6px rgba(0,0,0,.6))}
+.map-note{margin-top:14px;font-size:.82rem;color:var(--muted);display:flex;align-items:flex-start;gap:8px;line-height:1.45}
+.map-note svg{flex:0 0 auto;width:16px;height:16px;margin-top:2px;fill:none;stroke:var(--gold);stroke-width:1.5}
+
+/* ===== KNOWLEDGE HUB ===== */
+.hub-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px;margin-top:14px}
+.hub-card{display:flex;flex-direction:column;background:linear-gradient(160deg,var(--panel),var(--bg));
+  border:1px solid var(--line);border-radius:18px;padding:28px;box-shadow:var(--shadow);
+  transition:transform .25s,border-color .25s}
+.hub-card:hover{transform:translateY(-4px);border-color:rgba(201,162,39,.45)}
+.hub-card .ic{width:52px;height:52px;border-radius:13px;display:grid;place-items:center;margin-bottom:16px;
+  background:rgba(201,162,39,.1);border:1px solid var(--line)}
+.hub-card .ic svg{width:26px;height:26px;fill:none;stroke:var(--gold-l);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.hub-card h3{font-size:1.45rem;margin-bottom:8px;color:var(--ink)}
+.hub-card p{color:var(--muted);font-size:.95rem;flex:1;line-height:1.55}
+.hub-card .go{margin-top:18px;color:var(--gold);font-family:"Forum",serif;letter-spacing:.05em}
+
 /* ===== REFERENCE / KNOWLEDGE BASE ===== */
 .ref-tabs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:30px auto 44px}
 .ref-tab{font-family:"Forum",serif;letter-spacing:.05em;font-size:1.02rem;cursor:pointer;
@@ -761,8 +810,8 @@ body::before{animation:aurora 22s ease-in-out infinite alternate}
       </div>
     </div>
     <div class="spec-grid reveal">
-      <div class="spec-m"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 21v-9"/><path d="M12 13C12 8.5 9 6 4 6c0 4.5 3 7 8 7z"/><path d="M12 15c0-3.5 3-6 8-6 0 3.5-3 6-8 6z"/></svg></div><b>3–5 м</b><span>прирост в год — самое быстрое дерево в мире</span></div>
-      <div class="spec-m"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3v17"/><path d="M12 8c-2.5 3-5.5 4.5-9 4.5M12 8c2.5 3 5.5 4.5 9 4.5"/><path d="M12 14c-1.5 3.5-4.5 5.5-8 6.5M12 14c1.5 3.5 4.5 5.5 8 6.5"/></svg></div><b>5–9 м</b><span>стержневой корень против эрозии берега</span></div>
+      <div class="spec-m"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 21v-9"/><path d="M12 13C12 8.5 9 6 4 6c0 4.5 3 7 8 7z"/><path d="M12 15c0-3.5 3-6 8-6 0 3.5-3 6-8 6z"/></svg></div><b>13–15 м</b><span>прирост в год — самое быстрое дерево в мире</span></div>
+      <div class="spec-m"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3v17"/><path d="M12 8c-2.5 3-5.5 4.5-9 4.5M12 8c2.5 3 5.5 4.5 9 4.5"/><path d="M12 14c-1.5 3.5-4.5 5.5-8 6.5M12 14c1.5 3.5 4.5 5.5 8 6.5"/></svg></div><b>15–19 м</b><span>стержневой корень против эрозии берега</span></div>
       <div class="spec-m"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 8h9a2.5 2.5 0 1 0-2.5-2.5"/><path d="M3 12h13a2.5 2.5 0 1 1-2.5 2.5"/><path d="M3 16h7a2 2 0 1 1-2 2"/></svg></div><b>×4</b><span>кислорода выше аналогов</span></div>
       <div class="spec-m"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4.5 12a7.5 7.5 0 0 1 12.7-5.4L20 9"/><path d="M20 4.5V9h-4.5"/><path d="M19.5 12a7.5 7.5 0 0 1-12.7 5.4L4 15"/><path d="M4 19.5V15h4.5"/></svg></div><b>×7</b><span>регенерация из корня после рубки</span></div>
       <div class="spec-m"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 13.5V9M12 13.5l3.5 2"/><path d="M9.5 2.5h5"/></svg></div><b>7 лет</b><span>= рост 100-летнего дерева первой величины</span></div>
@@ -849,12 +898,18 @@ body::before{animation:aurora 22s ease-in-out infinite alternate}
   <div class="wrap">
     <div class="section-head reveal">
       <div class="eyebrow">Интерактивная карта</div>
-      <h2>План аллеи <span class="gold">и координаты</span></h2>
-      <p>Наведите или нажмите на дерево на схеме, чтобы увидеть, кто его посадил, и его точные координаты.</p>
+      <h2>Аллея на побережье <span class="gold">Азовского моря</span></h2>
+      <p>Аллея высаживается вдоль Таганрогского залива и Азовского моря в семи поселениях Приазовья. Нажмите маркер на карте, чтобы увидеть поселение и контакты главы.</p>
       <div class="rule"></div>
     </div>
     <div class="map-wrap reveal">
       <div>
+        <div class="map-toggle" id="mapToggle">
+          <button type="button" class="mt active" data-view="plan"><svg viewBox="0 0 24 24"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/></svg> План аллеи</button>
+          <button type="button" class="mt" data-view="geo"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.8 2.6 15.2 0 18M12 3c-2.6 2.8-2.6 15.2 0 18"/></svg> Карта Приазовья</button>
+        </div>
+
+        <div class="map-view" id="view-plan">
         <div class="map-stage">
           <svg id="mapSvg" viewBox="0 0 680 460" xmlns="http://www.w3.org/2000/svg" aria-label="План аллеи">
             <defs>
@@ -1007,12 +1062,22 @@ body::before{animation:aurora 22s ease-in-out infinite alternate}
           <div><i style="background:#d57b1e"></i>Вечный огонь</div>
           <div><i style="background:transparent;border:1px dashed rgba(201,162,39,.6)"></i>Место для будущих деревьев</div>
         </div>
+        </div>
+
+        <div class="map-view" id="view-geo" hidden>
+          <div id="azovMap" class="leaflet-stage" role="application" aria-label="Карта Азовского побережья с поселениями аллеи"></div>
+          <div class="legend">
+            <div><i style="background:#9a6fc2"></i>Поселение аллеи</div>
+            <div><i style="background:#2f5d68"></i>Азовское море · Таганрогский залив</div>
+          </div>
+          <div class="map-note"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> Маркеры показывают центры семи поселений Приазовья. Точные прибрежные участки посадок — в разделе «База знаний → География».</div>
+        </div>
       </div>
       <div class="map-info" id="mapInfo">
-        <div class="badge">Дерево №—</div>
-        <h3>Выберите дерево</h3>
-        <p style="color:var(--muted)">Нажмите на любой маркер на схеме слева, чтобы увидеть подробности.</p>
-        <div class="hint"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> Общие координаты аллеи: 55.751244, 37.618423</div>
+        <div class="badge">Приазовье</div>
+        <h3>Выберите поселение</h3>
+        <p style="color:var(--muted)">Нажмите маркер на карте, чтобы увидеть поселение, главу администрации и контакты для участия в проекте.</p>
+        <div class="hint"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> Аллея высаживается вдоль Азовского моря в 7 поселениях Азовского и Неклиновского районов.</div>
       </div>
     </div>
   </div>
@@ -1153,65 +1218,36 @@ body::before{animation:aurora 22s ease-in-out infinite alternate}
       <div class="rule"></div>
     </div>
 
-    <div class="ref-tabs reveal" id="refTabs">
-      <button class="ref-tab active" data-ref="pavlovnia"><svg viewBox="0 0 24 24"><path d="M12 22V12M12 12c0-3 2-5 5-5M12 12c0-3-2-5-5-5M12 7a4 4 0 1 0 0-4 4 4 0 0 0 0 4z"/></svg>Павловния</button>
-      <button class="ref-tab" data-ref="geo"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>География</button>
-      <button class="ref-tab" data-ref="team"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0M16 6a3 3 0 0 1 0 6M17 14.5a5.5 5.5 0 0 1 3.5 5.5"/></svg>Команда</button>
-      <button class="ref-tab" data-ref="media"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 8h18M8 12l3 2-3 2z"/></svg>Медиа</button>
-    </div>
+    <div class="hub-grid reveal">
 
-    <!-- PANEL: PAVLOVNIA -->
-    <div class="ref-panel active" id="ref-pavlovnia">
-      <p class="ref-lead">Павловния <b>«Вудмакс-8»</b> — самое быстрорастущее дерево планеты и основа нашего проекта. Ниже — ключевые биологические, технические и агротехнические характеристики культуры.</p>
-      <div class="fact-grid" id="factGrid"></div>
-      <div class="ref-doc">
-        <div class="doc-body">
-          <h4>Сорт «Вудмакс-8» (Woodmax-8 / ВУДМАКС-8)</h4>
-          <div class="pat-sub">Запатентованный селекционный сорт павловнии</div>
-          <p>Сорт прошёл государственное сортоиспытание и защищён патентом. Подтверждён рекомендацией Новочеркасского инженерно-мелиоративного института (НИМИ) для условий Юга России.</p>
-          <dl class="pat-rows">
-            <dt>Код Госсорткомиссии</dt><dd>7652641</dd>
-            <dt>Патент</dt><dd>№ 13320</dd>
-            <dt>Авторы</dt><dd>Ероцкий, Алимов, Калдыбаева</dd>
-            <dt>Патентообладатель</dt><dd>ТОО «INTEGRO PLUS» (Казахстан)</dd>
-            <dt>Срок действия</dt><dd>до 2058 года</dd>
-          </dl>
-        </div>
-        <div class="dl-list">
-          <a class="dl" href="assets/pavlovnia-overview.pdf" target="_blank" rel="noopener">
-            <span class="dl-ic"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 19h14"/></svg></span>
-            <span class="dl-tx"><b>Обзор павловнии</b><span>PDF · скачать</span></span>
-          </a>
-          <a class="dl" href="assets/nimi-recommendation.pdf" target="_blank" rel="noopener">
-            <span class="dl-ic"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 19h14"/></svg></span>
-            <span class="dl-tx"><b>Рекомендация НИМИ</b><span>№ 481 от 29.08.2025 · PDF</span></span>
-          </a>
-        </div>
-      </div>
-    </div>
+      <a class="hub-card" href="pavlovnia.html">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 22V12M12 12c0-3 2-5 5-5M12 12c0-3-2-5-5-5M12 7a4 4 0 1 0 0-4 4 4 0 0 0 0 4z"/></svg></div>
+        <h3>О павловнии</h3>
+        <p>Характеристики сорта «Вудмакс-8», патент и авторство, официальные документы и гимн проекта — для просмотра и скачивания.</p>
+        <span class="go">Открыть страницу →</span>
+      </a>
 
-    <!-- PANEL: GEOGRAPHY -->
-    <div class="ref-panel" id="ref-geo">
-      <p class="ref-lead">Аллея высаживается вдоль побережья <b>Азовского моря</b> на территории семи сельских поселений Азовского и Неклиновского районов Ростовской области. Прибрежные участки пронумерованы (№ 1–45+), площади варьируются от ~3,9 тыс. до 770 тыс. м².</p>
-      <div class="geo-note">Контакты глав поселений приведены для официальных обращений по вопросам участия и согласования посадок. <b>Просьба использовать их корректно.</b></div>
-      <div class="sp-grid" id="spGrid"></div>
-    </div>
+      <a class="hub-card" href="geography.html">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+        <h3>География</h3>
+        <p>Семь поселений Приазовья: контакты администраций и карты конкретных участков посадки — увеличение прямо на сайте и скачивание PDF.</p>
+        <span class="go">Открыть страницу →</span>
+      </a>
 
-    <!-- PANEL: TEAM -->
-    <div class="ref-panel" id="ref-team">
-      <p class="ref-lead">Проект ведёт команда специалистов в области <b>управления, геодезии, экономики, права и строительства</b>. Ниже — краткие публичные сведения об участниках.</p>
-      <div class="team-grid" id="teamGrid"></div>
-    </div>
+      <a class="hub-card" href="team.html">
+        <div class="ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0M16 6a3 3 0 0 1 0 6M17 14.5a5.5 5.5 0 0 1 3.5 5.5"/></svg></div>
+        <h3>Команда</h3>
+        <p>Специалисты проекта в области управления, геодезии, экономики, права и строительства — краткие публичные сведения об участниках.</p>
+        <span class="go">Открыть страницу →</span>
+      </a>
 
-    <!-- PANEL: MEDIA -->
-    <div class="ref-panel" id="ref-media">
-      <p class="ref-lead">Презентационные материалы проекта, фотографии с посадок и <b>гимн проекта</b>.</p>
-      <div class="gallery" id="galleryGrid"></div>
-      <div class="audio-card reveal">
-        <span class="a-ic"><svg viewBox="0 0 24 24"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg></span>
-        <span class="a-tx"><b>«А мы сажаем павловнию…»</b><span>Гимн проекта · аудиозапись</span></span>
-        <audio controls preload="none" src="assets/song-pavlovnia.mp3"></audio>
-      </div>
+      <a class="hub-card" href="media.html">
+        <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 8h18M8 12l3 2-3 2z"/></svg></div>
+        <h3>Медиа</h3>
+        <p>Видеоролик о проекте, фотографии с посадок и материалы презентации. Любое изображение можно увеличить на странице.</p>
+        <span class="go">Открыть страницу →</span>
+      </a>
+
     </div>
   </div>
 </section>
@@ -1399,42 +1435,119 @@ function renderTrees(){
 }
 renderTrees();
 
-/* ============ MAP ============ */
-const markersG=document.getElementById('markers');
+/* ============ MAP (реальный Азовский бассейн · Leaflet) ============ */
+const azovSettlements=[
+  {n:'Круглянское СП',reg:'Азовский район',head:'Горностаев Николай Павлович',tel:'8 (86342) 7-23-12',email:'sp01008@yandex.ru',addr:'с. Круглое, ул. Мира, 64г',lat:46.880,lng:38.930},
+  {n:'Маргаритовское СП',reg:'Азовский район',head:'Гончаров Александр Васильевич',tel:'8 (86342) 90-137',email:'margsp01011@rambler.ru',addr:'с. Маргаритово, ул. Ровная, 7',lat:46.700,lng:38.580},
+  {n:'Семибалковское СП',reg:'Азовский район',head:'Денисова Валентина Анатольевна',tel:'8 (86342) 3-06-33',email:'glava.semibalki@mail.ru',addr:'с. Семибалки, пер. Спортивный, 9',lat:46.755,lng:38.690},
+  {n:'Натальевское СП',reg:'Неклиновский район',head:'Десятников Игорь Викторович',tel:'8 (86347) 5-91-35',email:'sp26272@donpac.ru',addr:'с. Натальевка, ул. Чехова, 91',lat:47.135,lng:38.560},
+  {n:'Поляковское СП',reg:'Неклиновский район',head:'Галицкий Александр Николаевич',tel:'8 (86347) 3-40-35',email:'sp26269@donpac.ru',addr:'х. Красный Десант, ул. Октябрьская, 10',lat:47.190,lng:38.780},
+  {n:'Новобессергеневское СП',reg:'Неклиновский район',head:'Галуза Анатолий Юрьевич',tel:'8 (86347) 2-49-35',email:'sp26274@donpac.ru',addr:'с. Лакедемоновка, ул. Ленина, 50а',lat:47.170,lng:38.800},
+  {n:'Платовское СП',reg:'Неклиновский район',head:'Дубовская Людмила Ивановна',tel:'8 (86347) 52-0-12',email:'sp26268@donpac.ru',addr:'с. Весело-Вознесенка, ул. Школьная, 1',lat:47.090,lng:38.300}
+];
 const mapInfo=document.getElementById('mapInfo');
-trees.forEach(t=>{
-  const g=document.createElementNS('http://www.w3.org/2000/svg','g');
-  g.setAttribute('class','marker');g.dataset.id=t.id;
-  g.innerHTML=`
-    <circle cx="${t.x}" cy="${t.y}" r="27" fill="url(#canopyP)" opacity=".28"/>
-    <circle cx="${t.x}" cy="${t.y}" r="20" fill="url(#canopyP)" opacity=".5"/>
-    <circle class="ring" cx="${t.x}" cy="${t.y}" r="20.5" fill="none" stroke="${t.color}" stroke-width="2" stroke-opacity=".7"/>
-    <svg class="face" x="${t.x-18}" y="${t.y-18}" width="36" height="36" viewBox="0 0 100 100">${heroFace(t,'m')}</svg>
-    <circle cx="${t.x+13}" cy="${t.y+13}" r="8.5" fill="#1a140a"/>
-    <circle cx="${t.x+13}" cy="${t.y+13}" r="8.5" fill="url(#badgeG)" opacity=".95"/>
-    <text x="${t.x+13}" y="${t.y+16.5}" text-anchor="middle" font-size="9.5" font-family="Forum" fill="#1a140a">${t.id}</text>
-    <text x="${t.x}" y="${t.y-27}" text-anchor="middle" font-size="11" font-family="PT Serif" fill="#ede6d6">${t.name}</text>`;
-  g.onclick=()=>selectMarker(t.id);
-  g.onmouseenter=()=>showMapInfo(t);
-  markersG.appendChild(g);
-});
-function selectMarker(id){
-  document.querySelectorAll('.marker').forEach(m=>m.classList.toggle('sel',m.dataset.id==id));
-  showMapInfo(trees.find(t=>t.id===id));
+let azovMapObj=null;
+
+/* ---- План аллеи: SVG-маркеры деревьев ---- */
+const markersG=document.getElementById('markers');
+function renderMapMarkers(){
+  if(!markersG)return;
+  markersG.innerHTML='';
+  trees.forEach(t=>{
+    const g=document.createElementNS('http://www.w3.org/2000/svg','g');
+    g.setAttribute('class','map-marker');
+    g.setAttribute('transform',`translate(${t.x},${t.y})`);
+    g.style.cursor='pointer';
+    g.innerHTML=`<circle r="15" fill="rgba(12,18,15,.55)"/>`+
+      `<circle class="mk-dot" r="13" fill="${t.color}" stroke="#e9cf72" stroke-width="1.6"/>`+
+      `<text y="4.6" text-anchor="middle" font-family="Forum" font-size="13" font-weight="bold" fill="#0c140f">${t.id}</text>`;
+    g.addEventListener('click',()=>selectMarker(t.id));
+    g.addEventListener('mouseenter',()=>showTreeInfo(t));
+    markersG.appendChild(g);
+  });
 }
-function showMapInfo(t){
+function selectMarker(id){
+  if(markersG){[...markersG.children].forEach((g,i)=>{
+    const dot=g.querySelector('.mk-dot');
+    if(dot)dot.setAttribute('r',trees[i]&&trees[i].id===id?16:13);
+  });}
+  const t=trees.find(x=>x.id===id);
+  if(t)showTreeInfo(t);
+}
+function showTreeInfo(t){
+  if(!mapInfo)return;
   const sg=subgroups.find(s=>s.id===t.group);
   mapInfo.innerHTML=`
-    <div class="badge">Дерево №${t.id} · ${sg.name}</div>
+    <div class="badge">Дерево №${t.id}${sg?' · '+sg.name:''}</div>
     <h3>${t.name}</h3>
-    <div class="row"><span>Культура</span><b>${t.species}</b></div>
-    <div class="row"><span>Кто посадил</span><b>${t.planter}</b></div>
-    <div class="row"><span>Дата посадки</span><b>${t.date}</b></div>
-    <div class="row"><span>Широта</span><b class="coord">${t.lat.toFixed(5)}° N</b></div>
-    <div class="row"><span>Долгота</span><b class="coord">${t.lng.toFixed(5)}° E</b></div>
-    <button class="btn ghost" style="margin-top:18px" onclick="openModal(${t.id})">История героя</button>
-    <div class="hint"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> Общие координаты аллеи: 55.751244, 37.618423</div>`;
+    <div class="row"><span>Роль</span><b>${t.role}</b></div>
+    <div class="row"><span>Подгруппа</span><b>${sg?sg.name:'—'}</b></div>
+    <div class="row"><span>Вид</span><b>${t.species}</b></div>
+    <div class="row"><span>Посадил</span><b>${t.planter}</b></div>
+    <button type="button" class="map-open" onclick="openModal(${t.id})">Открыть карточку →</button>`;
 }
+renderMapMarkers();
+
+function azovPinIcon(){return L.divIcon({className:'az-pin',iconSize:[30,42],iconAnchor:[15,40],popupAnchor:[0,-36],
+  html:'<svg width="30" height="42" viewBox="0 0 30 42"><path d="M15 0C7 0 1 6 1 14c0 9 11 22 14 27 3-5 14-18 14-27C29 6 23 0 15 0z" fill="#9a6fc2" stroke="#e9cf72" stroke-width="1.5"/><circle cx="15" cy="14" r="6" fill="#0c120e"/><circle cx="15" cy="14" r="3.2" fill="#e9cf72"/></svg>'});}
+function showSettlement(s){
+  if(!mapInfo)return;
+  mapInfo.innerHTML=`
+    <div class="badge">${s.reg}</div>
+    <h3>${s.n}</h3>
+    <div class="row"><span>Глава</span><b>${s.head}</b></div>
+    <div class="row"><span>Телефон</span><b><a style="color:inherit;text-decoration:none" href="tel:${s.tel.replace(/[^0-9+]/g,'')}">${s.tel}</a></b></div>
+    <div class="row"><span>E-mail</span><b><a style="color:inherit;text-decoration:none" href="mailto:${s.email}">${s.email}</a></b></div>
+    <div class="row"><span>Адрес</span><b>${s.addr}</b></div>
+    <div class="hint"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> ${s.lat.toFixed(3)}° N, ${s.lng.toFixed(3)}° E</div>`;
+}
+function initAzovMap(){
+  const el=document.getElementById('azovMap');
+  if(!el)return;
+  if(!window.L){window.addEventListener('load',initAzovMap,{once:true});return;}
+  if(el._leaflet_id)return;
+  const map=L.map(el,{scrollWheelZoom:false}).setView([46.97,38.62],9);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{
+    attribution:'&copy; OpenStreetMap · &copy; CARTO',subdomains:'abcd',maxZoom:18}).addTo(map);
+  const bounds=[];
+  azovSettlements.forEach(s=>{
+    const m=L.marker([s.lat,s.lng],{icon:azovPinIcon(),title:s.n}).addTo(map);
+    bounds.push([s.lat,s.lng]);
+    m.bindPopup(`<h4>${s.n}</h4><span class="reg">${s.reg}</span>`+
+      `<div class="pr"><b>Глава:</b><span>${s.head}</span></div>`+
+      `<div class="pr"><b>Тел:</b><a href="tel:${s.tel.replace(/[^0-9+]/g,'')}">${s.tel}</a></div>`+
+      `<div class="pr"><b>Адрес:</b><span>${s.addr}</span></div>`);
+    m.on('click',()=>showSettlement(s));
+    m.on('mouseover',()=>showSettlement(s));
+  });
+  if(bounds.length)map.fitBounds(bounds,{padding:[45,45]});
+  azovMapObj=map;
+  setTimeout(()=>map.invalidateSize(),250);
+}
+
+/* ---- Переключатель карт: План аллеи ⇄ Карта Приазовья ---- */
+(function(){
+  const toggle=document.getElementById('mapToggle');
+  if(!toggle)return;
+  const vPlan=document.getElementById('view-plan');
+  const vGeo=document.getElementById('view-geo');
+  const defaults={
+    plan:`<div class="badge">Аллея Славы</div><h3>План аллеи</h3><p style="color:var(--muted)">Нажмите дерево на плане, чтобы увидеть героя, подгруппу и открыть его карточку.</p><div class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21v-6"/><path d="M12 15a5.5 5.5 0 0 0 4.2-9 4.3 4.3 0 0 0-8.4 0A5.5 5.5 0 0 0 12 15z"/></svg> Деревья высажены вдоль центральной аллеи у Вечного огня.</div>`,
+    geo:`<div class="badge">Приазовье</div><h3>Выберите поселение</h3><p style="color:var(--muted)">Нажмите маркер на карте, чтобы увидеть поселение, главу администрации и контакты для участия.</p><div class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> Аллея высаживается вдоль Азовского моря в 7 поселениях Азовского и Неклиновского районов.</div>`
+  };
+  function setView(v){
+    [...toggle.children].forEach(b=>b.classList.toggle('active',b.dataset.view===v));
+    if(vPlan)vPlan.hidden=v!=='plan';
+    if(vGeo)vGeo.hidden=v!=='geo';
+    if(mapInfo)mapInfo.innerHTML=defaults[v];
+    if(v==='geo'){
+      initAzovMap();
+      setTimeout(()=>{if(azovMapObj)azovMapObj.invalidateSize();},80);
+    }
+  }
+  toggle.addEventListener('click',e=>{const b=e.target.closest('.mt');if(b)setView(b.dataset.view);});
+  if(mapInfo)mapInfo.innerHTML=defaults.plan;
+})();
 
 /* ============ MODAL ============ */
 const modal=document.getElementById('modal');
@@ -1622,92 +1735,11 @@ function staggerIn(container,d=0.08){
     o.disconnect();}})},{threshold:.1,rootMargin:'0px 0px -6% 0px'});
   o.observe(container);
 }
-/* ===== REFERENCE / KNOWLEDGE BASE ===== */
-const pavFacts=[
-  {ic:'<path d="M12 22V8M12 8c0-3 2-5 5-5M12 8c0-3-2-5-5-5"/>',h:'Биология роста',rows:[
-    ['Прирост','2–3 м / год'],['Техн. зрелость','6–8 лет'],['Высота','15–20 м'],
-    ['Срок жизни','70–100 лет'],['Морозостойкость','до −25 °C'],['Медонос','500–800 кг/га']]},
-  {ic:'<rect x="4" y="9" width="16" height="11" rx="1"/><path d="M8 9V6a4 4 0 0 1 8 0v3"/>',h:'Древесина',rows:[
-    ['Плотность','250–300 кг/м³'],['Прочность на изгиб','45–55 МПа'],
-    ['Биостойкость','класс 5 (EN 350-2)'],['Применение',{w:1,t:'мебель, шпон, лёгкие конструкции'}]]},
-  {ic:'<path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/>',h:'Агротехника',rows:[
-    ['Посадка','весна'],['Схема','4 × 4 м'],['Всхожесть семян','до 5 лет'],
-    ['pH почвы','6.0–7.5']]},
-  {ic:'<path d="M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0zM12 7v5l3 2"/>',h:'Экология / углерод',rows:[
-    ['Поглощение CO₂','120–150 т/га за 7 лет'],['Эффективность','в 2–3 × выше дуба'],
-    ['Берегоукрепление',{w:1,t:'мощная корневая система'}]]}
-];
-const fg=document.getElementById('factGrid');
-pavFacts.forEach(f=>{const d=document.createElement('div');d.className='fact';
-  d.innerHTML=`<div class="fh"><svg viewBox="0 0 24 24">${f.ic}</svg><h4>${f.h}</h4></div>
-    <ul>${f.rows.map(r=>{const v=r[1];const wr=(typeof v==='object'&&v.w)?' class="wrap"':'';const txt=(typeof v==='object')?v.t:v;
-      return `<li><span>${r[0]}</span><b${wr}>${txt}</b></li>`;}).join('')}</ul>`;
-  fg.appendChild(d);});
+/* База знаний теперь вынесена в отдельные страницы:
+   pavlovnia.html · geography.html · team.html · media.html
+   На главной — хаб-карточки со ссылками (статичный HTML). */
 
-const settlements=[
-  {n:'Круглянское СП',reg:'Азовский район',head:'Горностаев Николай Павлович',tel:'8 (86342) 7-23-12',email:'sp01008@yandex.ru',addr:'с. Круглое, ул. Мира, 64г'},
-  {n:'Маргаритовское СП',reg:'Азовский район',head:'Гончаров Александр Васильевич',tel:'8 (86342) 90-137',email:'margsp01011@rambler.ru',addr:'с. Маргаритово, ул. Ровная, 7'},
-  {n:'Семибалковское СП',reg:'Азовский район',head:'Денисова Валентина Анатольевна',tel:'8 (86342) 3-06-33',email:'glava.semibalki@mail.ru',addr:'с. Семибалки, пер. Спортивный, 9'},
-  {n:'Натальевское СП',reg:'Неклиновский район',head:'Десятников Игорь Викторович',tel:'8 (86347) 5-91-35',email:'sp26272@donpac.ru',addr:'с. Натальевка, ул. Чехова, 91'},
-  {n:'Поляковское СП',reg:'Неклиновский район',head:'Галицкий Александр Николаевич',tel:'8 (86347) 3-40-35',email:'sp26269@donpac.ru',addr:'х. Красный Десант, ул. Октябрьская, 10'},
-  {n:'Новобессергеневское СП',reg:'Неклиновский район',head:'Галуза Анатолий Юрьевич',tel:'8 (86347) 2-49-35',email:'sp26274@donpac.ru',addr:'с. Лакедемоновка, ул. Ленина, 50а'},
-  {n:'Платовское СП',reg:'Неклиновский район',head:'Дубовская Людмила Ивановна',tel:'8 (86347) 52-0-12',email:'sp26268@donpac.ru',addr:'с. Весело-Вознесенка, ул. Школьная, 1'}
-];
-const IC={user:'<circle cx="9" cy="8" r="3.2"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0"/>',
-  tel:'<path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 5 5L16 12l5 2v4a2 2 0 0 1-2.2 2A16 16 0 0 1 3 5.2 2 2 0 0 1 5 3z"/>',
-  mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 13l8.5-6.5"/>',
-  pin:'<path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/>'};
-const spG=document.getElementById('spGrid');
-settlements.forEach(s=>{const d=document.createElement('div');d.className='sp';
-  d.innerHTML=`<h4>${s.n}</h4><div class="reg">${s.reg}</div>
-    <div class="sp-rows">
-      <div class="row"><svg viewBox="0 0 24 24">${IC.user}</svg><div><span class="lbl">Глава поселения</span><span class="head-name">${s.head}</span></div></div>
-      <div class="row"><svg viewBox="0 0 24 24">${IC.tel}</svg><div><span class="lbl">Телефон</span><a href="tel:${s.tel.replace(/[^0-9+]/g,'')}">${s.tel}</a></div></div>
-      <div class="row"><svg viewBox="0 0 24 24">${IC.mail}</svg><div><span class="lbl">E-mail</span><a href="mailto:${s.email}">${s.email}</a></div></div>
-      <div class="row"><svg viewBox="0 0 24 24">${IC.pin}</svg><div><span class="lbl">Адрес</span><span>${s.addr}</span></div></div>
-    </div>`;
-  spG.appendChild(d);});
-
-const team=[
-  {n:'Климов Андрей Анатольевич',c1:'#46785a',c2:'#335a44',role:'Руководитель проекта',
-   bio:'Заместитель председателя Ростовского регионального отделения АВБД ОВД и ВВ России, ветеран боевых действий. Образование — государственное и муниципальное управление (МГУТУ им. К.Г. Разумовского). Автор проекта «Организация многоцелевых природных экокластеров», финалист и лауреат конкурсов Общественной палаты Ростовской области.'},
-  {n:'Шестаков Виталий Анатольевич',c1:'#c9a227',c2:'#9a7b3f',role:'Инженер-геодезист',
-   bio:'Инженер-геодезист (РИСИ / ЮРГСА, специальность «Прикладная геодезия»). Специалист по капитальному строительству, строительному контролю и техническому надзору.'},
-  {n:'Агеев Роман Владимирович',c1:'#9a6fc2',c2:'#6f4f9a',role:'Экономист',
-   bio:'Экономист, специалист по инновационному бизнесу и антикризисному управлению. Аспирантура экономического факультета МГУ им. М.В. Ломоносова, стажировка в Сан-Хосе (Калифорния). Основал первую бизнес-школу Ростова, организатор проекта «РОКАДА».'},
-  {n:'Бондаренко Александр Викторович',c1:'#b5683f',c2:'#8a4a2a',role:'Управление и организация',
-   bio:'Высшее образование (Академия народного хозяйства и государственной службы), подполковник в запасе. Награждён Орденом и медалью. Большой опыт руководящей работы.'},
-  {n:'Медведев Александр Владимирович',c1:'#3f7fb5',c2:'#2a5a8a',role:'Юрист',
-   bio:'Юрист (Ростовская высшая школа МВД). Проходил службу во Внутренних войсках МВД РФ.'},
-  {n:'Ломакин А. В.',c1:'#5a8a6a',c2:'#3f6a4a',role:'Городское управление',
-   bio:'Специалист в сфере городского управления и градостроительства.'}
-];
-function monogram(p){const parts=p.n.split(' ');const ini=(parts[0][0]||'')+(parts[1]?parts[1][0]:'');
-  return `<svg viewBox="0 0 100 100"><defs><linearGradient id="bg${p.n.length}_${ini}" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0" stop-color="${p.c1}"/><stop offset="1" stop-color="${p.c2}"/></linearGradient></defs>
-    <rect width="100" height="100" fill="url(#bg${p.n.length}_${ini})"/>
-    <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-family="Forum,serif" font-size="42" fill="#fff" opacity=".95">${ini}</text></svg>`;}
-const tmG=document.getElementById('teamGrid');
-team.forEach(p=>{const d=document.createElement('div');d.className='bio';
-  d.innerHTML=`<div class="ava">${monogram(p)}</div><div class="bio-tx"><h4>${p.n}</h4><span class="role">${p.role}</span><p>${p.bio}</p></div>`;
-  tmG.appendChild(d);});
-
-const gImgs=[['assets/photo-planting-1.jpg','Посадка павловнии'],['assets/photo-planting-2.jpg','Посадка павловнии'],
-  ['assets/slide-1.png','Слайд презентации'],['assets/slide-2.png','Слайд презентации'],['assets/slide-3.png','Слайд презентации'],
-  ['assets/slide-4.png','Слайд презентации'],['assets/slide-5.png','Слайд презентации'],['assets/slide-6.png','Слайд презентации'],
-  ['assets/slide-7.png','Слайд презентации']];
-const glG=document.getElementById('galleryGrid');
-gImgs.forEach(g=>{const a=document.createElement('a');a.href=g[0];a.target='_blank';a.rel='noopener';
-  a.innerHTML=`<img src="${g[0]}" alt="${g[1]}" loading="lazy">`;glG.appendChild(a);});
-
-/* ref tab switching */
-const refTabs=document.getElementById('refTabs');
-refTabs.addEventListener('click',e=>{const b=e.target.closest('.ref-tab');if(!b)return;
-  const id=b.dataset.ref;
-  [...refTabs.children].forEach(x=>x.classList.toggle('active',x===b));
-  document.querySelectorAll('.ref-panel').forEach(p=>p.classList.toggle('active',p.id==='ref-'+id));});
-
-['.spec-grid','.care-grid','.awards','.partners-grid','.season','.flow','#treeGrid','#evGrid','#revGrid','#factGrid','#spGrid','#teamGrid','#galleryGrid']
+['.spec-grid','.care-grid','.awards','.partners-grid','.season','.flow','#treeGrid','#evGrid','#revGrid','.hub-grid']
   .forEach(sel=>staggerIn(document.querySelector(sel)));
 
 /* 3D tilt micro-interaction */
