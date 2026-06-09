@@ -202,9 +202,9 @@ document.getElementById('mapsGrid').innerHTML=maps.map(m=>
      <span class="ft"><b>${m.t}</b><span>Карта участка · PDF</span></span>
    </a>`).join('');
 
-/* Презентация (7 слайдов) + фото */
+/* Презентация (12 слайдов) + фото */
 const gal=[];
-for(let i=1;i<=7;i++)gal.push({src:`assets/slide-${i}.png`,cap:`Слайд презентации ${i}`});
+for(let i=1;i<=12;i++)gal.push({src:`assets/slide-${i}.png`,cap:`Слайд презентации ${i}`});
 gal.push({src:'assets/photo-planting-1.jpg',cap:'Посадка деревьев памяти'});
 gal.push({src:'assets/photo-planting-2.jpg',cap:'Участники проекта на аллее'});
 document.getElementById('galGrid').innerHTML=gal.map(g=>
