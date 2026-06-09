@@ -394,8 +394,10 @@ footer .cr{color:var(--muted);font-size:.85rem;margin-top:24px}
   background:rgba(5,8,6,.82);backdrop-filter:blur(6px)}
 .modal.open{display:flex;animation:fade .3s}
 @keyframes fade{from{opacity:0}to{opacity:1}}
+body.no-scroll{overflow:hidden}
 .modal-card{background:linear-gradient(165deg,var(--panel-2),var(--bg));border:1px solid rgba(201,162,39,.3);
-  border-radius:18px;max-width:560px;width:100%;padding:40px;position:relative;box-shadow:var(--shadow);animation:pop .35s}
+  border-radius:18px;max-width:560px;width:100%;padding:40px;position:relative;box-shadow:var(--shadow);animation:pop .35s;
+  max-height:calc(100vh - 48px);overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
 @keyframes pop{from{transform:translateY(20px) scale(.97);opacity:0}to{transform:none;opacity:1}}
 .modal-card .x{position:absolute;top:16px;right:20px;font-size:1.6rem;color:var(--muted);cursor:pointer;background:none;border:none}
 .modal-card .x:hover{color:var(--gold)}
@@ -474,7 +476,23 @@ footer .cr{color:var(--muted);font-size:.85rem;margin-top:24px}
 
 /* ===== ЛИЧНЫЙ КАБИНЕТ ===== */
 .lk-link{white-space:nowrap}
-.lk-card{max-width:680px}
+.lk-card{max-width:780px}
+.lk-tariffs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:10px}
+.tarif{position:relative;display:flex;flex-direction:column;gap:8px;border:1px solid var(--line);border-radius:14px;
+  padding:18px 16px;background:linear-gradient(165deg,rgba(0,0,0,.28),rgba(0,0,0,.1))}
+.tarif.cur{border-color:rgba(201,162,39,.55);box-shadow:0 0 24px rgba(201,162,39,.12)}
+.tarif .tag{position:absolute;top:-10px;left:14px;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;
+  font-family:"Forum",serif;background:#26352b;color:var(--green-l);border:1px solid var(--line);border-radius:20px;padding:2px 10px}
+.tarif .tag.gold{background:linear-gradient(160deg,#3a3014,#241d0c);color:var(--gold-l);border-color:rgba(201,162,39,.5)}
+.tarif .tname{font-family:"Forum",serif;font-size:1.18rem;color:var(--ink);margin-top:4px}
+.tarif .price{font-family:"Forum",serif;font-size:1.5rem;color:var(--gold-l)}
+.tarif .price span{font-size:.85rem;color:var(--muted)}
+.tarif ul{list-style:none;display:grid;gap:6px;flex:1;margin:4px 0 6px}
+.tarif li{position:relative;padding-left:16px;color:var(--muted);font-size:.82rem;line-height:1.45}
+.tarif li::before{content:"✓";position:absolute;left:0;color:var(--gold)}
+.tarif .til{font-size:.8rem;color:#d57b1e;text-align:center;border:1px solid rgba(213,123,30,.4);border-radius:9px;padding:8px}
+.lk-login .field{margin-top:14px}
+@media(max-width:700px){.lk-tariffs{grid-template-columns:1fr}}
 .lk-head{display:flex;gap:18px;align-items:center;margin-bottom:20px}
 .lk-emblem{flex:0 0 auto;width:74px;height:74px;border-radius:50%;display:flex;align-items:center;justify-content:center;
   background:radial-gradient(circle at 42% 34%,#1d3326,#0d1813);border:1px solid rgba(201,162,39,.35);padding:11px}
@@ -520,6 +538,8 @@ footer .cr{color:var(--muted);font-size:.85rem;margin-top:24px}
   text-shadow:0 1px 8px rgba(201,162,39,.3)}
 .partner .mono svg{width:25px;height:25px;fill:none;stroke:var(--gold-l);stroke-width:1.6;
   stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 1px 6px rgba(201,162,39,.35))}
+.partner .mono.logo{width:96px;height:50px;border-radius:10px;background:#f2efe6;padding:7px 9px}
+.partner .mono.logo img{max-width:100%;max-height:100%;object-fit:contain;display:block}
 .partner .pt{min-width:0}
 .partner b{display:block;color:var(--ink);font-weight:400;font-family:"Forum",serif;font-size:1.02rem;letter-spacing:.02em;line-height:1.2}
 .partner span{display:block;color:var(--muted);font-size:.82rem;margin-top:3px}
@@ -627,17 +647,23 @@ body::before{animation:aurora 22s ease-in-out infinite alternate}
 .map-note svg{flex:0 0 auto;width:16px;height:16px;margin-top:2px;fill:none;stroke:var(--gold);stroke-width:1.5}
 
 /* ===== KNOWLEDGE HUB ===== */
-.hub-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px;margin-top:14px}
-.hub-card{display:flex;flex-direction:column;background:linear-gradient(160deg,var(--panel),var(--bg));
-  border:1px solid var(--line);border-radius:18px;padding:28px;box-shadow:var(--shadow);
+.hub-grid{display:flex;flex-direction:column;gap:12px;margin-top:14px}
+.hub-card{display:flex;align-items:center;gap:18px;background:linear-gradient(160deg,var(--panel),var(--bg));
+  border:1px solid var(--line);border-radius:16px;padding:16px 22px;box-shadow:var(--shadow);
   transition:transform .25s,border-color .25s}
-.hub-card:hover{transform:translateY(-4px);border-color:rgba(201,162,39,.45)}
-.hub-card .ic{width:52px;height:52px;border-radius:13px;display:grid;place-items:center;margin-bottom:16px;
+.hub-card:hover{transform:translateX(6px);border-color:rgba(201,162,39,.45)}
+.hub-card .ic{flex:0 0 auto;width:46px;height:46px;border-radius:12px;display:grid;place-items:center;
   background:rgba(201,162,39,.1);border:1px solid var(--line)}
-.hub-card .ic svg{width:26px;height:26px;fill:none;stroke:var(--gold-l);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-.hub-card h3{font-size:1.45rem;margin-bottom:8px;color:var(--ink)}
-.hub-card p{color:var(--muted);font-size:.95rem;flex:1;line-height:1.55}
-.hub-card .go{margin-top:18px;color:var(--gold);font-family:"Forum",serif;letter-spacing:.05em}
+.hub-card .ic svg{width:24px;height:24px;fill:none;stroke:var(--gold-l);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.hub-card h3{flex:0 0 170px;font-size:1.3rem;margin:0;color:var(--ink);white-space:nowrap}
+.hub-card p{color:var(--muted);font-size:.92rem;flex:1;min-width:0;line-height:1.5;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hub-card .go{flex:0 0 auto;margin:0;color:var(--gold);font-family:"Forum",serif;letter-spacing:.05em;white-space:nowrap}
+@media(max-width:760px){
+  .hub-card{flex-wrap:wrap;gap:12px}
+  .hub-card h3{flex:1}
+  .hub-card p{flex:1 1 100%;white-space:normal}
+}
 
 /* ===== REFERENCE / KNOWLEDGE BASE ===== */
 .ref-tabs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:30px auto 44px}
@@ -947,178 +973,22 @@ body::before{animation:aurora 22s ease-in-out infinite alternate}
     <div class="section-head reveal">
       <div class="eyebrow">Интерактивная карта</div>
       <h2>Аллея на побережье <span class="gold">Азовского моря</span></h2>
-      <p>Аллеи на побережье создаются по рекомендации РАН РФ — вдоль Таганрогского залива и Азовского моря в семи поселениях Приазовья. Нажмите знак на карте, чтобы увидеть поселение, контакты главы и карты участков с документами.</p>
+      <p>План аллеи и реальная карта Приазовья совмещены в одном окне: мемориал «Вечный огонь» в Ростове-на-Дону, деревья героев по подгруппам, семь прибрежных поселений и вело-пеший маршрут вдоль Таганрогского залива.</p>
       <div class="rule"></div>
     </div>
     <div class="map-wrap reveal">
       <div>
-        <div class="map-toggle" id="mapToggle">
-          <button type="button" class="mt" data-view="plan"><svg viewBox="0 0 24 24"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/></svg> План аллеи</button>
-          <button type="button" class="mt active" data-view="geo"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.8 2.6 15.2 0 18M12 3c-2.6 2.8-2.6 15.2 0 18"/></svg> Карта Приазовья</button>
-        </div>
-
-        <div class="map-view" id="view-plan" hidden>
-        <div class="map-stage">
-          <svg id="mapSvg" viewBox="0 0 680 460" xmlns="http://www.w3.org/2000/svg" aria-label="План аллеи">
-            <defs>
-              <radialGradient id="terrain" cx="50%" cy="40%" r="75%">
-                <stop offset="0" stop-color="#1a2c20"/><stop offset="60%" stop-color="#142219"/><stop offset="100%" stop-color="#0c1410"/>
-              </radialGradient>
-              <linearGradient id="path" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="#cdb066" stop-opacity=".34"/><stop offset="1" stop-color="#9a7b3f" stop-opacity=".16"/>
-              </linearGradient>
-              <radialGradient id="canopyP" cx="38%" cy="32%" r="72%">
-                <stop offset="0" stop-color="#d7bdee"/><stop offset="48%" stop-color="#9a6fc2"/><stop offset="100%" stop-color="#523472"/>
-              </radialGradient>
-              <linearGradient id="badgeG" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="#e9cf72"/><stop offset="1" stop-color="#9a7b3f"/>
-              </linearGradient>
-              <radialGradient id="canopyBg" cx="40%" cy="34%" r="70%">
-                <stop offset="0" stop-color="#3f6e51"/><stop offset="100%" stop-color="#21402f"/>
-              </radialGradient>
-              <radialGradient id="lawn" cx="50%" cy="40%" r="62%">
-                <stop offset="0" stop-color="#1f3526"/><stop offset="100%" stop-color="#16291d"/>
-              </radialGradient>
-              <linearGradient id="water" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#2f5d68"/><stop offset="100%" stop-color="#193740"/>
-              </linearGradient>
-              <radialGradient id="rondel" cx="50%" cy="45%" r="60%">
-                <stop offset="0" stop-color="#223527" stop-opacity=".55"/><stop offset="100%" stop-color="#11201a"/>
-              </radialGradient>
-              <radialGradient id="flameG" cx="50%" cy="62%" r="62%">
-                <stop offset="0" stop-color="#ffe6a0"/><stop offset="55%" stop-color="#d57b1e"/><stop offset="100%" stop-color="#d57b1e" stop-opacity="0"/>
-              </radialGradient>
-              <pattern id="grid" width="34" height="34" patternUnits="userSpaceOnUse">
-                <path d="M34 0H0V34" fill="none" stroke="rgba(201,162,39,.045)" stroke-width="1"/>
-              </pattern>
-            </defs>
-
-            <rect x="0" y="0" width="680" height="460" rx="12" fill="url(#terrain)"/>
-            <rect x="0" y="0" width="680" height="460" rx="12" fill="url(#grid)"/>
-
-            <!-- faint topographic contours -->
-            <g fill="none" stroke="rgba(105,160,126,.10)" stroke-width="1.5">
-              <path d="M40 110 C160 70 300 95 360 60 C460 100 560 70 640 120"/>
-              <path d="M40 150 C170 115 300 140 380 110 C470 145 560 120 640 165"/>
-              <path d="M40 360 C150 330 280 360 360 335 C470 370 560 345 640 385"/>
-              <path d="M40 400 C160 375 290 400 370 380 C470 410 560 390 640 420"/>
-            </g>
-
-            <!-- pond / water feature -->
-            <g>
-              <path d="M512 392 C470 388 452 360 478 342 C512 320 580 326 604 350 C624 372 600 402 560 404 C540 405 528 393 512 392 Z" fill="url(#water)" stroke="rgba(120,180,170,.25)"/>
-              <path d="M495 358 C520 348 555 350 575 360" fill="none" stroke="rgba(190,225,220,.20)" stroke-width="1.2"/>
-              <path d="M505 372 C530 364 560 366 580 374" fill="none" stroke="rgba(190,225,220,.14)" stroke-width="1.2"/>
-              <text x="540" y="388" text-anchor="middle" fill="rgba(150,195,190,.5)" font-size="9" font-family="PT Serif" font-style="italic">пруд</text>
-            </g>
-
-            <!-- decorative lawn parterres -->
-            <ellipse cx="150" cy="150" rx="88" ry="58" fill="url(#lawn)" stroke="rgba(201,162,39,.10)"/>
-            <ellipse cx="530" cy="150" rx="88" ry="58" fill="url(#lawn)" stroke="rgba(201,162,39,.10)"/>
-            <ellipse cx="150" cy="360" rx="88" ry="60" fill="url(#lawn)" stroke="rgba(201,162,39,.10)"/>
-
-            <!-- winding secondary trails -->
-            <g fill="none" stroke="url(#path)" stroke-width="11" stroke-linecap="round">
-              <path d="M150 208 C150 230 210 244 250 250"/>
-              <path d="M150 302 C150 280 210 266 250 260"/>
-              <path d="M530 208 C530 236 470 250 430 256"/>
-            </g>
-
-            <!-- paths: central alley + cross axis -->
-            <rect x="310" y="118" width="60" height="324" rx="10" fill="url(#path)" stroke="rgba(201,162,39,.26)"/>
-            <line x1="340" y1="132" x2="340" y2="432" stroke="rgba(201,162,39,.22)" stroke-dasharray="6 10"/>
-            <rect x="56" y="250" width="568" height="40" rx="14" fill="url(#path)" stroke="rgba(201,162,39,.18)"/>
-
-            <!-- memorial rondel + eternal flame -->
-            <circle cx="340" cy="80" r="56" fill="url(#rondel)" stroke="rgba(201,162,39,.34)"/>
-            <circle cx="340" cy="80" r="40" fill="none" stroke="rgba(201,162,39,.20)" stroke-dasharray="3 7"/>
-            <g fill="#c9a22733"><path d="M340 36 L346 56 L340 52 L334 56 Z"/><path d="M384 80 L364 86 L368 80 L364 74 Z"/><path d="M296 80 L316 86 L312 80 L316 74 Z"/></g>
-            <circle cx="340" cy="84" r="28" fill="url(#flameG)" opacity=".9"/>
-            <path d="M340 66 C348 75 348 88 340 97 C332 88 332 75 340 66 Z" fill="#d57b1e"/>
-            <path d="M340 73 C344 79 344 88 340 93 C336 88 336 79 340 73 Z" fill="#ffe6a0"/>
-            <text x="340" y="28" text-anchor="middle" fill="#c9a227" font-size="12" font-family="Forum" letter-spacing="1">Мемориал · Вечный огонь</text>
-
-            <!-- background tree clusters (scattered, как в реальном парке) -->
-            <g fill="url(#canopyBg)" opacity=".55">
-              <circle cx="96" cy="120" r="12"/><circle cx="118" cy="180" r="10"/><circle cx="186" cy="118" r="11"/>
-              <circle cx="200" cy="186" r="9"/><circle cx="476" cy="118" r="11"/><circle cx="560" cy="116" r="12"/>
-              <circle cx="584" cy="178" r="10"/><circle cx="100" cy="332" r="11"/><circle cx="112" cy="392" r="10"/>
-              <circle cx="196" cy="392" r="9"/><circle cx="60" cy="200" r="9"/><circle cx="620" cy="210" r="9"/>
-              <circle cx="624" cy="120" r="8"/><circle cx="58" cy="120" r="8"/>
-            </g>
-
-            <!-- decorative павловния (violet canopies) -->
-            <g fill="url(#canopyP)" opacity=".92">
-              <g><line x1="150" y1="150" x2="150" y2="170" stroke="#3a2c17" stroke-width="3"/><circle cx="150" cy="146" r="22"/></g>
-              <g><line x1="530" y1="150" x2="530" y2="170" stroke="#3a2c17" stroke-width="3"/><circle cx="530" cy="146" r="22"/></g>
-              <g><line x1="150" y1="360" x2="150" y2="380" stroke="#3a2c17" stroke-width="3"/><circle cx="150" cy="356" r="24"/></g>
-              <g opacity=".85"><line x1="585" y1="262" x2="585" y2="276" stroke="#3a2c17" stroke-width="2"/><circle cx="585" cy="260" r="14"/></g>
-              <g opacity=".85"><line x1="95"  y1="262" x2="95"  y2="276" stroke="#3a2c17" stroke-width="2"/><circle cx="95"  cy="260" r="14"/></g>
-            </g>
-
-            <!-- benches + lanterns -->
-            <g fill="#5b4326" opacity=".85">
-              <rect x="372" y="200" width="22" height="7" rx="2"/>
-              <rect x="286" y="200" width="22" height="7" rx="2"/>
-              <rect x="372" y="330" width="22" height="7" rx="2"/>
-              <rect x="286" y="330" width="22" height="7" rx="2"/>
-            </g>
-            <g fill="#e9cf72">
-              <circle cx="305" cy="160" r="2.6"/><circle cx="375" cy="160" r="2.6"/>
-              <circle cx="305" cy="240" r="2.6"/><circle cx="375" cy="240" r="2.6"/>
-              <circle cx="305" cy="300" r="2.6"/><circle cx="375" cy="300" r="2.6"/>
-              <circle cx="305" cy="400" r="2.6"/><circle cx="375" cy="400" r="2.6"/>
-            </g>
-
-            <!-- future planting slots -->
-            <g fill="none" stroke="rgba(201,162,39,.45)" stroke-dasharray="3 5">
-              <circle cx="430" cy="335" r="11"/>
-              <circle cx="250" cy="255" r="11"/>
-            </g>
-            <text x="430" y="339" text-anchor="middle" font-size="11" font-family="Forum" fill="rgba(233,207,114,.6)">+</text>
-            <text x="250" y="259" text-anchor="middle" font-size="11" font-family="Forum" fill="rgba(233,207,114,.6)">+</text>
-
-            <!-- entrance -->
-            <rect x="300" y="438" width="80" height="7" rx="3" fill="rgba(201,162,39,.4)"/>
-            <text x="340" y="456" text-anchor="middle" fill="#7c8a7f" font-size="11" font-family="PT Serif">Главный вход</text>
-
-            <g id="markers"></g>
-
-            <!-- compass rose -->
-            <g transform="translate(632,52)" opacity=".9">
-              <circle r="21" fill="rgba(12,20,15,.7)" stroke="rgba(201,162,39,.32)"/>
-              <path d="M0 -15 L4.5 0 L0 15 L-4.5 0 Z" fill="rgba(201,162,39,.35)"/>
-              <path d="M0 -15 L4.5 0 L0 0 Z" fill="#e9cf72"/>
-              <text x="0" y="-7.5" text-anchor="middle" fill="#0c140f" font-size="7" font-weight="bold" font-family="Forum">С</text>
-            </g>
-
-            <!-- scale bar -->
-            <g transform="translate(40,428)">
-              <g stroke="rgba(233,207,114,.55)" stroke-width="2"><line x1="0" y1="0" x2="64" y2="0"/></g>
-              <g stroke="rgba(233,207,114,.55)" stroke-width="1.4"><line x1="0" y1="-4" x2="0" y2="4"/><line x1="32" y1="-3" x2="32" y2="3"/><line x1="64" y1="-4" x2="64" y2="4"/></g>
-              <text x="0" y="-8" fill="#7c8a7f" font-size="9" font-family="PT Serif">0 · 25 · 50 м</text>
-            </g>
-
-            <text x="20" y="250" fill="#7c8a7f" font-size="11" font-family="PT Serif">Запад</text>
-            <text x="660" y="250" fill="#7c8a7f" font-size="11" font-family="PT Serif" text-anchor="end">Восток</text>
-          </svg>
-        </div>
-        <div class="legend">
-          <div><i style="background:#9a6fc2"></i>Павловния «Вудмакс-8»</div>
-          <div><i style="background:#69a07e"></i>Подгруппа «Защитники»</div>
-          <div><i style="background:#c9a227"></i>Подгруппа «Память поколений»</div>
-          <div><i style="background:#d57b1e"></i>Вечный огонь</div>
-          <div><i style="background:transparent;border:1px dashed rgba(201,162,39,.6)"></i>Место для будущих деревьев</div>
-        </div>
-        </div>
 
         <div class="map-view" id="view-geo">
           <div id="azovMap" class="leaflet-stage" role="application" aria-label="Карта Азовского побережья с поселениями аллеи"></div>
           <div class="legend">
+            <div><i style="background:#d57b1e"></i>Мемориал «Вечный огонь»</div>
+            <div><i style="background:#69a07e"></i>Подгруппа «Защитники»</div>
+            <div><i style="background:#c9a227"></i>Подгруппа «Память поколений»</div>
             <div><i style="background:#9a6fc2"></i>Поселение аллеи</div>
-            <div><i style="background:#2f5d68"></i>Азовское море · Таганрогский залив</div>
+            <div><i style="background:transparent;border:1px dashed rgba(201,162,39,.8)"></i>Вело-пеший маршрут</div>
           </div>
-          <div class="map-note"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> Маркеры показывают центры семи поселений Приазовья. Точные прибрежные участки посадок — в разделе «База знаний → География».</div>
+          <div class="map-note"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> Пламя — мемориал «Вечный огонь» в Ростове-на-Дону: нажмите его, чтобы приблизить аллею с деревьями героев. Точные прибрежные участки посадок — в разделе «География».</div>
         </div>
       </div>
       <div class="map-info" id="mapInfo">
@@ -1249,14 +1119,14 @@ body::before{animation:aurora 22s ease-in-out infinite alternate}
     <div class="partners-grid reveal">
       <div class="partner"><span class="mono"><svg viewBox="0 0 24 24"><path d="M12 21V11M12 11C12 6.5 8.5 4 4 4c0 4.5 3.5 7 8 7zM12 13c0-3.5 3-6 8-6 0 3.5-3 6-8 6z"/></svg></span><div class="pt"><b>«Экологические Инвестиции»</b><span>инициатор · патенты · технологии</span></div></div>
       <div class="partner"><span class="mono"><svg viewBox="0 0 24 24"><path d="M12 21v-7M12 14a4 4 0 0 1 4-4h3v1a4 4 0 0 1-4 4h-3zM12 12a4 4 0 0 0-4-4H5v1a4 4 0 0 0 4 4h3M9 21h6"/></svg></span><div class="pt"><b>«Интегро плюс»</b><span>селекция сорта «Вудмакс-8»</span></div></div>
-      <div class="partner"><span class="mono"><svg viewBox="0 0 24 24"><path d="M12 22V8M12 8l-3-2.5M12 8l3-2.5M12 12l-3.5-3M12 12l3.5-3M12 16l-4-3.5M12 16l4-3.5M12 5V2"/></svg></span><div class="pt"><b>РГАУ-МСХА им. Тимирязева</b><span>научное сопровождение</span></div></div>
-      <div class="partner"><span class="mono"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.2"/><ellipse cx="12" cy="12" rx="9" ry="3.6"/><ellipse cx="12" cy="12" rx="9" ry="3.6" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9" ry="3.6" transform="rotate(-60 12 12)"/></svg></span><div class="pt"><b>Научный парк МГУ</b><span>НИОКР и испытания</span></div></div>
-      <div class="partner"><span class="mono"><svg viewBox="0 0 24 24"><path d="M3 9.5 12 4l9 5.5M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 18h18M3 21h18"/></svg></span><div class="pt"><b>Альфа-Банк</b><span>финансовый партнёр</span></div></div>
-      <div class="partner"><span class="mono"><svg viewBox="0 0 24 24"><path d="M5 21V4M5 4h13l-2.5 3.5L18 11H5"/><path d="M10 6.6l.7 1.4 1.6.2-1.2 1.1.3 1.6-1.4-.8-1.4.8.3-1.6L7.7 8.2l1.6-.2z"/></svg></span><div class="pt"><b>ОНФ · ветеранские объединения</b><span>социальная коалиция</span></div></div>
-      <div class="partner"><span class="mono"><svg viewBox="0 0 24 24"><path d="M7 3v18M17 3v18M7 6h10M7 11h10M7 16h10M7 21h10"/></svg></span><div class="pt"><b>РЖД · дорожное строительство</b><span>реальный сектор · озеленение</span></div></div>
+      <div class="partner"><span class="mono logo"><img src="assets/partners/timacad.svg" alt="РГАУ-МСХА" loading="lazy"></span><div class="pt"><b>РГАУ-МСХА им. Тимирязева</b><span>научное сопровождение</span></div></div>
+      <div class="partner"><span class="mono logo"><img src="assets/partners/msu.png" alt="МГУ" loading="lazy"></span><div class="pt"><b>Научный парк МГУ</b><span>НИОКР и испытания</span></div></div>
+      <div class="partner"><span class="mono logo"><img src="assets/partners/alfabank.svg" alt="Альфа-Банк" loading="lazy"></span><div class="pt"><b>Альфа-Банк</b><span>финансовый партнёр</span></div></div>
+      <div class="partner"><span class="mono logo"><img src="assets/partners/onf.svg" alt="Народный фронт" loading="lazy"></span><div class="pt"><b>ОНФ · ветеранские объединения</b><span>социальная коалиция</span></div></div>
+      <div class="partner"><span class="mono logo"><img src="assets/partners/rzd.svg" alt="РЖД" loading="lazy"></span><div class="pt"><b>РЖД · дорожное строительство</b><span>реальный сектор · озеленение</span></div></div>
       <div class="partner"><span class="mono"><svg viewBox="0 0 24 24"><path d="M12 8.8C12 6.8 10.5 5.5 9 5.5S6 6.7 6 8.5c0 2.6 4 5.3 6 6.5 2-1.2 6-3.9 6-6.5 0-1.8-1.5-3-3-3s-3 1.3-3 3.3z"/><path d="M4 18.5c2.5 1.6 5 2.5 8 2.5s5.5-.9 8-2.5"/></svg></span><div class="pt"><b>Волонтёрские движения</b><span>уход и масштабирование</span></div></div>
-      <div class="partner"><span class="mono"><svg viewBox="0 0 24 24"><path d="M2.5 9.5 12 5l9.5 4.5L12 14z"/><path d="M6.5 11.7V16c0 1.4 2.5 2.8 5.5 2.8s5.5-1.4 5.5-2.8v-4.3M21 10v5"/></svg></span><div class="pt"><b>ИУБИП</b><span>образование и подготовка кадров</span></div></div>
-      <div class="partner"><span class="mono"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.8v3M12 18.2v3M2.8 12h3M18.2 12h3M5.5 5.5l2.1 2.1M16.4 16.4l2.1 2.1M18.5 5.5l-2.1 2.1M7.6 16.4l-2.1 2.1"/></svg></span><div class="pt"><b>ДГТУ</b><span>инжиниринг и НИОКР</span></div></div>
+      <div class="partner"><span class="mono logo"><img src="assets/partners/iubip.svg" alt="ИУБиП" loading="lazy"></span><div class="pt"><b>ИУБИП</b><span>образование и подготовка кадров</span></div></div>
+      <div class="partner"><span class="mono logo"><img src="assets/partners/dstu.svg" alt="ДГТУ" loading="lazy"></span><div class="pt"><b>ДГТУ</b><span>инжиниринг и НИОКР</span></div></div>
       <div class="partner"><span class="mono"><svg viewBox="0 0 24 24"><path d="M12 3.5c3 4.2 5.5 7.4 5.5 10.5a5.5 5.5 0 0 1-11 0c0-3.1 2.5-6.3 5.5-10.5z"/><path d="M9.5 14a2.6 2.6 0 0 0 2.5 2.6"/></svg></span><div class="pt"><b>НИМИ ДонГАУ</b><span>мелиорация и агронаука</span></div></div>
     </div>
   </div>
@@ -1363,6 +1233,41 @@ body::before{animation:aurora 22s ease-in-out infinite alternate}
 <div class="modal" id="lkModal" onclick="if(event.target===this)closeLk()">
   <div class="modal-card lk-card">
     <button class="x" onclick="closeLk()">×</button>
+
+    <!-- Шаг 1 · Вход (демо) -->
+    <div id="lkLogin" class="lk-login">
+      <div class="lk-head">
+        <span class="lk-emblem" aria-hidden="true">
+          <svg viewBox="0 0 100 100">
+            <g fill="none" stroke="#c9a227" stroke-width="3.4" stroke-linejoin="round">
+              <path d="M50 38C46 24 52 13 50 7C48 13 54 24 50 38Z" transform="rotate(0 50 50)"/>
+              <path d="M50 38C46 24 52 13 50 7C48 13 54 24 50 38Z" transform="rotate(72 50 50)"/>
+              <path d="M50 38C46 24 52 13 50 7C48 13 54 24 50 38Z" transform="rotate(144 50 50)"/>
+              <path d="M50 38C46 24 52 13 50 7C48 13 54 24 50 38Z" transform="rotate(216 50 50)"/>
+              <path d="M50 38C46 24 52 13 50 7C48 13 54 24 50 38Z" transform="rotate(288 50 50)"/>
+              <ellipse cx="50" cy="22.5" rx="13" ry="15.5"/>
+              <ellipse cx="50" cy="22.5" rx="13" ry="15.5" transform="rotate(72 50 50)"/>
+              <ellipse cx="50" cy="22.5" rx="13" ry="15.5" transform="rotate(144 50 50)"/>
+              <ellipse cx="50" cy="22.5" rx="13" ry="15.5" transform="rotate(216 50 50)"/>
+              <ellipse cx="50" cy="22.5" rx="13" ry="15.5" transform="rotate(288 50 50)"/>
+            </g>
+            <circle cx="50" cy="50" r="8.5" fill="#c9a227"/>
+          </svg>
+        </span>
+        <div>
+          <div class="badge">Аллея Славы · Личный кабинет</div>
+          <h2 style="font-size:1.7rem;margin:4px 0 2px">Вход для хранителей</h2>
+          <div class="role" style="margin-bottom:0">демо-режим · данные никуда не отправляются</div>
+        </div>
+      </div>
+      <div class="field"><label>E-mail</label><input id="lkEmail" type="email" value="hranitel@alleya-slavy.ru"></div>
+      <div class="field"><label>Пароль</label><input id="lkPass" type="password" value="demo2026"></div>
+      <div style="text-align:center;margin-top:16px"><button class="btn" type="button" onclick="lkEnter()">Войти в кабинет →</button></div>
+      <p class="bio" style="margin:16px 0 0;font-size:.85rem;text-align:center;color:var(--muted)">Нет аккаунта? Подписка хранителя оформляется при посадке дерева — напишите нам через раздел «Контакты».</p>
+    </div>
+
+    <!-- Шаг 2 · Кабинет -->
+    <div id="lkDash" hidden>
     <div class="lk-head">
       <span class="lk-emblem" aria-hidden="true">
         <svg viewBox="0 0 100 100">
@@ -1384,7 +1289,7 @@ body::before{animation:aurora 22s ease-in-out infinite alternate}
       <div>
         <div class="badge">Аллея Славы · Личный кабинет</div>
         <h2 style="font-size:1.7rem;margin:4px 0 2px">Хранитель дерева №4</h2>
-        <div class="role" style="margin-bottom:0">Ольферовский В. Г. · демо-режим</div>
+        <div class="role" style="margin-bottom:0">Ольферовский В. Г. · тариф «Цифровой аватар»</div>
       </div>
     </div>
 
@@ -1401,14 +1306,46 @@ body::before{animation:aurora 22s ease-in-out infinite alternate}
       </div>
     </div>
 
-    <div class="badge" style="margin-top:22px">Тарификация</div>
-    <div class="grid" style="margin-top:10px">
-      <div class="b"><span>Тариф</span><b>«Хранитель памяти»</b></div>
-      <div class="b"><span>Стоимость</span><b>490 ₽ / месяц</b></div>
-      <div class="b"><span>Статус</span><b style="color:#d57b1e">Активна до 05.07.2026 ⚠</b></div>
+    <div class="badge" style="margin-top:26px">Тарифы подписки</div>
+    <div class="lk-tariffs">
+      <div class="tarif">
+        <div class="tname">«Уход»</div>
+        <div class="price">490 ₽<span> / мес</span></div>
+        <ul>
+          <li>Полив, обрезка и обработка дерева по графику</li>
+          <li>Ежемесячный фотоотчёт о состоянии</li>
+          <li>Страница героя в цифровом архиве проекта</li>
+        </ul>
+        <button type="button" class="map-open" onclick="alert('Демо: смена тарифа подключается на хостинге')">Выбрать</button>
+      </div>
+      <div class="tarif cur">
+        <div class="tag">Ваш тариф</div>
+        <div class="tname">«Цифровой аватар»</div>
+        <div class="price">990 ₽<span> / мес</span></div>
+        <ul>
+          <li>Всё из тарифа «Уход»</li>
+          <li>Видео-аватар героя и NFC-чип у дерева</li>
+          <li>Диалог с аватаром: голос и истории героя</li>
+          <li>Напоминания о памятных датах</li>
+        </ul>
+        <div class="til">Активна до 05.07.2026 ⚠</div>
+      </div>
+      <div class="tarif">
+        <div class="tag gold">Максимум</div>
+        <div class="tname">«Голограмма»</div>
+        <div class="price">2 490 ₽<span> / мес</span></div>
+        <ul>
+          <li>Всё из тарифа «Цифровой аватар»</li>
+          <li>Голографическая проекция героя у дерева</li>
+          <li>Приоритетный сервис и личный куратор</li>
+        </ul>
+        <button type="button" class="map-open" onclick="alert('Демо: смена тарифа подключается на хостинге')">Перейти</button>
+      </div>
+    </div>
+    <div class="grid" style="margin-top:14px;grid-template-columns:1fr 1fr">
+      <div class="b"><span>Статус подписки</span><b style="color:#d57b1e">Активна до 05.07.2026 ⚠</b></div>
       <div class="b"><span>Автопродление</span><b id="lkAutoState">Выключено</b></div>
     </div>
-    <p class="bio" style="margin:14px 0 0;font-size:.92rem">В тариф входит: полив, обрезка и обработка дерева по графику, ежемесячный фотоотчёт, ежегодное обновление NFC-чипа, страница героя и видео-аватар в цифровом архиве проекта.</p>
 
     <div class="badge" style="margin-top:22px">Настройки кабинета</div>
     <div class="lk-settings">
@@ -1417,6 +1354,8 @@ body::before{animation:aurora 22s ease-in-out infinite alternate}
       <label class="lk-set"><span>Автопродление подписки</span><span class="sw" id="lkAutoSw" onclick="swToggle(this);lkAuto()"></span></label>
       <label class="lk-set"><span>Напоминания о памятных датах</span><span class="sw on" onclick="swToggle(this)"></span></label>
     </div>
+    <div style="text-align:center;margin-top:18px"><a href="#" onclick="lkLogout();return false;" style="color:var(--muted);font-size:.85rem">Выйти из кабинета</a></div>
+    </div><!-- /lkDash -->
   </div>
 </div>
 
@@ -1454,7 +1393,7 @@ const trees = [
     id:1, name:"Лысенко Иван Иванович", role:"Герой Великой Отечественной войны", group:"mem",
     bio:"Когда началась война, ему было всего 20 лет. Осенью 1943 года в звании ефрейтора командовал отделением понтонёров. При форсировании Днепра под шквальным огнём довёл повреждённый паром с ротой автоматчиков до правого берега, а затем за одну ночь 12 раз пересёк Днепр на вёсельной лодке, переправляя бойцов стрелкового батальона на плацдарм. За умелые и стойкие действия представлен к званию Героя.",
     planter:"Семья и однополчане", date:"апрель 2024", species:"Павловния «Вудмакс-8»",
-    lat:47.22330, lng:39.73680, x:170, y:160, color:"#c9a227",
+    lat:47.22410, lng:39.73720, x:170, y:160, color:"#c9a227",
     video:"assets/avatars/video/avatar1.mp4", poster:"assets/avatars/posters/avatar1.jpg", avatar:true,
     height:"6,2 м", state:"Здоровое", stateOk:true,
     lastCare:"14 мая 2026 · полив, мульчирование", nextCare:"июль 2026 · подкормка",
@@ -1464,7 +1403,7 @@ const trees = [
     id:2, name:"Кравченко Алексей Анатольевич", role:"Доброволец СВО · позывной «Крава»", group:"def",
     bio:"Родился 11 декабря 1974 года в Батайске. Следователь полиции, отец троих сыновей. Когда вражеские дроны начали падать на родной город, несмотря на травму ноги добровольцем ушёл на СВО. Служил в казачьем отряде «Аксай» (дивизия «Дон») на Кинбурнской косе, на передовой без ротации пёк хлеб для бойцов. Верил, что для счастья нужны лишь семья, верные товарищи и мирное небо. Погиб 12 июня 2024 года при выполнении боевой задачи. Посмертно награждён орденом Мужества.",
     planter:"Волонтёры и АВБД", date:"апрель 2024", species:"Павловния «Вудмакс-8»",
-    lat:47.22360, lng:39.73830, x:340, y:130, color:"#69a07e",
+    lat:47.22430, lng:39.74380, x:340, y:130, color:"#69a07e",
     video:"assets/avatars/video/avatar2.mp4", poster:"assets/avatars/posters/avatar2.jpg", avatar:true,
     height:"5,7 м", state:"Здоровое", stateOk:true,
     lastCare:"14 мая 2026 · полив, обработка от вредителей", nextCare:"август 2026 · плановый осмотр",
@@ -1474,7 +1413,7 @@ const trees = [
     id:3, name:"Джелаухов Христофор Михайлович", role:"Генерал-майор · Великая Отечественная война", group:"mem",
     bio:"Родился в 1905 году в селе Крым Мясниковского района. Генерал-майор, доктор военных наук, профессор Академии Генштаба. В 1941 году окончил Военную академию имени Фрунзе. Прошёл всю войну — от обороны Прибалтики и Москвы до Сталинграда, Курска, форсирования Днепра и освобождения Европы, возглавляя штабы и дивизии. Награждён орденами Ленина, Кутузова, Богдана Хмельницкого и медалями. В 1948 году с золотой медалью окончил Академию Генштаба, преподавал стратегию. Умер в 1994 году в Москве; прах покоится в селе Крым, где в его честь названа улица.",
     planter:"Городской совет ветеранов", date:"апрель 2024", species:"Павловния «Вудмакс-8»",
-    lat:47.22390, lng:39.73980, x:500, y:165, color:"#c9a227",
+    lat:47.22460, lng:39.73880, x:500, y:165, color:"#c9a227",
     video:"assets/avatars/video/avatar3.mp4", poster:"assets/avatars/posters/avatar3.jpg", avatar:true,
     height:"6,0 м", state:"Здоровое", stateOk:true,
     lastCare:"30 апреля 2026 · санитарная обрезка", nextCare:"июль 2026 · полив, мульчирование",
@@ -1484,7 +1423,7 @@ const trees = [
     id:4, name:"Ольферовский Валерий Георгиевич", role:"Старший прапорщик · участник СВО", group:"def",
     bio:"Родился 5 октября 1964 года. Сотрудник отряда милиции особого назначения МВД России, участник первой и второй чеченских кампаний, награждён медалью ордена «За заслуги перед Отечеством» II степени. Офицер-воспитатель в кадетском корпусе. 14 июня 2023 года подписал контракт — командир 2-го взвода 9-й роты штурмового именного ростовского батальона имени Святого Георгия. Выполняя боевое задание в посёлке Крынки, спас свой отряд и отстоял территорию — награждён медалью «За отвагу». Погиб 28 августа 2024 года в Херсонской области. Посмертно награждён орденом Мужества, похоронен на Аллее Героев Северного кладбища.",
     planter:"Семья и однополчане", date:"апрель 2024", species:"Павловния «Вудмакс-8»",
-    lat:47.22420, lng:39.74130, x:250, y:330, color:"#69a07e",
+    lat:47.22480, lng:39.74520, x:250, y:330, color:"#69a07e",
     video:"assets/avatars/video/avatar4.mp4", poster:"assets/avatars/posters/avatar4.jpg", avatar:true,
     height:"5,4 м", state:"Требует внимания", stateOk:false,
     lastCare:"2 марта 2026 · формирующая обрезка", nextCare:"запишитесь на сервисный выезд",
@@ -1494,7 +1433,7 @@ const trees = [
     id:5, name:"Поздеев Егор Михайлович", role:"Доброволец СВО · связист", group:"def",
     bio:"Родился 16 сентября 1991 года в Липецке, в крещении наречён именем Георгий. В 2015 году переехал в Ростов-на-Дону, где встретил супругу Наталью. С началом специальной военной операции не остался в стороне: 1 февраля 2024 года ушёл добровольцем на фронт. Начинал боевой путь штурмовиком, затем был переведён в связисты. В августе 2024 года при выполнении боевой задачи в посёлке Красногоровка ДНР группа не вернулась — долгое время числился пропавшим без вести. В апреле 2025 года пришло подтверждение героической гибели. За проявленные мужество и героизм посмертно награждён орденом Мужества.",
     planter:"Молодёжь и местные жители", date:"апрель 2024", species:"Павловния «Вудмакс-8»",
-    lat:47.22450, lng:39.74280, x:440, y:330, color:"#69a07e",
+    lat:47.22430, lng:39.74660, x:440, y:330, color:"#69a07e",
     video:"assets/avatars/video/avatar5.mp4", poster:"assets/avatars/posters/avatar5.jpg", avatar:true,
     height:"5,9 м", state:"Здоровое", stateOk:true,
     lastCare:"14 мая 2026 · полив, мульчирование", nextCare:"сентябрь 2026 · подкормка",
@@ -1504,7 +1443,7 @@ const trees = [
     id:6, name:"Некрасов Сергей Геннадьевич", role:"Доброволец СВО · позывной «Философ»", group:"def",
     bio:"До СВО преподавал историю и основы философии — на фронте выбрал позывной «Философ». В октябре 2023 года ушёл добровольцем, не имея опыта службы в армии: не мог спокойно сидеть, когда рядом гибнут наши ребята. Воевал на Соледаро-Бахмутском направлении: был связистом, сапёром, командиром отделения, фактически исполнял обязанности старшины роты. Свой последний бой принял 15 февраля 2024 года под Артёмовском — в праздник Сретения Господня. Похоронен в Ростове-на-Дону на Аллее Героев со всеми подобающими почестями. За героизм, проявленный при исполнении воинского долга, посмертно награждён орденом Мужества.",
     planter:"Боевые товарищи и волонтёры", date:"апрель 2024", species:"Павловния «Вудмакс-8»",
-    lat:47.22480, lng:39.74430, x:540, y:300, color:"#69a07e",
+    lat:47.22490, lng:39.74800, x:540, y:300, color:"#69a07e",
     video:"assets/avatars/video/avatar6.mp4", poster:"assets/avatars/posters/avatar6.jpg", avatar:true,
     height:"5,5 м", state:"Здоровое", stateOk:true,
     lastCare:"20 мая 2026 · полив, обработка от вредителей", nextCare:"август 2026 · плановый осмотр",
@@ -1624,32 +1563,6 @@ const azovSettlements=[
 const mapInfo=document.getElementById('mapInfo');
 let azovMapObj=null;
 
-/* ---- План аллеи: SVG-маркеры деревьев ---- */
-const markersG=document.getElementById('markers');
-function renderMapMarkers(){
-  if(!markersG)return;
-  markersG.innerHTML='';
-  trees.forEach(t=>{
-    const g=document.createElementNS('http://www.w3.org/2000/svg','g');
-    g.setAttribute('class','map-marker');
-    g.setAttribute('transform',`translate(${t.x},${t.y})`);
-    g.style.cursor='pointer';
-    g.innerHTML=`<circle r="15" fill="rgba(12,18,15,.55)"/>`+
-      `<circle class="mk-dot" r="13" fill="${t.color}" stroke="#e9cf72" stroke-width="1.6"/>`+
-      `<text y="4.6" text-anchor="middle" font-family="Forum" font-size="13" font-weight="bold" fill="#0c140f">${t.id}</text>`;
-    g.addEventListener('click',()=>selectMarker(t.id));
-    g.addEventListener('mouseenter',()=>showTreeInfo(t));
-    markersG.appendChild(g);
-  });
-}
-function selectMarker(id){
-  if(markersG){[...markersG.children].forEach((g,i)=>{
-    const dot=g.querySelector('.mk-dot');
-    if(dot)dot.setAttribute('r',trees[i]&&trees[i].id===id?16:13);
-  });}
-  const t=trees.find(x=>x.id===id);
-  if(t)showTreeInfo(t);
-}
 function showTreeInfo(t){
   if(!mapInfo)return;
   const sg=subgroups.find(s=>s.id===t.group);
@@ -1665,7 +1578,6 @@ function showTreeInfo(t){
     <div class="row"><span>Состояние</span><b style="${t.stateOk===false?'color:#d57b1e':''}">${t.state||'—'}${t.stateOk===false?' ⚠':''}</b></div>
     <button type="button" class="map-open" onclick="openModal(${t.id})">Открыть карточку →</button>`;
 }
-renderMapMarkers();
 
 function azovPinIcon(){return L.divIcon({className:'az-pin',iconSize:[30,42],iconAnchor:[15,40],popupAnchor:[0,-36],
   html:'<svg width="30" height="42" viewBox="0 0 30 42"><path d="M15 0C7 0 1 6 1 14c0 9 11 22 14 27 3-5 14-18 14-27C29 6 23 0 15 0z" fill="#9a6fc2" stroke="#e9cf72" stroke-width="1.5"/><circle cx="15" cy="14" r="6" fill="#0c120e"/><circle cx="15" cy="14" r="3.2" fill="#e9cf72"/></svg>'});}
@@ -1707,7 +1619,7 @@ function initAzovMap(){
     m.on('mouseover',()=>showSettlement(s));
   });
   /* ---- Наложение плана аллеи: маршрут, мемориал, деревья ---- */
-  const memorial=[47.2257,39.7465];
+  const memorial=[47.2246,39.7412];
   const route=[
     [47.090,38.300],[47.135,38.560],[47.190,38.780],[47.170,38.800],
     [47.210,38.930],memorial,[47.100,39.420],[46.880,38.930],[46.755,38.690],[46.700,38.580]
@@ -1717,6 +1629,9 @@ function initAzovMap(){
   const fm=L.marker(memorial,{icon:flamePinIcon(),title:'Мемориал «Вечный огонь»',zIndexOffset:600}).addTo(map);
   fm.bindPopup('<h4>Мемориал «Вечный огонь»</h4><span class="reg">Ростов-на-Дону · сердце Аллеи Славы</span>'+
     '<div class="pr"><span>Здесь начинается аллея: деревья героев высажены вдоль набережной.</span></div>');
+  fm.on('click',()=>{map.setView(memorial,16);});
+  L.circle([47.22435,39.73800],{radius:130,color:'#c9a227',weight:1.5,dashArray:'4 6',fillColor:'#c9a227',fillOpacity:.12}).addTo(map).bindTooltip('Подгруппа «Память поколений»',{direction:'top'});
+  L.circle([47.22460,39.74590],{radius:180,color:'#69a07e',weight:1.5,dashArray:'4 6',fillColor:'#69a07e',fillOpacity:.10}).addTo(map).bindTooltip('Подгруппа «Защитники»',{direction:'top'});
   bounds.push(memorial);
   trees.forEach(t=>{
     if(!t.lat||!t.lng)return;
@@ -1731,30 +1646,9 @@ function initAzovMap(){
   setTimeout(()=>map.invalidateSize(),250);
 }
 
-/* ---- Переключатель карт: План аллеи ⇄ Карта Приазовья ---- */
-(function(){
-  const toggle=document.getElementById('mapToggle');
-  if(!toggle)return;
-  const vPlan=document.getElementById('view-plan');
-  const vGeo=document.getElementById('view-geo');
-  const defaults={
-    plan:`<div class="badge">Аллея Славы</div><h3>План аллеи</h3><p style="color:var(--muted)">Нажмите дерево на плане, чтобы увидеть героя, подгруппу и открыть его карточку.</p><div class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21v-6"/><path d="M12 15a5.5 5.5 0 0 0 4.2-9 4.3 4.3 0 0 0-8.4 0A5.5 5.5 0 0 0 12 15z"/></svg> Деревья высажены вдоль центральной аллеи у Вечного огня.</div>`,
-    geo:`<div class="badge">Приазовье · Аллея Славы</div><h3>Карта аллеи</h3><p style="color:var(--muted)">План аллеи наложен на реальную карту: мемориал «Вечный огонь» в Ростове-на-Дону, деревья героев (номера) и пунктирный вело-пеший маршрут вдоль залива. Нажмите дерево, поселение или мемориал.</p>
-      <a class="map-open" href="geography.html" style="display:inline-flex;align-items:center;gap:7px;margin-top:8px;text-decoration:none">Все карты участков и PDF →</a><div class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> Аллея высаживается вдоль Азовского моря в 7 поселениях Азовского и Неклиновского районов.</div>`
-  };
-  function setView(v){
-    [...toggle.children].forEach(b=>b.classList.toggle('active',b.dataset.view===v));
-    if(vPlan)vPlan.hidden=v!=='plan';
-    if(vGeo)vGeo.hidden=v!=='geo';
-    if(mapInfo)mapInfo.innerHTML=defaults[v];
-    if(v==='geo'){
-      initAzovMap();
-      setTimeout(()=>{if(azovMapObj)azovMapObj.invalidateSize();},80);
-    }
-  }
-  toggle.addEventListener('click',e=>{const b=e.target.closest('.mt');if(b)setView(b.dataset.view);});
-  setView('geo');
-})();
+/* ---- Единая карта: запуск ---- */
+if(mapInfo)mapInfo.innerHTML=`<div class="badge">Аллея Славы · Приазовье</div><h3>Единая карта</h3><p style="color:var(--muted)">План аллеи наложен на реальную карту: мемориал «Вечный огонь», деревья героев с подгруппами и маршрут вдоль залива. Нажмите пламя, чтобы приблизить аллею; дерево — чтобы открыть героя.</p><a class="map-open" href="geography.html" style="display:inline-flex;align-items:center;gap:7px;margin-top:8px;text-decoration:none">Все карты участков и PDF →</a>`;
+initAzovMap();
 
 /* ============ MODAL ============ */
 const modal=document.getElementById('modal');
@@ -1785,13 +1679,23 @@ function openModal(id){
     <div class="b"><span>NFC-чип аватара</span><b style="${t.chipOk===false?'color:#d57b1e':''}">${t.chip||'—'}${t.chipOk===false?' ⚠':''}</b></div>
     <div class="b"><span>Подгруппа</span><b>${sg?sg.name.replace('Подгруппа ',''):'—'}</b></div>`;}
   modal.classList.add('open');
+  document.body.classList.add('no-scroll');
+  modal.querySelector('.modal-card').scrollTop=0;
 }
-function closeModal(){modal.classList.remove('open');document.getElementById('mVideoWrap').innerHTML='';}
+function closeModal(){modal.classList.remove('open');document.body.classList.remove('no-scroll');document.getElementById('mVideoWrap').innerHTML='';}
 
 /* ============ ЛИЧНЫЙ КАБИНЕТ ============ */
 const lkModal=document.getElementById('lkModal');
-function openLk(){if(lkModal)lkModal.classList.add('open');}
-function closeLk(){if(lkModal)lkModal.classList.remove('open');}
+function openLk(){if(lkModal){lkModal.classList.add('open');document.body.classList.add('no-scroll');}}
+function closeLk(){if(lkModal){lkModal.classList.remove('open');if(!modal.classList.contains('open'))document.body.classList.remove('no-scroll');}}
+function lkEnter(){
+  const l=document.getElementById('lkLogin'),d=document.getElementById('lkDash');
+  if(l&&d){l.hidden=true;d.hidden=false;lkModal.querySelector('.modal-card').scrollTop=0;}
+}
+function lkLogout(){
+  const l=document.getElementById('lkLogin'),d=document.getElementById('lkDash');
+  if(l&&d){d.hidden=true;l.hidden=false;}
+}
 function swToggle(el){el.classList.toggle('on');}
 function lkAuto(){const st=document.getElementById('lkAutoState'),sw=document.getElementById('lkAutoSw');
   if(st&&sw)st.textContent=sw.classList.contains('on')?'Включено':'Выключено';}

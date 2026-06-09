@@ -3,12 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Медиа Аллеи Славы: фотогалерея посадок, материалы презентации и видеоролик проекта.">
+<meta name="description" content="Медиа Аллеи Славы: фотоальбом проекта, презентация-листалка и видеоролик.">
 <title>Медиа · Аллея Славы</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Forum&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Marck+Script&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
+<style>
+.album{position:relative;border:1px solid var(--line);border-radius:18px;overflow:hidden;
+  background:linear-gradient(165deg,#0e1812,#0a100c);box-shadow:var(--shadow)}
+.album .stage{position:relative;width:100%;aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;background:#070b08}
+.album .stage img{max-width:100%;max-height:100%;object-fit:contain;display:block;user-select:none;-webkit-user-drag:none}
+.album .anav{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;
+  border:1px solid rgba(201,162,39,.4);background:rgba(10,14,11,.72);color:var(--gold-l);font-size:1.5rem;line-height:1;
+  cursor:pointer;display:grid;place-items:center;transition:background .2s,border-color .2s;z-index:5;backdrop-filter:blur(4px)}
+.album .anav:hover{background:rgba(201,162,39,.25);border-color:var(--gold)}
+.album .anav.prev{left:14px}
+.album .anav.next{right:14px}
+.album .abar{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 18px;border-top:1px solid var(--line)}
+.album .acap{color:var(--muted);font-size:.9rem;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.album .acount{flex:0 0 auto;font-family:"Forum",serif;letter-spacing:.08em;color:var(--gold-l);font-size:.95rem}
+.album.is-fading .stage img{opacity:0}
+.album .stage img{transition:opacity .18s}
+@media(max-width:700px){.album .anav{width:38px;height:38px}.album .stage{aspect-ratio:4/3}}
+</style>
 </head>
 <body>
 
@@ -29,7 +47,7 @@
 <header class="page-hero">
   <div class="crumbs"><a href="index.html">Главная</a> · База знаний · Медиа</div>
   <h1>Медиа <span class="gold">Аллеи Славы</span></h1>
-  <p>Фотографии посадок, материалы презентации проекта и видеоролик. Нажмите на любое изображение, чтобы увеличить его прямо на странице.</p>
+  <p>Видеоролик, фотоальбом проекта и презентация. Альбомы листаются стрелками, клавишами ← → и свайпом.</p>
   <div class="rule"></div>
 </header>
 
@@ -48,25 +66,16 @@
   </div>
 </section>
 
-<!-- ФОТОГАЛЕРЕЯ -->
+<!-- ФОТОАЛЬБОМ -->
 <section class="section" style="padding-top:0">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow">Фото</div>
-      <h2>Посадки <span class="gold">и события</span></h2>
-      <p>Кадры с посадки деревьев памяти.</p>
+      <div class="eyebrow">Фотоальбом</div>
+      <h2>Хроника <span class="gold">проекта</span></h2>
+      <p>Посадки деревьев памяти, пленарные заседания, встречи и события АВБД — листайте как альбом.</p>
       <div class="rule"></div>
     </div>
-    <div class="gallery reveal">
-      <figure data-lb="assets/photo-planting-1.jpg" data-lb-group="gal" data-cap="Посадка деревьев памяти">
-        <img src="assets/photo-planting-1.jpg" alt="Посадка деревьев памяти" loading="lazy">
-        <figcaption>Посадка деревьев памяти</figcaption>
-      </figure>
-      <figure data-lb="assets/photo-planting-2.jpg" data-lb-group="gal" data-cap="Участники проекта на аллее">
-        <img src="assets/photo-planting-2.jpg" alt="Участники проекта на аллее" loading="lazy">
-        <figcaption>Участники проекта на аллее</figcaption>
-      </figure>
-    </div>
+    <div class="album reveal" id="albumPhotos"></div>
   </div>
 </section>
 
@@ -75,11 +84,11 @@
   <div class="wrap">
     <div class="section-head reveal">
       <div class="eyebrow">Презентация</div>
-      <h2>Материалы <span class="gold">проекта</span></h2>
-      <p>Слайды презентации Аллеи Славы. Нажмите для увеличения.</p>
+      <h2>Слайды <span class="gold">проекта</span></h2>
+      <p>Презентация Аллеи Славы в одном окне — перелистывайте по одному слайду.</p>
       <div class="rule"></div>
     </div>
-    <div class="gallery reveal" id="slideGal"></div>
+    <div class="album reveal" id="albumSlides"></div>
   </div>
 </section>
 
@@ -91,16 +100,60 @@
 
 <script src="assets/site.js"></script>
 <script>
-const slideGal=document.getElementById('slideGal');
-let html='';
-for(let i=1;i<=12;i++){
-  html+=`<figure data-lb="assets/slide-${i}.png" data-lb-group="slides" data-cap="Слайд презентации ${i}">
-    <img src="assets/slide-${i}.png" alt="Слайд презентации ${i}" loading="lazy">
-    <figcaption>Слайд ${i}</figcaption>
-  </figure>`;
+/* ===== Фотоальбом-листалка ===== */
+function initAlbum(el, items, label){
+  if(!el||!items.length) return;
+  let i=0;
+  el.innerHTML=`
+    <div class="stage"><img alt=""></div>
+    <button type="button" class="anav prev" aria-label="Назад">‹</button>
+    <button type="button" class="anav next" aria-label="Вперёд">›</button>
+    <div class="abar"><div class="acap"></div><div class="acount"></div></div>`;
+  const img=el.querySelector('img'), cap=el.querySelector('.acap'), cnt=el.querySelector('.acount');
+  function show(n){
+    i=(n+items.length)%items.length;
+    el.classList.add('is-fading');
+    setTimeout(()=>{
+      img.src=items[i].src; img.alt=items[i].cap;
+      cap.textContent=items[i].cap;
+      cnt.textContent=(i+1)+' / '+items.length;
+      el.classList.remove('is-fading');
+    },120);
+    const nx=new Image(); nx.src=items[(i+1)%items.length].src;
+    const pv=new Image(); pv.src=items[(i-1+items.length)%items.length].src;
+  }
+  el.querySelector('.prev').onclick=()=>show(i-1);
+  el.querySelector('.next').onclick=()=>show(i+1);
+  el.tabIndex=0;
+  el.addEventListener('keydown',e=>{
+    if(e.key==='ArrowLeft'){show(i-1);e.preventDefault();}
+    if(e.key==='ArrowRight'){show(i+1);e.preventDefault();}
+  });
+  let tx=null;
+  el.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;},{passive:true});
+  el.addEventListener('touchend',e=>{
+    if(tx===null)return;
+    const dx=e.changedTouches[0].clientX-tx;
+    if(Math.abs(dx)>45) show(i+(dx<0?1:-1));
+    tx=null;
+  },{passive:true});
+  show(0);
 }
-slideGal.innerHTML=html;
-slideGal.querySelectorAll('[data-lb]').forEach(el=>el.onclick=()=>window.openLightbox(el));
+
+/* Фотоальбом: посадки + события из архива проекта */
+const photos=[
+  {src:'assets/photo-planting-1.jpg',cap:'Посадка деревьев памяти'},
+  {src:'assets/photo-planting-2.jpg',cap:'Участники проекта на аллее'}
+];
+for(let n=1;n<=49;n++){
+  photos.push({src:`assets/album/event-${String(n).padStart(2,'0')}.jpg`,cap:`Хроника проекта АВБД · фото ${n}`});
+}
+initAlbum(document.getElementById('albumPhotos'),photos);
+
+/* Презентация-листалка */
+const slides=[];
+for(let n=1;n<=12;n++) slides.push({src:`assets/slide-${n}.png`,cap:`Презентация «Аллея Славы» · слайд ${n}`});
+initAlbum(document.getElementById('albumSlides'),slides);
 </script>
 </body>
 </html>
