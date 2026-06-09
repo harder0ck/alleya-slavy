@@ -548,6 +548,105 @@ body::before{animation:aurora 22s ease-in-out infinite alternate}
 .marker:hover{filter:drop-shadow(0 0 12px rgba(154,111,194,.6))}
 
 .will-anim{will-change:transform,opacity}
+
+/* ===== REFERENCE / KNOWLEDGE BASE ===== */
+.ref-tabs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:30px auto 44px}
+.ref-tab{font-family:"Forum",serif;letter-spacing:.05em;font-size:1.02rem;cursor:pointer;
+  display:inline-flex;align-items:center;gap:9px;padding:11px 22px;border-radius:40px;
+  color:var(--ink);background:rgba(255,255,255,.03);border:1px solid var(--line);transition:.25s}
+.ref-tab svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;opacity:.85}
+.ref-tab:hover{border-color:var(--gold);color:var(--gold-l)}
+.ref-tab.active{background:linear-gradient(180deg,var(--gold),var(--bronze));color:#1a140a;border-color:var(--gold);box-shadow:0 8px 24px rgba(201,162,39,.25)}
+.ref-panel{display:none;animation:refIn .55s cubic-bezier(.16,.84,.34,1)}
+.ref-panel.active{display:block}
+@keyframes refIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.ref-lead{max-width:760px;margin:0 auto 34px;text-align:center;color:var(--muted);font-size:1.02rem;line-height:1.6}
+.ref-lead b{color:var(--gold-l);font-weight:400}
+
+/* fact grid */
+.fact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-bottom:36px}
+.fact{position:relative;padding:24px 22px;border-radius:16px;background:linear-gradient(165deg,rgba(255,255,255,.045),rgba(255,255,255,.01));
+  border:1px solid var(--line);overflow:hidden}
+.fact::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(var(--green-l),var(--gold))}
+.fact .fh{display:flex;align-items:center;gap:11px;margin-bottom:14px}
+.fact .fh svg{width:24px;height:24px;flex:0 0 auto;fill:none;stroke:var(--gold);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.fact .fh h4{font-family:"Forum",serif;color:var(--ink);font-size:1.18rem}
+.fact ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.fact li{display:flex;justify-content:space-between;gap:14px;font-size:.92rem;color:var(--muted);
+  padding-bottom:8px;border-bottom:1px dashed rgba(255,255,255,.07);line-height:1.4}
+.fact li:last-child{border-bottom:none;padding-bottom:0}
+.fact li b{color:var(--gold-l);font-weight:600;text-align:right;white-space:nowrap}
+.fact li b.wrap{white-space:normal}
+
+/* patent / doc callout */
+.ref-doc{display:flex;flex-wrap:wrap;gap:22px;align-items:stretch;margin-bottom:34px}
+.ref-doc .doc-body{flex:1 1 340px;padding:26px 26px;border-radius:18px;
+  background:linear-gradient(160deg,rgba(70,120,90,.14),rgba(201,162,39,.05));border:1px solid rgba(201,162,39,.22)}
+.ref-doc .doc-body h4{font-family:"Forum",serif;color:var(--gold-l);font-size:1.34rem;margin-bottom:6px}
+.ref-doc .doc-body .pat-sub{color:var(--green-l);font-size:.9rem;margin-bottom:16px;font-style:italic}
+.ref-doc .doc-body p{color:var(--muted);font-size:.95rem;line-height:1.6;margin-bottom:14px}
+.pat-rows{display:grid;grid-template-columns:auto 1fr;gap:8px 18px;font-size:.9rem;margin-top:6px}
+.pat-rows dt{color:var(--bronze);white-space:nowrap}
+.pat-rows dd{color:var(--ink)}
+.dl-list{flex:0 0 270px;display:flex;flex-direction:column;gap:14px}
+.dl{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:14px;text-decoration:none;
+  background:rgba(255,255,255,.04);border:1px solid var(--line);transition:.22s}
+.dl:hover{border-color:var(--gold);background:rgba(201,162,39,.08);transform:translateY(-3px)}
+.dl .dl-ic{flex:0 0 auto;width:42px;height:42px;border-radius:11px;display:grid;place-items:center;
+  background:linear-gradient(180deg,var(--gold),var(--bronze))}
+.dl .dl-ic svg{width:21px;height:21px;fill:none;stroke:#1a140a;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.dl .dl-tx{display:flex;flex-direction:column;gap:2px}
+.dl .dl-tx b{font-family:"Forum",serif;color:var(--ink);font-size:1rem;line-height:1.2}
+.dl .dl-tx span{color:var(--muted);font-size:.78rem}
+
+/* settlements geography */
+.geo-note{max-width:740px;margin:0 auto 30px;text-align:center;color:var(--muted);font-size:.95rem;line-height:1.6;
+  padding:16px 20px;border-radius:14px;background:rgba(70,120,90,.08);border:1px solid rgba(105,160,126,.2)}
+.geo-note b{color:var(--green-l);font-weight:600}
+.sp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px}
+.sp{padding:22px 22px;border-radius:16px;background:linear-gradient(165deg,rgba(255,255,255,.045),rgba(255,255,255,.01));
+  border:1px solid var(--line);transition:.25s}
+.sp:hover{border-color:rgba(201,162,39,.4)}
+.sp h4{font-family:"Forum",serif;color:var(--ink);font-size:1.2rem;margin-bottom:3px}
+.sp .reg{color:var(--green-l);font-size:.82rem;margin-bottom:15px}
+.sp .sp-rows{display:flex;flex-direction:column;gap:11px}
+.sp .row{display:flex;align-items:flex-start;gap:11px;font-size:.88rem;color:var(--muted);line-height:1.4}
+.sp .row svg{flex:0 0 auto;width:17px;height:17px;margin-top:1px;fill:none;stroke:var(--gold);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.sp .row a{color:var(--muted);text-decoration:none;border-bottom:1px solid transparent;transition:.2s;word-break:break-word}
+.sp .row a:hover{color:var(--gold-l);border-color:var(--gold-l)}
+.sp .row .lbl{display:block;color:var(--bronze);font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;margin-bottom:1px}
+.sp .head-name{color:var(--ink)}
+
+/* team bios */
+.team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.bio{display:flex;gap:18px;padding:24px 22px;border-radius:16px;
+  background:linear-gradient(165deg,rgba(255,255,255,.05),rgba(255,255,255,.01));border:1px solid var(--line);transition:.25s}
+.bio:hover{border-color:rgba(201,162,39,.4);transform:translateY(-3px)}
+.bio .ava{flex:0 0 auto;width:64px;height:64px;border-radius:50%;overflow:hidden;
+  border:2px solid var(--gold);box-shadow:0 6px 16px rgba(0,0,0,.4)}
+.bio .ava svg{width:100%;height:100%}
+.bio .bio-tx h4{font-family:"Forum",serif;color:var(--ink);font-size:1.16rem;line-height:1.2;margin-bottom:3px}
+.bio .bio-tx .role{color:var(--gold-l);font-size:.83rem;margin-bottom:10px;display:block}
+.bio .bio-tx p{color:var(--muted);font-size:.88rem;line-height:1.55}
+
+/* media gallery */
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;margin-bottom:34px}
+.gallery a{display:block;border-radius:12px;overflow:hidden;border:1px solid var(--line);position:relative;aspect-ratio:4/3;transition:.25s}
+.gallery a:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,.45)}
+.gallery img{width:100%;height:100%;object-fit:cover;display:block}
+.audio-card{display:flex;flex-wrap:wrap;align-items:center;gap:20px;padding:24px 26px;border-radius:18px;
+  background:linear-gradient(160deg,rgba(70,120,90,.16),rgba(201,162,39,.05));border:1px solid rgba(105,160,126,.25)}
+.audio-card .a-ic{flex:0 0 auto;width:56px;height:56px;border-radius:14px;display:grid;place-items:center;
+  background:linear-gradient(180deg,var(--green-l),var(--green))}
+.audio-card .a-ic svg{width:28px;height:28px;fill:none;stroke:#0c120e;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.audio-card .a-tx{flex:1 1 220px}
+.audio-card .a-tx b{font-family:"Forum",serif;color:var(--gold-l);font-size:1.24rem;display:block;margin-bottom:3px}
+.audio-card .a-tx span{color:var(--muted);font-size:.88rem}
+.audio-card audio{flex:1 1 280px;width:100%;min-width:240px;height:40px}
+@media(max-width:640px){
+  .ref-doc .dl-list{flex-basis:100%}
+  .bio{flex-direction:column}
+}
 </style>
 </head>
 <body>
@@ -567,6 +666,7 @@ body::before{animation:aurora 22s ease-in-out infinite alternate}
     <a href="#partners">Партнёры</a>
     <a href="#events">Мероприятия</a>
     <a href="#reviews">Отзывы</a>
+    <a href="#reference">База знаний</a>
     <a href="#contacts">Контакты</a>
   </div>
 </nav>
@@ -1043,6 +1143,79 @@ body::before{animation:aurora 22s ease-in-out infinite alternate}
 </section>
 
 <!-- CONTACTS -->
+<!-- REFERENCE / KNOWLEDGE BASE -->
+<section class="section" id="reference">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Справочный центр</div>
+      <h2>База <span class="gold">знаний</span></h2>
+      <p>Полная справочная информация о проекте: дерево-аватар павловния, география посадок вдоль Азовского побережья, команда и медиаматериалы.</p>
+      <div class="rule"></div>
+    </div>
+
+    <div class="ref-tabs reveal" id="refTabs">
+      <button class="ref-tab active" data-ref="pavlovnia"><svg viewBox="0 0 24 24"><path d="M12 22V12M12 12c0-3 2-5 5-5M12 12c0-3-2-5-5-5M12 7a4 4 0 1 0 0-4 4 4 0 0 0 0 4z"/></svg>Павловния</button>
+      <button class="ref-tab" data-ref="geo"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>География</button>
+      <button class="ref-tab" data-ref="team"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0M16 6a3 3 0 0 1 0 6M17 14.5a5.5 5.5 0 0 1 3.5 5.5"/></svg>Команда</button>
+      <button class="ref-tab" data-ref="media"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 8h18M8 12l3 2-3 2z"/></svg>Медиа</button>
+    </div>
+
+    <!-- PANEL: PAVLOVNIA -->
+    <div class="ref-panel active" id="ref-pavlovnia">
+      <p class="ref-lead">Павловния <b>«Вудмакс-8»</b> — самое быстрорастущее дерево планеты и основа нашего проекта. Ниже — ключевые биологические, технические и агротехнические характеристики культуры.</p>
+      <div class="fact-grid" id="factGrid"></div>
+      <div class="ref-doc">
+        <div class="doc-body">
+          <h4>Сорт «Вудмакс-8» (Woodmax-8 / ВУДМАКС-8)</h4>
+          <div class="pat-sub">Запатентованный селекционный сорт павловнии</div>
+          <p>Сорт прошёл государственное сортоиспытание и защищён патентом. Подтверждён рекомендацией Новочеркасского инженерно-мелиоративного института (НИМИ) для условий Юга России.</p>
+          <dl class="pat-rows">
+            <dt>Код Госсорткомиссии</dt><dd>7652641</dd>
+            <dt>Патент</dt><dd>№ 13320</dd>
+            <dt>Авторы</dt><dd>Ероцкий, Алимов, Калдыбаева</dd>
+            <dt>Патентообладатель</dt><dd>ТОО «INTEGRO PLUS» (Казахстан)</dd>
+            <dt>Срок действия</dt><dd>до 2058 года</dd>
+          </dl>
+        </div>
+        <div class="dl-list">
+          <a class="dl" href="assets/pavlovnia-overview.pdf" target="_blank" rel="noopener">
+            <span class="dl-ic"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 19h14"/></svg></span>
+            <span class="dl-tx"><b>Обзор павловнии</b><span>PDF · скачать</span></span>
+          </a>
+          <a class="dl" href="assets/nimi-recommendation.pdf" target="_blank" rel="noopener">
+            <span class="dl-ic"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 19h14"/></svg></span>
+            <span class="dl-tx"><b>Рекомендация НИМИ</b><span>№ 481 от 29.08.2025 · PDF</span></span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL: GEOGRAPHY -->
+    <div class="ref-panel" id="ref-geo">
+      <p class="ref-lead">Аллея высаживается вдоль побережья <b>Азовского моря</b> на территории семи сельских поселений Азовского и Неклиновского районов Ростовской области. Прибрежные участки пронумерованы (№ 1–45+), площади варьируются от ~3,9 тыс. до 770 тыс. м².</p>
+      <div class="geo-note">Контакты глав поселений приведены для официальных обращений по вопросам участия и согласования посадок. <b>Просьба использовать их корректно.</b></div>
+      <div class="sp-grid" id="spGrid"></div>
+    </div>
+
+    <!-- PANEL: TEAM -->
+    <div class="ref-panel" id="ref-team">
+      <p class="ref-lead">Проект ведёт команда специалистов в области <b>управления, геодезии, экономики, права и строительства</b>. Ниже — краткие публичные сведения об участниках.</p>
+      <div class="team-grid" id="teamGrid"></div>
+    </div>
+
+    <!-- PANEL: MEDIA -->
+    <div class="ref-panel" id="ref-media">
+      <p class="ref-lead">Презентационные материалы проекта, фотографии с посадок и <b>гимн проекта</b>.</p>
+      <div class="gallery" id="galleryGrid"></div>
+      <div class="audio-card reveal">
+        <span class="a-ic"><svg viewBox="0 0 24 24"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg></span>
+        <span class="a-tx"><b>«А мы сажаем павловнию…»</b><span>Гимн проекта · аудиозапись</span></span>
+        <audio controls preload="none" src="assets/song-pavlovnia.mp3"></audio>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section contacts" id="contacts">
   <div class="wrap">
     <div class="section-head reveal">
@@ -1449,7 +1622,92 @@ function staggerIn(container,d=0.08){
     o.disconnect();}})},{threshold:.1,rootMargin:'0px 0px -6% 0px'});
   o.observe(container);
 }
-['.spec-grid','.care-grid','.awards','.partners-grid','.season','.flow','#treeGrid','#evGrid','#revGrid']
+/* ===== REFERENCE / KNOWLEDGE BASE ===== */
+const pavFacts=[
+  {ic:'<path d="M12 22V8M12 8c0-3 2-5 5-5M12 8c0-3-2-5-5-5"/>',h:'Биология роста',rows:[
+    ['Прирост','2–3 м / год'],['Техн. зрелость','6–8 лет'],['Высота','15–20 м'],
+    ['Срок жизни','70–100 лет'],['Морозостойкость','до −25 °C'],['Медонос','500–800 кг/га']]},
+  {ic:'<rect x="4" y="9" width="16" height="11" rx="1"/><path d="M8 9V6a4 4 0 0 1 8 0v3"/>',h:'Древесина',rows:[
+    ['Плотность','250–300 кг/м³'],['Прочность на изгиб','45–55 МПа'],
+    ['Биостойкость','класс 5 (EN 350-2)'],['Применение',{w:1,t:'мебель, шпон, лёгкие конструкции'}]]},
+  {ic:'<path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/>',h:'Агротехника',rows:[
+    ['Посадка','весна'],['Схема','4 × 4 м'],['Всхожесть семян','до 5 лет'],
+    ['pH почвы','6.0–7.5']]},
+  {ic:'<path d="M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0zM12 7v5l3 2"/>',h:'Экология / углерод',rows:[
+    ['Поглощение CO₂','120–150 т/га за 7 лет'],['Эффективность','в 2–3 × выше дуба'],
+    ['Берегоукрепление',{w:1,t:'мощная корневая система'}]]}
+];
+const fg=document.getElementById('factGrid');
+pavFacts.forEach(f=>{const d=document.createElement('div');d.className='fact';
+  d.innerHTML=`<div class="fh"><svg viewBox="0 0 24 24">${f.ic}</svg><h4>${f.h}</h4></div>
+    <ul>${f.rows.map(r=>{const v=r[1];const wr=(typeof v==='object'&&v.w)?' class="wrap"':'';const txt=(typeof v==='object')?v.t:v;
+      return `<li><span>${r[0]}</span><b${wr}>${txt}</b></li>`;}).join('')}</ul>`;
+  fg.appendChild(d);});
+
+const settlements=[
+  {n:'Круглянское СП',reg:'Азовский район',head:'Горностаев Николай Павлович',tel:'8 (86342) 7-23-12',email:'sp01008@yandex.ru',addr:'с. Круглое, ул. Мира, 64г'},
+  {n:'Маргаритовское СП',reg:'Азовский район',head:'Гончаров Александр Васильевич',tel:'8 (86342) 90-137',email:'margsp01011@rambler.ru',addr:'с. Маргаритово, ул. Ровная, 7'},
+  {n:'Семибалковское СП',reg:'Азовский район',head:'Денисова Валентина Анатольевна',tel:'8 (86342) 3-06-33',email:'glava.semibalki@mail.ru',addr:'с. Семибалки, пер. Спортивный, 9'},
+  {n:'Натальевское СП',reg:'Неклиновский район',head:'Десятников Игорь Викторович',tel:'8 (86347) 5-91-35',email:'sp26272@donpac.ru',addr:'с. Натальевка, ул. Чехова, 91'},
+  {n:'Поляковское СП',reg:'Неклиновский район',head:'Галицкий Александр Николаевич',tel:'8 (86347) 3-40-35',email:'sp26269@donpac.ru',addr:'х. Красный Десант, ул. Октябрьская, 10'},
+  {n:'Новобессергеневское СП',reg:'Неклиновский район',head:'Галуза Анатолий Юрьевич',tel:'8 (86347) 2-49-35',email:'sp26274@donpac.ru',addr:'с. Лакедемоновка, ул. Ленина, 50а'},
+  {n:'Платовское СП',reg:'Неклиновский район',head:'Дубовская Людмила Ивановна',tel:'8 (86347) 52-0-12',email:'sp26268@donpac.ru',addr:'с. Весело-Вознесенка, ул. Школьная, 1'}
+];
+const IC={user:'<circle cx="9" cy="8" r="3.2"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0"/>',
+  tel:'<path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 5 5L16 12l5 2v4a2 2 0 0 1-2.2 2A16 16 0 0 1 3 5.2 2 2 0 0 1 5 3z"/>',
+  mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 13l8.5-6.5"/>',
+  pin:'<path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/>'};
+const spG=document.getElementById('spGrid');
+settlements.forEach(s=>{const d=document.createElement('div');d.className='sp';
+  d.innerHTML=`<h4>${s.n}</h4><div class="reg">${s.reg}</div>
+    <div class="sp-rows">
+      <div class="row"><svg viewBox="0 0 24 24">${IC.user}</svg><div><span class="lbl">Глава поселения</span><span class="head-name">${s.head}</span></div></div>
+      <div class="row"><svg viewBox="0 0 24 24">${IC.tel}</svg><div><span class="lbl">Телефон</span><a href="tel:${s.tel.replace(/[^0-9+]/g,'')}">${s.tel}</a></div></div>
+      <div class="row"><svg viewBox="0 0 24 24">${IC.mail}</svg><div><span class="lbl">E-mail</span><a href="mailto:${s.email}">${s.email}</a></div></div>
+      <div class="row"><svg viewBox="0 0 24 24">${IC.pin}</svg><div><span class="lbl">Адрес</span><span>${s.addr}</span></div></div>
+    </div>`;
+  spG.appendChild(d);});
+
+const team=[
+  {n:'Климов Андрей Анатольевич',c1:'#46785a',c2:'#335a44',role:'Руководитель проекта',
+   bio:'Заместитель председателя Ростовского регионального отделения АВБД ОВД и ВВ России, ветеран боевых действий. Образование — государственное и муниципальное управление (МГУТУ им. К.Г. Разумовского). Автор проекта «Организация многоцелевых природных экокластеров», финалист и лауреат конкурсов Общественной палаты Ростовской области.'},
+  {n:'Шестаков Виталий Анатольевич',c1:'#c9a227',c2:'#9a7b3f',role:'Инженер-геодезист',
+   bio:'Инженер-геодезист (РИСИ / ЮРГСА, специальность «Прикладная геодезия»). Специалист по капитальному строительству, строительному контролю и техническому надзору.'},
+  {n:'Агеев Роман Владимирович',c1:'#9a6fc2',c2:'#6f4f9a',role:'Экономист',
+   bio:'Экономист, специалист по инновационному бизнесу и антикризисному управлению. Аспирантура экономического факультета МГУ им. М.В. Ломоносова, стажировка в Сан-Хосе (Калифорния). Основал первую бизнес-школу Ростова, организатор проекта «РОКАДА».'},
+  {n:'Бондаренко Александр Викторович',c1:'#b5683f',c2:'#8a4a2a',role:'Управление и организация',
+   bio:'Высшее образование (Академия народного хозяйства и государственной службы), подполковник в запасе. Награждён Орденом и медалью. Большой опыт руководящей работы.'},
+  {n:'Медведев Александр Владимирович',c1:'#3f7fb5',c2:'#2a5a8a',role:'Юрист',
+   bio:'Юрист (Ростовская высшая школа МВД). Проходил службу во Внутренних войсках МВД РФ.'},
+  {n:'Ломакин А. В.',c1:'#5a8a6a',c2:'#3f6a4a',role:'Городское управление',
+   bio:'Специалист в сфере городского управления и градостроительства.'}
+];
+function monogram(p){const parts=p.n.split(' ');const ini=(parts[0][0]||'')+(parts[1]?parts[1][0]:'');
+  return `<svg viewBox="0 0 100 100"><defs><linearGradient id="bg${p.n.length}_${ini}" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="${p.c1}"/><stop offset="1" stop-color="${p.c2}"/></linearGradient></defs>
+    <rect width="100" height="100" fill="url(#bg${p.n.length}_${ini})"/>
+    <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-family="Forum,serif" font-size="42" fill="#fff" opacity=".95">${ini}</text></svg>`;}
+const tmG=document.getElementById('teamGrid');
+team.forEach(p=>{const d=document.createElement('div');d.className='bio';
+  d.innerHTML=`<div class="ava">${monogram(p)}</div><div class="bio-tx"><h4>${p.n}</h4><span class="role">${p.role}</span><p>${p.bio}</p></div>`;
+  tmG.appendChild(d);});
+
+const gImgs=[['assets/photo-planting-1.jpg','Посадка павловнии'],['assets/photo-planting-2.jpg','Посадка павловнии'],
+  ['assets/slide-1.png','Слайд презентации'],['assets/slide-2.png','Слайд презентации'],['assets/slide-3.png','Слайд презентации'],
+  ['assets/slide-4.png','Слайд презентации'],['assets/slide-5.png','Слайд презентации'],['assets/slide-6.png','Слайд презентации'],
+  ['assets/slide-7.png','Слайд презентации']];
+const glG=document.getElementById('galleryGrid');
+gImgs.forEach(g=>{const a=document.createElement('a');a.href=g[0];a.target='_blank';a.rel='noopener';
+  a.innerHTML=`<img src="${g[0]}" alt="${g[1]}" loading="lazy">`;glG.appendChild(a);});
+
+/* ref tab switching */
+const refTabs=document.getElementById('refTabs');
+refTabs.addEventListener('click',e=>{const b=e.target.closest('.ref-tab');if(!b)return;
+  const id=b.dataset.ref;
+  [...refTabs.children].forEach(x=>x.classList.toggle('active',x===b));
+  document.querySelectorAll('.ref-panel').forEach(p=>p.classList.toggle('active',p.id==='ref-'+id));});
+
+['.spec-grid','.care-grid','.awards','.partners-grid','.season','.flow','#treeGrid','#evGrid','#revGrid','#factGrid','#spGrid','#teamGrid','#galleryGrid']
   .forEach(sel=>staggerIn(document.querySelector(sel)));
 
 /* 3D tilt micro-interaction */
