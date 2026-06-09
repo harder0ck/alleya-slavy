@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Медиа Аллеи Славы: фотогалерея посадок, материалы презентации и видеоролик проекта.">
+<title>Медиа · Аллея Славы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Forum&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Marck+Script&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<nav>
+  <a class="brand" href="index.html"><span class="flame"></span> Аллея Славы</a>
+  <button class="burger" onclick="toggleNav()">☰</button>
+  <div class="nav-links">
+    <a class="home-link" href="index.html">← Главная</a>
+    <a href="pavlovnia.html">О павловнии</a>
+    <a href="geography.html">География</a>
+    <a href="media.html" class="active">Медиа</a>
+    <a href="index.html#contacts">Контакты</a>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="crumbs"><a href="index.html">Главная</a> · База знаний · Медиа</div>
+  <h1>Медиа <span class="gold">Аллеи Славы</span></h1>
+  <p>Фотографии посадок, материалы презентации проекта и видеоролик. Нажмите на любое изображение, чтобы увеличить его прямо на странице.</p>
+  <div class="rule"></div>
+</header>
+
+<!-- ВИДЕО -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Видео</div>
+      <h2>Ролик <span class="gold">о проекте</span></h2>
+      <p>История Аллеи Славы и деревьев памяти.</p>
+      <div class="rule"></div>
+    </div>
+    <div class="video-wrap reveal">
+      <iframe src="https://drive.google.com/file/d/1eQB6miFe9L2bpirjqdxnJLXzawgEgWXf/preview" allow="autoplay; fullscreen" allowfullscreen title="Видеоролик Аллеи Славы"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ФОТОГАЛЕРЕЯ -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Фото</div>
+      <h2>Посадки <span class="gold">и события</span></h2>
+      <p>Кадры с посадки деревьев памяти.</p>
+      <div class="rule"></div>
+    </div>
+    <div class="gallery reveal">
+      <figure data-lb="assets/photo-planting-1.jpg" data-lb-group="gal" data-cap="Посадка деревьев памяти">
+        <img src="assets/photo-planting-1.jpg" alt="Посадка деревьев памяти" loading="lazy">
+        <figcaption>Посадка деревьев памяти</figcaption>
+      </figure>
+      <figure data-lb="assets/photo-planting-2.jpg" data-lb-group="gal" data-cap="Участники проекта на аллее">
+        <img src="assets/photo-planting-2.jpg" alt="Участники проекта на аллее" loading="lazy">
+        <figcaption>Участники проекта на аллее</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ПРЕЗЕНТАЦИЯ -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Презентация</div>
+      <h2>Материалы <span class="gold">проекта</span></h2>
+      <p>Слайды презентации Аллеи Славы. Нажмите для увеличения.</p>
+      <div class="rule"></div>
+    </div>
+    <div class="gallery reveal" id="slideGal"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="flame"></div>
+  <div class="pledge"><span>Помним</span><span>Гордимся</span><span>Чтим</span></div>
+  <p class="cr">Аллея Славы © 2026. Вечная память героям.</p>
+</footer>
+
+<script src="assets/site.js"></script>
+<script>
+const slideGal=document.getElementById('slideGal');
+let html='';
+for(let i=1;i<=7;i++){
+  html+=`<figure data-lb="assets/slide-${i}.png" data-lb-group="slides" data-cap="Слайд презентации ${i}">
+    <img src="assets/slide-${i}.png" alt="Слайд презентации ${i}" loading="lazy">
+    <figcaption>Слайд ${i}</figcaption>
+  </figure>`;
+}
+slideGal.innerHTML=html;
+slideGal.querySelectorAll('[data-lb]').forEach(el=>el.onclick=()=>window.openLightbox(el));
+</script>
+</body>
+</html>
