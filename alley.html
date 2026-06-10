@@ -1929,7 +1929,7 @@ countUp(document.getElementById('stat-trees'),trees.length);
 document.querySelector('.hero .ribbon')?.classList.add('floaty');
 
 /* close mobile menu on click */
-document.querySelectorAll('.nav-links a').forEach(a=>a.onclick=()=>document.querySelector('.nav-links').classList.remove('show'));
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>document.querySelector('.nav-links').classList.remove('show')));
 </script>
 </body>
 </html>
