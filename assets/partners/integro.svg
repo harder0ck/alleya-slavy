@@ -1,0 +1,12 @@
+<svg width="320" height="110" viewBox="0 0 320 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- знак: лист + плюс -->
+  <g>
+    <circle cx="42" cy="55" r="34" fill="#2e7d44"/>
+    <path d="M42 75 C30 64 26 50 32 38 C46 40 54 52 52 68 C49 72 46 74 42 75 Z" fill="#ffffff"/>
+    <path d="M42 75 C44 60 46 50 50 42" stroke="#2e7d44" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <rect x="58" y="24" width="16" height="5.4" rx="2.7" fill="#7fbf45"/>
+    <rect x="63.3" y="18.7" width="5.4" height="16" rx="2.7" fill="#7fbf45"/>
+  </g>
+  <text x="92" y="49" font-family="Arial,Helvetica,sans-serif" font-weight="bold" font-size="33" fill="#2e7d44" letter-spacing="1.5">ИНТЕГРО</text>
+  <text x="92" y="86" font-family="Arial,Helvetica,sans-serif" font-weight="bold" font-size="33" fill="#7fbf45" letter-spacing="1.5">ПЛЮС</text>
+</svg>

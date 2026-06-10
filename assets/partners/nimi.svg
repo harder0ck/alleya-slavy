@@ -1,0 +1,11 @@
+<svg width="320" height="110" viewBox="0 0 320 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- знак: капля и волны мелиорации -->
+  <g>
+    <circle cx="50" cy="55" r="40" fill="#1c5cab"/>
+    <path d="M50 24 C60 38 67 48 67 58 A17 17 0 0 1 33 58 C33 48 40 38 50 24 Z" fill="#ffffff"/>
+    <path d="M30 78 C37 73 43 73 50 78 C57 83 63 83 70 78" stroke="#9fd0f5" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M33 88 C39 84 44 84 50 88 C56 92 61 92 67 88" stroke="#9fd0f5" stroke-width="4" fill="none" stroke-linecap="round"/>
+  </g>
+  <text x="106" y="48" font-family="Arial,Helvetica,sans-serif" font-weight="bold" font-size="38" fill="#1c5cab" letter-spacing="2">НИМИ</text>
+  <text x="106" y="86" font-family="Arial,Helvetica,sans-serif" font-weight="bold" font-size="30" fill="#3f87c9" letter-spacing="1">ДонГАУ</text>
+</svg>

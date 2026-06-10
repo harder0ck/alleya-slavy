@@ -1,0 +1,14 @@
+<svg width="430" height="110" viewBox="0 0 430 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- знак: росток + стрелка роста -->
+  <g>
+    <circle cx="50" cy="55" r="40" fill="#2e7d44"/>
+    <!-- стрелка роста -->
+    <path d="M28 72 L42 58 L50 64 L66 44" stroke="#ffffff" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M68 38 L70 52 L56 46 Z" fill="#ffffff"/>
+    <!-- листья -->
+    <path d="M30 46 C24 38 26 30 34 26 C40 32 40 40 36 46 C34 47 32 47 30 46 Z" fill="#9fdc7a"/>
+    <path d="M70 76 C76 70 84 70 88 76 C84 82 76 84 70 82 Z" fill="#9fdc7a"/>
+  </g>
+  <text x="106" y="48" font-family="Arial,Helvetica,sans-serif" font-weight="bold" font-size="31" fill="#2e7d44" letter-spacing="1">ЭКОЛОГИЧЕСКИЕ</text>
+  <text x="106" y="86" font-family="Arial,Helvetica,sans-serif" font-weight="bold" font-size="31" fill="#7fbf45" letter-spacing="1">ИНВЕСТИЦИИ</text>
+</svg>

@@ -1,0 +1,49 @@
+<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <path id="arcTop" d="M28.8 97.7 A53 53 0 0 1 131.2 97.7"/>
+    <path id="arcBot" d="M24.9 93.7 A56 56 0 0 0 135.1 93.7"/>
+  </defs>
+  <!-- синий круг -->
+  <circle cx="80" cy="84" r="38" fill="#2496d4"/>
+  <!-- голубь -->
+  <g fill="#ffffff" transform="translate(80,84) scale(.84) translate(-80,-84)">
+    <!-- заднее крыло -->
+    <path d="M74 82 C64 66 66 52 78 44 C76 56 78 68 82 78 Z"/>
+    <!-- переднее крыло -->
+    <path d="M84 80 C82 62 90 48 106 42 C98 54 96 68 94 80 Z"/>
+    <!-- тело -->
+    <path d="M52 100 C58 88 70 80 86 80 C98 80 108 85 112 92 C105 92 99 94 94 97 C86 106 70 110 58 106 C55 104 53 102 52 100 Z"/>
+    <!-- голова и клюв -->
+    <circle cx="112" cy="89" r="5.5"/>
+    <path d="M117 87.5 L124 89.5 L117 91.5 Z"/>
+    <!-- хвост -->
+    <path d="M53 99 C44 98 36 94 31 87 C40 87 47 90 54 95 Z"/>
+  </g>
+  <!-- георгиевская лента -->
+  <g transform="translate(80,84) scale(.84) translate(-80,-84)">
+    <path d="M100 38 C106 31 116 28 125 32 C121 41 113 46 104 45 Z" fill="#e8a33d"/>
+    <path d="M103 40 C108 34 115 31 121 33" stroke="#3a3a3a" stroke-width="2.2" fill="none"/>
+    <path d="M104 43 C109 37 115 34 120 36" stroke="#3a3a3a" stroke-width="2.2" fill="none"/>
+  </g>
+  <!-- текст по дуге -->
+  <g>
+    <text x="28.8" y="70.3" transform="rotate(-75.0 28.8 70.3)" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="bold" font-size="13" fill="#173a63">В</text>
+    <text x="32.0" y="61.6" transform="rotate(-65.0 32.0 61.6)" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="bold" font-size="13" fill="#173a63">О</text>
+    <text x="36.6" y="53.6" transform="rotate(-55.0 36.6 53.6)" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="bold" font-size="13" fill="#173a63">Л</text>
+    <text x="42.5" y="46.5" transform="rotate(-45.0 42.5 46.5)" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="bold" font-size="13" fill="#173a63">О</text>
+    <text x="49.6" y="40.6" transform="rotate(-35.0 49.6 40.6)" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="bold" font-size="13" fill="#173a63">Н</text>
+    <text x="57.6" y="36.0" transform="rotate(-25.0 57.6 36.0)" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="bold" font-size="13" fill="#173a63">Т</text>
+    <text x="66.3" y="32.8" transform="rotate(-15.0 66.3 32.8)" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="bold" font-size="13" fill="#173a63">Ё</text>
+    <text x="75.4" y="31.2" transform="rotate(-5.0 75.4 31.2)" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="bold" font-size="13" fill="#173a63">Р</text>
+    <text x="84.6" y="31.2" transform="rotate(5.0 84.6 31.2)" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="bold" font-size="13" fill="#173a63">Ы</text>
+    <text x="102.4" y="36.0" transform="rotate(25.0 102.4 36.0)" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="bold" font-size="13" fill="#173a63">П</text>
+    <text x="110.4" y="40.6" transform="rotate(35.0 110.4 40.6)" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="bold" font-size="13" fill="#173a63">О</text>
+    <text x="117.5" y="46.5" transform="rotate(45.0 117.5 46.5)" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="bold" font-size="13" fill="#173a63">Б</text>
+    <text x="123.4" y="53.6" transform="rotate(55.0 123.4 53.6)" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="bold" font-size="13" fill="#173a63">Е</text>
+    <text x="128.0" y="61.6" transform="rotate(65.0 128.0 61.6)" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="bold" font-size="13" fill="#173a63">Д</text>
+    <text x="131.2" y="70.3" transform="rotate(75.0 131.2 70.3)" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="bold" font-size="13" fill="#173a63">Ы</text>
+  </g>
+  <text font-family="Arial,Helvetica,sans-serif" font-size="7.6" fill="#173a63" letter-spacing=".3">
+    <textPath href="#arcBot" startOffset="50%" text-anchor="middle">Всероссийское общественное движение</textPath>
+  </text>
+</svg>
