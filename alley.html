@@ -763,6 +763,60 @@ body::before{animation:aurora 22s ease-in-out infinite alternate}
   .ref-doc .dl-list{flex-basis:100%}
   .bio{flex-direction:column}
 }
+
+/* ===== LIQUID GLASS PLAYER ===== */
+#lgp{position:fixed;right:22px;bottom:22px;z-index:90;font-family:"Manrope",system-ui,sans-serif}
+#lgp .lgp-btn{width:62px;height:62px;border-radius:50%;border:1px solid rgba(255,255,255,.22);cursor:pointer;
+  display:grid;place-items:center;position:relative;overflow:hidden;
+  background:linear-gradient(135deg,rgba(255,255,255,.16),rgba(255,255,255,.05));
+  -webkit-backdrop-filter:blur(22px) saturate(160%);backdrop-filter:blur(22px) saturate(160%);
+  box-shadow:0 10px 36px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.28);
+  transition:transform .25s ease,box-shadow .25s ease}
+#lgp .lgp-btn:hover{transform:scale(1.07);box-shadow:0 14px 44px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.34)}
+#lgp .lgp-btn::before{content:"";position:absolute;inset:-40% -20% auto;height:60%;border-radius:50%;
+  background:linear-gradient(180deg,rgba(255,255,255,.35),transparent);pointer-events:none}
+#lgp .lgp-btn svg{width:26px;height:26px;fill:none;stroke:var(--gold-l);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+#lgp.playing .lgp-btn{animation:lgpPulse 2.4s ease-in-out infinite}
+@keyframes lgpPulse{0%,100%{box-shadow:0 10px 36px rgba(0,0,0,.45),0 0 0 0 rgba(212,175,55,.35),inset 0 1px 0 rgba(255,255,255,.28)}
+  50%{box-shadow:0 10px 36px rgba(0,0,0,.45),0 0 0 12px rgba(212,175,55,0),inset 0 1px 0 rgba(255,255,255,.28)}}
+#lgp .lgp-card{position:absolute;right:0;bottom:74px;width:312px;max-width:calc(100vw - 44px);
+  border-radius:26px;border:1px solid rgba(255,255,255,.18);padding:18px 18px 16px;
+  background:linear-gradient(150deg,rgba(255,255,255,.14),rgba(255,255,255,.04) 55%,rgba(255,255,255,.09));
+  -webkit-backdrop-filter:blur(26px) saturate(170%);backdrop-filter:blur(26px) saturate(170%);
+  box-shadow:0 22px 60px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.25);
+  opacity:0;transform:translateY(14px) scale(.96);pointer-events:none;
+  transition:opacity .3s ease,transform .3s cubic-bezier(.2,.9,.3,1.2)}
+#lgp.open .lgp-card{opacity:1;transform:none;pointer-events:auto}
+#lgp .lgp-card::before{content:"";position:absolute;inset:0;border-radius:26px;pointer-events:none;
+  background:radial-gradient(120% 60% at 18% -8%,rgba(255,255,255,.22),transparent 55%)}
+#lgp .lgp-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+#lgp .lgp-head .eq{display:flex;align-items:flex-end;gap:2px;height:16px;flex:0 0 auto}
+#lgp .lgp-head .eq i{width:3px;border-radius:2px;background:var(--gold-l);height:30%}
+#lgp.playing .lgp-head .eq i{animation:lgpEq .9s ease-in-out infinite}
+#lgp.playing .lgp-head .eq i:nth-child(2){animation-delay:.2s}
+#lgp.playing .lgp-head .eq i:nth-child(3){animation-delay:.4s}
+@keyframes lgpEq{0%,100%{height:30%}50%{height:100%}}
+#lgp .lgp-title{font-family:"Forum",serif;color:var(--gold-l);font-size:1.02rem;line-height:1.25;flex:1;min-width:0}
+#lgp .lgp-sub{color:var(--muted);font-size:.74rem;margin-top:1px}
+#lgp .lgp-bar{height:6px;border-radius:3px;background:rgba(255,255,255,.14);cursor:pointer;position:relative;margin:12px 0 6px}
+#lgp .lgp-bar .fill{position:absolute;inset:0 auto 0 0;width:0%;border-radius:3px;
+  background:linear-gradient(90deg,var(--gold),var(--gold-l))}
+#lgp .lgp-time{display:flex;justify-content:space-between;color:var(--muted);font-size:.7rem;font-variant-numeric:tabular-nums}
+#lgp .lgp-ctrl{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:10px}
+#lgp .lgp-ctrl button{background:none;border:none;cursor:pointer;display:grid;place-items:center;padding:6px;border-radius:50%;
+  transition:transform .2s ease,background .2s ease}
+#lgp .lgp-ctrl button:hover{transform:scale(1.12);background:rgba(255,255,255,.08)}
+#lgp .lgp-ctrl svg{width:20px;height:20px;fill:none;stroke:var(--cream,#f4efe4);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+#lgp .lgp-ctrl .pp{width:50px;height:50px;border-radius:50%;border:1px solid rgba(255,255,255,.22);
+  background:linear-gradient(180deg,var(--gold-l),var(--gold));box-shadow:0 6px 20px rgba(212,175,55,.35)}
+#lgp .lgp-ctrl .pp svg{stroke:#191409;fill:#191409;width:22px;height:22px}
+#lgp .lgp-list{margin-top:12px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px}
+#lgp .lgp-tr{display:flex;align-items:center;gap:9px;padding:7px 8px;border-radius:12px;cursor:pointer;
+  color:var(--muted);font-size:.82rem;transition:background .2s ease,color .2s ease}
+#lgp .lgp-tr:hover{background:rgba(255,255,255,.08)}
+#lgp .lgp-tr.on{color:var(--gold-l);background:rgba(212,175,55,.10)}
+#lgp .lgp-tr .n{width:16px;text-align:center;font-variant-numeric:tabular-nums;flex:0 0 auto;font-size:.74rem}
+@media(max-width:640px){#lgp{right:14px;bottom:14px}}
 </style>
 </head>
 <body>
@@ -1930,6 +1984,65 @@ document.querySelector('.hero .ribbon')?.classList.add('floaty');
 
 /* close mobile menu on click */
 document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>document.querySelector('.nav-links').classList.remove('show')));
+</script>
+
+<!-- LIQUID GLASS PLAYER -->
+<div id="lgp" aria-label="Музыкальный плеер">
+  <div class="lgp-card" role="region" aria-label="Плеер: песни проекта">
+    <div class="lgp-head">
+      <span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>
+      <div style="min-width:0">
+        <div class="lgp-title" id="lgpTitle">А мы сажаем павловнию…</div>
+        <div class="lgp-sub">Песни проекта «Аллея Славы»</div>
+      </div>
+    </div>
+    <div class="lgp-bar" id="lgpBar"><div class="fill" id="lgpFill"></div></div>
+    <div class="lgp-time"><span id="lgpCur">0:00</span><span id="lgpDur">0:00</span></div>
+    <div class="lgp-ctrl">
+      <button id="lgpPrev" aria-label="Предыдущий трек"><svg viewBox="0 0 24 24"><path d="M19 5v14L9 12l10-7z"/><path d="M6 5v14"/></svg></button>
+      <button class="pp" id="lgpPlay" aria-label="Играть/пауза"><svg viewBox="0 0 24 24" id="lgpPlayIc"><path d="M8 5v14l11-7L8 5z"/></svg></button>
+      <button id="lgpNext" aria-label="Следующий трек"><svg viewBox="0 0 24 24"><path d="M5 5v14l10-7L5 5z"/><path d="M18 5v14"/></svg></button>
+    </div>
+    <div class="lgp-list" id="lgpList"></div>
+  </div>
+  <button class="lgp-btn" id="lgpToggle" aria-label="Открыть плеер">
+    <svg viewBox="0 0 24 24"><path d="M9 18V6l11-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></svg>
+  </button>
+</div>
+<script>
+(function(){
+const tracks=[
+  {src:'assets/song-pavlovnia.mp3',title:'А мы сажаем павловнию…'},
+  {src:'assets/song-pavlovnia-2.mp3',title:'Павловния (новый трек)'}
+];
+const lgp=document.getElementById('lgp'),tg=document.getElementById('lgpToggle'),
+  playBtn=document.getElementById('lgpPlay'),prevBtn=document.getElementById('lgpPrev'),nextBtn=document.getElementById('lgpNext'),
+  bar=document.getElementById('lgpBar'),fill=document.getElementById('lgpFill'),
+  cur=document.getElementById('lgpCur'),dur=document.getElementById('lgpDur'),
+  title=document.getElementById('lgpTitle'),list=document.getElementById('lgpList'),
+  playIc=document.getElementById('lgpPlayIc');
+const au=new Audio();au.preload='none';let idx=0;
+const fmt=s=>{if(!isFinite(s))return'0:00';s=Math.floor(s);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');};
+function renderList(){list.innerHTML=tracks.map((t,i)=>
+  '<div class="lgp-tr'+(i===idx?' on':'')+'" data-i="'+i+'"><span class="n">'+(i+1)+'</span><span>'+t.title+'</span></div>').join('');}
+function load(i,autoplay){idx=(i+tracks.length)%tracks.length;au.src=tracks[idx].src;title.textContent=tracks[idx].title;
+  fill.style.width='0%';cur.textContent='0:00';dur.textContent='0:00';renderList();if(autoplay)au.play();}
+function setIcon(playing){playIc.innerHTML=playing?'<path d="M7 5h4v14H7zM13 5h4v14h-4z"/>':'<path d="M8 5v14l11-7L8 5z"/>';}
+tg.addEventListener('click',()=>lgp.classList.toggle('open'));
+playBtn.addEventListener('click',()=>{if(!au.src)load(idx,false);au.paused?au.play():au.pause();});
+prevBtn.addEventListener('click',()=>load(idx-1,!au.paused||!!au.currentTime));
+nextBtn.addEventListener('click',()=>load(idx+1,!au.paused||!!au.currentTime));
+list.addEventListener('click',e=>{const t=e.target.closest('.lgp-tr');if(t)load(+t.dataset.i,true);});
+bar.addEventListener('click',e=>{if(!au.duration)return;const r=bar.getBoundingClientRect();
+  au.currentTime=au.duration*Math.min(1,Math.max(0,(e.clientX-r.left)/r.width));});
+au.addEventListener('timeupdate',()=>{if(au.duration){fill.style.width=(au.currentTime/au.duration*100)+'%';
+  cur.textContent=fmt(au.currentTime);dur.textContent=fmt(au.duration);}});
+au.addEventListener('loadedmetadata',()=>dur.textContent=fmt(au.duration));
+au.addEventListener('play',()=>{lgp.classList.add('playing');setIcon(true);});
+au.addEventListener('pause',()=>{lgp.classList.remove('playing');setIcon(false);});
+au.addEventListener('ended',()=>load(idx+1,true));
+renderList();
+})();
 </script>
 </body>
 </html>
