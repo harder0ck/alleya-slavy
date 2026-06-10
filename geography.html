@@ -9,6 +9,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Forum&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Marck+Script&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
 <style>
 /* ===== Кадастр участков высадки ===== */
 .kad-region{font-family:"Forum",serif;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-l);
@@ -39,6 +41,16 @@
   background:#13201a;border:1px solid var(--gold);color:var(--gold-l);padding:9px 20px;border-radius:10px;
   font-size:.85rem;pointer-events:none;transition:opacity .25s,transform .25s;z-index:99}
 #knToast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+/* мини-карты кадастра */
+.kad-map{height:172px;border-radius:12px;overflow:hidden;border:1px solid var(--line);
+  background:#0a120d;position:relative;z-index:0}
+.kad-map .leaflet-tile{filter:saturate(.85) brightness(.92)}
+.kad-map.leaflet-container{background:#0a120d;font-family:"PT Serif",serif}
+.kad-map .leaflet-control-attribution{background:rgba(10,18,13,.7);color:#5d6e63;font-size:.58rem}
+.kad-map .leaflet-control-attribution a{color:#69a07e}
+.kad-map-note{font-size:.72rem;color:var(--muted);margin-top:-6px}
+.kad-pin .kp{display:block;width:14px;height:14px;border-radius:50%;
+  background:var(--gold-l);border:2px solid #0c120e;box-shadow:0 0 0 2px var(--gold),0 0 14px rgba(233,207,114,.7)}
 </style>
 </head>
 <body>
@@ -205,50 +217,50 @@ renderPlots();
 const NSPD='https://nspd.gov.ru/map?thematic=PKK';
 const kad=[
  /* Неклиновский район */
- {reg:'Неклиновский район',sp:'Новобессергеневское СП',t:'с. Петрушино — с. Новобессергеневка',pdf:'novobessergenevskoe',
+ {reg:'Неклиновский район',sp:'Новобессергеневское СП',t:'с. Петрушино — с. Новобессергеневка',ll:[47.187,38.849],z:12,pdf:'novobessergenevskoe',
   ar:[['№ 1','11 995 м²','414×29 м'],['№ 2','6 715 м²','180×37 м'],['№ 3','10 891 м²','228×37 м'],['№ 4','11 579 м²','180×64 м'],['№ 5','5 600 м²','136×41 м'],['№ 6','по границе смежных з.у.','']],
   kn:['61:26:0600024:11827','61:26:0600024:7009','61:26:0600024:4298','61:26:0600024:11475','61:26:0600024:11476']},
- {reg:'Неклиновский район',sp:'Новобессергеневское СП',t:'п. Дмитриадовка · х. Новозолотовка · с. Александрова Коса',pdf:'novobessergenevskoe',
+ {reg:'Неклиновский район',sp:'Новобессергеневское СП',t:'п. Дмитриадовка · х. Новозолотовка · с. Александрова Коса',ll:[47.176,38.795],z:12,pdf:'novobessergenevskoe',
   ar:[['№ 15','10 983 м²','305×36 м'],['№ 16','7 747 м²','195×40 м'],['№ 17','3 886 м²','186×21 м'],['№ 18','18 881 м²','544×35 м'],['№ 19','13 681 м²','386×35 м']],
   kn:['61:26:0180501:101','61:26:0180501:934','61:26:0180501:1','61:26:0180501:1174','61:26:0000000:6807','61:26:0000000:226','61:26:0180601:1545','61:26:0180601:2028','61:26:0180601:1984','61:26:0180601:1227','61:26:0180601:1965','61:26:0180601:1975','61:26:0180601:1997','61:26:0180601:1986','61:26:0180601:1481']},
- {reg:'Неклиновский район',sp:'Лакедемоновское СП',t:'х. Красный Пахарь · х. Чапаев · с. Беглица',pdf:'lakedemonovskoe',
+ {reg:'Неклиновский район',sp:'Лакедемоновское СП',t:'х. Красный Пахарь · х. Чапаев · с. Беглица',ll:[47.142,38.605],z:12,pdf:'lakedemonovskoe',
   ar:[['№ 36','270 924 м²','4100×66 м'],['№ 37','83 906 м²','1134×79 м']],
   kn:['61:28:0160401:685','61:28:0160401:761','61:28:0160401:459','61:28:0160401:859','61:28:0160401:224','61:28:0160401:234','61:28:0160401:111','61:28:0160501:15','61:28:0160501:3','61:28:0160601:41']},
- {reg:'Неклиновский район',sp:'Лакедемоновское СП',t:'с. Беглица',pdf:'lakedemonovskoe',
+ {reg:'Неклиновский район',sp:'Лакедемоновское СП',t:'с. Беглица',ll:[47.133,38.567],z:13,pdf:'lakedemonovskoe',
   ar:[['№ 38','15 167 м²','272×56 м']],
   kn:['61:26:01600021:304','61:26:0160401:11']},
- {reg:'Неклиновский район',sp:'Натальевское СП',t:'х. Рожок',pdf:'natalevskoe',
+ {reg:'Неклиновский район',sp:'Натальевское СП',t:'х. Рожок',ll:[47.143,38.414],z:13,pdf:'natalevskoe',
   ar:[['№ 39','24 682 м²','1065×23 м'],['№ 40','42 683 м²','1317×32 м']],
   kn:['61:26:0600020:270','61:26:0600020:1188','61:26:0030101:718','61:26:0030101:752','61:26:0600019:79','61:26:0600019:80','61:26:0100401:114','61:26:0100401:2597','61:26:0100401:2252','61:26:0100401:476']},
- {reg:'Неклиновский район',sp:'Платовское СП',t:'с. Весело-Вознесенка · п. Приазовский',pdf:'veselo-voznesenka',
+ {reg:'Неклиновский район',sp:'Платовское СП',t:'с. Весело-Вознесенка · п. Приазовский',ll:[47.134,38.345],z:12,pdf:'veselo-voznesenka',
   ar:[['№ 41','21 904 м²','846×26 м'],['№ 42','90 676 м²','2474×37 м']],
   kn:['61:26:0600019:946','61:26:0600019:81','61:26:0100101:1167','61:26:0100101:66','61:26:0100101:68','61:26:0100101:1181','61:26:0100301:277','61:26:0100301:976']},
- {reg:'Неклиновский район',sp:'Платовское СП',t:'Западнее Весело-Вознесенки',pdf:'veselo-voznesenka',
+ {reg:'Неклиновский район',sp:'Платовское СП',t:'Западнее Весело-Вознесенки',ll:[47.122,38.290],z:12,pdf:'veselo-voznesenka',
   ar:[['№ 44','56 390 м²','2505×23 м']],
   kn:['61:26:0600018:1179','61:26:0600018:1879','61:26:0600018:1850','61:26:0600018:1418']},
- {reg:'Неклиновский район',sp:'Платовское СП',t:'Западная граница Ростовской области',pdf:'veselo-voznesenka',
+ {reg:'Неклиновский район',sp:'Платовское СП',t:'Западная граница Ростовской области',ll:[47.112,38.235],z:12,pdf:'veselo-voznesenka',
   ar:[['№ 45','72 523 м²','2519×29 м']],
   kn:['61:26:0600018:1180','61:26:0600018:1914']},
  /* Азовский район */
- {reg:'Азовский район',sp:'Круглянское СП',t:'с. Стефанидинодар · с. Круглое',pdf:'kruglyanskoe',
+ {reg:'Азовский район',sp:'Круглянское СП',t:'с. Стефанидинодар · с. Круглое',ll:[47.017,39.200],z:11,pdf:'kruglyanskoe',
   ar:[['№ 1','306 234 м²','7038×43 м']],
   kn:['61:01:0070201:972','61:01:0070201:1011','61:01:0070201:1368','61:01:0070201:59','61:01:0070201:952','61:01:0070201:66','61:01:0600010:461','61:01:0000000:2702']},
- {reg:'Азовский район',sp:'Круглянское СП',t:'Павло-Очаковская коса · с. Стефанидинодар',pdf:'stefanidinodar',
+ {reg:'Азовский район',sp:'Круглянское СП',t:'Павло-Очаковская коса · с. Стефанидинодар',ll:[47.026,39.115],z:11,pdf:'stefanidinodar',
   ar:[['№ 2','167 441 м²','7685×22 м']],
   kn:['61:01:060009:438','61:01:060009:458','61:01:060009:464','61:01:060009:497','61:01:060009:1246','61:01:060009:2065','61:01:060009:2138','61:01:060009:2250','61:01:060009:378','61:01:060009:432','61:01:0070201:964']},
- {reg:'Азовский район',sp:'Семибалковское СП',t:'х. Павло-Очаково · с. Семибалки',pdf:'semibalki',
+ {reg:'Азовский район',sp:'Семибалковское СП',t:'х. Павло-Очаково · с. Семибалки',ll:[46.997,39.025],z:11,pdf:'semibalki',
   ar:[['№ 3','473 443 м²','6980×67 м']],
   kn:['61:01:0180101:1845','61:01:0180101:1035','61:01:0180101:1022','61:01:0180101:1946','61:01:0180101:1125','61:01:0180301:267','61:01:0180301:11','61:01:0180301:36']},
- {reg:'Азовский район',sp:'Семибалковское СП',t:'Земли к западу от с. Семибалки',pdf:'semibalki-coast',
+ {reg:'Азовский район',sp:'Семибалковское СП',t:'Земли к западу от с. Семибалки',ll:[46.962,38.935],z:12,pdf:'semibalki-coast',
   ar:[['№ 4','364 606 м²','6327×57 м']],
   kn:['61:01:0600009:1722','61:01:0600009:516','61:01:0600009:614','61:01:0600009:153']},
- {reg:'Азовский район',sp:'Маргаритовское СП',t:'х. Чумбур-Коса',pdf:'chumbur-kosa',
+ {reg:'Азовский район',sp:'Маргаритовское СП',t:'х. Чумбур-Коса',ll:[46.954,38.897],z:12,pdf:'chumbur-kosa',
   ar:[['№ 5','391 250 м²','7909×49 м']],
   kn:['61:01:0600008:1646','61:01:0600008:1476','61:01:0600008:1321','61:01:0600009:609','61:01:0100501:409','61:01:0100501:384','61:01:0100501:271']},
- {reg:'Азовский район',sp:'Маргаритовское СП',t:'с. Маргаритово · с. Новомаргаритово',pdf:'margaritovo',
+ {reg:'Азовский район',sp:'Маргаритовское СП',t:'с. Маргаритово · с. Новомаргаритово',ll:[46.917,38.852],z:12,pdf:'margaritovo',
   ar:[['№ 6','770 901 м²','6821×113 м']],
   kn:['61:01:0100101:591','61:01:0100101:558','61:01:0100101:375','61:01:0600008:1383','61:01:0600008:1394','61:01:0600008:86','61:01:0100201:245','61:01:0100201:42','61:01:0100201:296','61:01:0100201:479']},
- {reg:'Азовский район',sp:'Маргаритовское СП',t:'с. Новомаргаритово · с. Порт-Катон · граница РО',pdf:'port-katon',
+ {reg:'Азовский район',sp:'Маргаритовское СП',t:'с. Новомаргаритово · с. Порт-Катон · граница РО',ll:[46.888,38.792],z:12,pdf:'port-katon',
   ar:[['№ 7','411 176 м²','7147×57 м']],
   kn:['61:01:0600008:1923','61:01:0600008:2043','61:01:0600008:2019','61:01:0600008:1979','61:01:0100301:1110','61:01:0000000:2238']}
 ];
@@ -264,6 +276,8 @@ kadWrap.innerHTML=regs.map(reg=>`
       <div class="kad-areas">
         ${k.ar.map(a=>`<div class="ar"><span>Площадка ${a[0]}</span><b>${a[1]}${a[2]?' · '+a[2]:''}</b></div>`).join('')}
       </div>
+      <div class="kad-map" data-i="${kad.indexOf(k)}"></div>
+      <div class="kad-map-note">Ориентировочное расположение участка</div>
       <div class="kn-label">Смежные земельные участки (к.н.) — нажмите, чтобы скопировать:</div>
       <div class="kn-chips">${k.kn.map(n=>`<span class="kn" data-kn="${n}">${n}</span>`).join('')}</div>
       <div class="kad-links">
@@ -288,6 +302,32 @@ kadWrap.addEventListener('click',e=>{
     navigator.clipboard.writeText(num).then(done).catch(done);
   }else{done();}
 });
+
+/* ====== МИНИ-КАРТЫ КАДАСТРА ====== */
+function kadPin(){return L.divIcon({className:'kad-pin',iconSize:[14,14],iconAnchor:[7,7],html:'<span class="kp"></span>'});}
+function initKadMap(el){
+  if(el._leaflet_id)return;
+  const k=kad[+el.dataset.i]; if(!k||!k.ll)return;
+  const map=L.map(el,{dragging:false,scrollWheelZoom:false,touchZoom:false,doubleClickZoom:false,
+    boxZoom:false,keyboard:false,zoomControl:false,attributionControl:false}).setView(k.ll,k.z||12);
+  L.control.attribution({prefix:false}).addTo(map);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{
+    attribution:'&copy; OpenStreetMap · &copy; CARTO',subdomains:'abcd',maxZoom:18}).addTo(map);
+  L.marker(k.ll,{icon:kadPin(),title:k.t}).addTo(map);
+  el.style.cursor='pointer';
+  el.title='Открыть на OpenStreetMap';
+  el.addEventListener('click',()=>window.open('https://www.openstreetmap.org/?mlat='+k.ll[0]+'&mlon='+k.ll[1]+'#map='+(k.z||12)+'/'+k.ll[0]+'/'+k.ll[1],'_blank'));
+}
+function startKadMaps(){
+  if(!window.L){window.addEventListener('load',startKadMaps,{once:true});return;}
+  const els=document.querySelectorAll('.kad-map');
+  if(!('IntersectionObserver' in window)){els.forEach(initKadMap);return;}
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(en=>{if(en.isIntersecting){initKadMap(en.target);obs.unobserve(en.target);}});
+  },{rootMargin:'200px 0px'});
+  els.forEach(el=>obs.observe(el));
+}
+startKadMaps();
 </script>
 </body>
 </html>
