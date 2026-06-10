@@ -87,6 +87,14 @@ nav{
 .nav-links a:hover{color:var(--gold);background:rgba(201,162,39,.08)}
 .burger{display:none;background:none;border:1px solid var(--line);color:var(--gold);
   border-radius:8px;padding:8px 12px;cursor:pointer;font-size:1.2rem}
+.nav-dd{position:relative}
+.nav-dd>a .car{display:inline-block;font-size:.68em;opacity:.65;margin-left:3px;transition:.2s}
+.nav-dd:hover>a .car{transform:rotate(180deg);opacity:1}
+.nav-dd-menu{position:absolute;top:100%;left:0;min-width:185px;display:none;flex-direction:column;gap:2px;
+  background:rgba(10,15,12,.97);border:1px solid var(--line);border-radius:10px;padding:8px;
+  box-shadow:0 18px 40px rgba(0,0,0,.5)}
+.nav-dd:hover .nav-dd-menu,.nav-dd:focus-within .nav-dd-menu{display:flex}
+.nav-dd-menu a{white-space:nowrap}
 
 /* ===== HERO ===== */
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -423,6 +431,8 @@ body.no-scroll{overflow:hidden}
     background:rgba(10,15,12,.97);padding:14px;border-bottom:1px solid var(--line)}
   .nav-links.show{display:flex}
   .burger{display:block}
+  .nav-dd-menu{position:static;display:flex;border:none;box-shadow:none;background:none;padding:0 0 0 18px}
+  .nav-dd>a .car{display:none}
   .decl-grid,.map-wrap,.contact-grid{grid-template-columns:1fr}
   .season{grid-template-columns:1fr 1fr}
   .two{grid-template-columns:1fr}
@@ -840,7 +850,16 @@ body::before{animation:aurora 22s ease-in-out infinite alternate}
     <a href="#partners">Партнёры</a>
     <a href="#events">Мероприятия</a>
     <a href="#reviews">Отзывы</a>
-    <a href="#reference">База знаний</a>
+    <div class="nav-dd">
+      <a href="#reference">База знаний <span class="car">▾</span></a>
+      <div class="nav-dd-menu">
+        <a href="pavlovnia.html">О павловнии</a>
+        <a href="geography.html">География</a>
+        <a href="team.html">Команда</a>
+        <a href="media.html">Медиа</a>
+        <a href="materials.html">Файлы проекта</a>
+      </div>
+    </div>
     <a href="materials.html">Файлы</a>
     <a href="#contacts">Контакты</a>
     <a href="#" class="lk-link" onclick="openLk();return false;"><svg viewBox="0 0 24 24" style="width:14px;height:14px;vertical-align:-2px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round"><circle cx="12" cy="8" r="4"/><path d="M5 20c0-3.9 3.1-7 7-7s7 3.1 7 7"/></svg> Личный кабинет</a>
@@ -1138,16 +1157,16 @@ body::before{animation:aurora 22s ease-in-out infinite alternate}
     </div>
     <div class="partners-title reveal">Ключевые партнёры</div>
     <div class="partners-grid reveal">
-      <div class="partner"><span class="mono"><svg viewBox="0 0 24 24"><path d="M12 21V11M12 11C12 6.5 8.5 4 4 4c0 4.5 3.5 7 8 7zM12 13c0-3.5 3-6 8-6 0 3.5-3 6-8 6z"/></svg></span><div class="pt"><b>«Экологические Инвестиции»</b><span>инициатор · патенты · технологии</span></div></div>
-      <div class="partner"><span class="mono"><svg viewBox="0 0 24 24"><path d="M12 21v-7M12 14a4 4 0 0 1 4-4h3v1a4 4 0 0 1-4 4h-3zM12 12a4 4 0 0 0-4-4H5v1a4 4 0 0 0 4 4h3M9 21h6"/></svg></span><div class="pt"><b>«Интегро плюс»</b><span>селекция сорта «Вудмакс-8»</span></div></div>
       <div class="partner"><span class="mono logo"><img src="assets/partners/timacad.svg" alt="РГАУ-МСХА" loading="lazy"></span><div class="pt"><b>РГАУ-МСХА им. Тимирязева</b><span>научное сопровождение</span></div></div>
       <div class="partner"><span class="mono logo"><img src="assets/partners/msu.png" alt="МГУ" loading="lazy"></span><div class="pt"><b>Научный парк МГУ</b><span>НИОКР и испытания</span></div></div>
       <div class="partner"><span class="mono logo"><img src="assets/partners/sber.svg" alt="Сбербанк" loading="lazy"></span><div class="pt"><b>Сбербанк</b><span>финансовый партнёр</span></div></div>
       <div class="partner"><span class="mono logo"><img src="assets/partners/onf.svg" alt="Народный фронт" loading="lazy"></span><div class="pt"><b>ОНФ · ветеранские объединения</b><span>социальная коалиция</span></div></div>
       <div class="partner"><span class="mono logo"><img src="assets/partners/rzd.svg" alt="РЖД" loading="lazy"></span><div class="pt"><b>РЖД · дорожное строительство</b><span>реальный сектор · озеленение</span></div></div>
-      <div class="partner"><span class="mono"><svg viewBox="0 0 24 24"><path d="M12 8.8C12 6.8 10.5 5.5 9 5.5S6 6.7 6 8.5c0 2.6 4 5.3 6 6.5 2-1.2 6-3.9 6-6.5 0-1.8-1.5-3-3-3s-3 1.3-3 3.3z"/><path d="M4 18.5c2.5 1.6 5 2.5 8 2.5s5.5-.9 8-2.5"/></svg></span><div class="pt"><b>Волонтёрские движения</b><span>уход и масштабирование</span></div></div>
       <div class="partner"><span class="mono logo"><img src="assets/partners/iubip.svg" alt="ИУБиП" loading="lazy"></span><div class="pt"><b>ИУБИП</b><span>образование и подготовка кадров</span></div></div>
       <div class="partner"><span class="mono logo"><img src="assets/partners/dstu.svg" alt="ДГТУ" loading="lazy"></span><div class="pt"><b>ДГТУ</b><span>инжиниринг и НИОКР</span></div></div>
+      <div class="partner"><span class="mono"><svg viewBox="0 0 24 24"><path d="M12 21V11M12 11C12 6.5 8.5 4 4 4c0 4.5 3.5 7 8 7zM12 13c0-3.5 3-6 8-6 0 3.5-3 6-8 6z"/></svg></span><div class="pt"><b>«Экологические Инвестиции»</b><span>инициатор · патенты · технологии</span></div></div>
+      <div class="partner"><span class="mono"><svg viewBox="0 0 24 24"><path d="M12 21v-7M12 14a4 4 0 0 1 4-4h3v1a4 4 0 0 1-4 4h-3zM12 12a4 4 0 0 0-4-4H5v1a4 4 0 0 0 4 4h3M9 21h6"/></svg></span><div class="pt"><b>«Интегро плюс»</b><span>селекция сорта «Вудмакс-8»</span></div></div>
+      <div class="partner"><span class="mono"><svg viewBox="0 0 24 24"><path d="M12 8.8C12 6.8 10.5 5.5 9 5.5S6 6.7 6 8.5c0 2.6 4 5.3 6 6.5 2-1.2 6-3.9 6-6.5 0-1.8-1.5-3-3-3s-3 1.3-3 3.3z"/><path d="M4 18.5c2.5 1.6 5 2.5 8 2.5s5.5-.9 8-2.5"/></svg></span><div class="pt"><b>Волонтёрские движения</b><span>уход и масштабирование</span></div></div>
       <div class="partner"><span class="mono"><svg viewBox="0 0 24 24"><path d="M12 3.5c3 4.2 5.5 7.4 5.5 10.5a5.5 5.5 0 0 1-11 0c0-3.1 2.5-6.3 5.5-10.5z"/><path d="M9.5 14a2.6 2.6 0 0 0 2.5 2.6"/></svg></span><div class="pt"><b>НИМИ ДонГАУ</b><span>мелиорация и агронаука</span></div></div>
     </div>
   </div>
