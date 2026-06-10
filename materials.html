@@ -162,10 +162,11 @@
     <div class="section-head reveal">
       <div class="eyebrow">Презентация и фото</div>
       <h2>Слайды <span class="gold">и кадры</span></h2>
-      <p>Материалы презентации и фотографии с посадок. Нажмите на изображение, чтобы увеличить.</p>
+      <p>Презентация Аллеи Славы в одном окне — перелистывайте по одному слайду.</p>
       <div class="rule"></div>
     </div>
-    <div class="gallery reveal" id="galGrid"></div>
+    <div class="album reveal" id="galSlides"></div>
+    <div class="gallery reveal" id="galGrid" style="margin-top:18px"></div>
   </div>
 </section>
 
@@ -240,11 +241,54 @@ document.getElementById('kadGrid').innerHTML=kadDocs.map(d=>
      <span class="ft"><b>${d.t}</b><span>${d.sp} · ситуационный план · DOCX</span></span>
    </a>`).join('');
 
-/* Презентация (12 слайдов) + фото */
-const gal=[];
-for(let i=1;i<=12;i++)gal.push({src:`assets/slide-${i}.png`,cap:`Слайд презентации ${i}`});
-gal.push({src:'assets/photo-planting-1.jpg',cap:'Посадка деревьев памяти'});
-gal.push({src:'assets/photo-planting-2.jpg',cap:'Участники проекта на аллее'});
+/* Презентация — листалка (как на странице «Медиа») */
+function initAlbum(el, items){
+  if(!el||!items.length) return;
+  let i=0;
+  el.innerHTML=`
+    <div class="stage"><img alt=""></div>
+    <button type="button" class="anav prev" aria-label="Назад">‹</button>
+    <button type="button" class="anav next" aria-label="Вперёд">›</button>
+    <div class="abar"><div class="acap"></div><div class="acount"></div></div>`;
+  const img=el.querySelector('img'), cap=el.querySelector('.acap'), cnt=el.querySelector('.acount');
+  function show(n){
+    i=(n+items.length)%items.length;
+    el.classList.add('is-fading');
+    setTimeout(()=>{
+      img.src=items[i].src; img.alt=items[i].cap;
+      cap.textContent=items[i].cap;
+      cnt.textContent=(i+1)+' / '+items.length;
+      el.classList.remove('is-fading');
+    },120);
+    const nx=new Image(); nx.src=items[(i+1)%items.length].src;
+    const pv=new Image(); pv.src=items[(i-1+items.length)%items.length].src;
+  }
+  el.querySelector('.prev').onclick=()=>show(i-1);
+  el.querySelector('.next').onclick=()=>show(i+1);
+  el.tabIndex=0;
+  el.addEventListener('keydown',e=>{
+    if(e.key==='ArrowLeft'){show(i-1);e.preventDefault();}
+    if(e.key==='ArrowRight'){show(i+1);e.preventDefault();}
+  });
+  let tx=null;
+  el.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;},{passive:true});
+  el.addEventListener('touchend',e=>{
+    if(tx===null)return;
+    const dx=e.changedTouches[0].clientX-tx;
+    if(Math.abs(dx)>45) show(i+(dx<0?1:-1));
+    tx=null;
+  },{passive:true});
+  show(0);
+}
+const slides=[];
+for(let i=1;i<=12;i++)slides.push({src:`assets/slide-${i}.png`,cap:`Презентация «Аллеи Славы» · слайд ${i}`});
+initAlbum(document.getElementById('galSlides'),slides);
+
+/* Фото с посадок */
+const gal=[
+  {src:'assets/photo-planting-1.jpg',cap:'Посадка деревьев памяти'},
+  {src:'assets/photo-planting-2.jpg',cap:'Участники проекта на аллее'}
+];
 document.getElementById('galGrid').innerHTML=gal.map(g=>
   `<figure data-lb="${g.src}" data-lb-group="mat" data-cap="${g.cap}">
      <img src="${g.src}" alt="${g.cap}" loading="lazy">
