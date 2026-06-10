@@ -143,6 +143,19 @@
   </div>
 </section>
 
+<!-- КАДАСТРОВЫЕ ДОКУМЕНТЫ -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Кадастр</div>
+      <h2>Ситуационные <span class="gold">планы</span></h2>
+      <p>Официальные ситуационные планы полос высадки по сельским поселениям: площади, габариты и кадастровые номера смежных участков. Интерактивный разбор со схемами — на странице «<a href="geography.html#cadastre" style="color:var(--gold-l)">География</a>».</p>
+      <div class="rule"></div>
+    </div>
+    <div class="files-grid" id="kadGrid"></div>
+  </div>
+</section>
+
 <!-- ПРЕЗЕНТАЦИЯ И ФОТО -->
 <section class="section" style="padding-top:0">
   <div class="wrap">
@@ -200,6 +213,31 @@ document.getElementById('mapsGrid').innerHTML=maps.map(m=>
   `<a class="file-row" href="assets/maps/${m.slug}.pdf" download>
      <span class="fi">${dlIcon}</span>
      <span class="ft"><b>${m.t}</b><span>Карта участка · PDF</span></span>
+   </a>`).join('');
+
+/* Кадастровые ситуационные планы */
+const kadDocs=[
+  {slug:'petrushino-novobessergenevka',t:'Петрушино — Новобессергеневка',sp:'Новобессергеневское СП'},
+  {slug:'novobessergenevka-komarovka',t:'Новобессергеневка · Комаровка · Дмитриадовка',sp:'Новобессергеневское СП'},
+  {slug:'dmitriadovka-novozolotovka',t:'Дмитриадовка · Новозолотовка · Александрова Коса',sp:'Новобессергеневское СП'},
+  {slug:'krasny-pakhar-chapaev',t:'Красный Пахарь · Чапаев · Беглица',sp:'Лакедемоновское СП'},
+  {slug:'beglitsa',t:'с. Беглица',sp:'Лакедемоновское СП'},
+  {slug:'rozhok',t:'х. Рожок',sp:'Натальевское СП'},
+  {slug:'veselo-voznesenka-priazovsky',t:'Весело-Вознесенка · Приазовский',sp:'Платовское СП'},
+  {slug:'zapadnee-veselo-voznesenki',t:'Западнее Весело-Вознесенки',sp:'Платовское СП'},
+  {slug:'zapadnaya-granitsa-ro',t:'Западная граница Ростовской области',sp:'Платовское СП'},
+  {slug:'stefanidinodar-krugloe',t:'Стефанидинодар · Круглое',sp:'Круглянское СП'},
+  {slug:'pavlo-ochakovskaya-kosa',t:'Павло-Очаковская коса · Стефанидинодар',sp:'Круглянское СП'},
+  {slug:'pavlo-ochakovo-semibalki',t:'Павло-Очаково · Семибалки',sp:'Семибалковское СП'},
+  {slug:'zapadnee-semibalok',t:'Земли к западу от Семибалок',sp:'Семибалковское СП'},
+  {slug:'chumbur-kosa',t:'х. Чумбур-Коса',sp:'Маргаритовское СП'},
+  {slug:'margaritovo-novomargaritovo',t:'Маргаритово · Новомаргаритово',sp:'Маргаритовское СП'},
+  {slug:'novomargaritovo-port-katon',t:'Новомаргаритово · Порт-Катон',sp:'Маргаритовское СП'}
+];
+document.getElementById('kadGrid').innerHTML=kadDocs.map(d=>
+  `<a class="file-row" href="assets/docs/kadastr/${d.slug}.docx" download>
+     <span class="fi">${'<svg viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>'}</span>
+     <span class="ft"><b>${d.t}</b><span>${d.sp} · ситуационный план · DOCX</span></span>
    </a>`).join('');
 
 /* Презентация (12 слайдов) + фото */
