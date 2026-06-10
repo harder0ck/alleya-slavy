@@ -449,7 +449,8 @@ body.no-scroll{overflow:hidden}
   border:1px solid var(--line);color:var(--gold);padding:9px 16px;border-radius:30px}
 .spec-card{background:linear-gradient(160deg,var(--panel),var(--bg));border:1px solid var(--line);
   border-radius:18px;padding:36px;box-shadow:var(--shadow);position:relative;overflow:hidden}
-.spec-card::before{content:"❀";position:absolute;top:-6px;right:18px;font-size:5rem;color:rgba(201,162,39,.12)}
+.spec-card .emb{position:absolute;top:20px;right:20px;width:62px;height:62px;border-radius:14px;
+  border:1px solid rgba(201,162,39,.4);box-shadow:0 0 18px rgba(201,162,39,.18);opacity:.95}
 .spec-card h3{color:var(--gold);font-size:1.35rem;margin-bottom:14px}
 .spec-card ul{list-style:none}
 .spec-card li{padding:11px 0 11px 28px;position:relative;color:#cfc9ba;border-bottom:1px dashed rgba(201,162,39,.12)}
@@ -957,6 +958,7 @@ body::before{animation:aurora 22s ease-in-out infinite alternate}
         <div class="nick"><span>Адамово дерево</span><span>Фабрика кислорода</span><span>Biotech · «Интегро плюс»</span></div>
       </div>
       <div class="spec-card">
+        <img class="emb" src="assets/oak-emblem.png" alt="Эмблема проекта «Аллеи Славы»">
         <h3>Почему именно павловния</h3>
         <ul>
           <li>Укрепляет берег: глубокий стержневой корень против эрозии.</li>
