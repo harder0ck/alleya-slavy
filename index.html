@@ -265,9 +265,11 @@ nav{
 .chron-head{text-align:center;max-width:680px;margin:8px auto 40px}
 .chron-head h3{font-family:"Forum",serif;color:var(--gold);font-size:1.9rem;margin-bottom:8px}
 .chron-head p{color:var(--muted);font-size:1rem;line-height:1.55}
-.tl-scroll{max-width:860px;max-height:620px;margin:0 auto 58px;overflow-y:auto;overscroll-behavior:contain;
-  border:1px solid var(--line);border-radius:16px;padding:20px 18px 20px 10px;
-  background:linear-gradient(180deg,rgba(16,26,19,.4),rgba(10,18,13,.25));
+.tl-scroll{max-width:1120px;max-height:440px;margin:0 auto 58px;overflow-y:auto;overscroll-behavior:contain;
+  border:1px solid rgba(201,162,39,.28);border-radius:20px;padding:20px 22px 20px 12px;
+  background:linear-gradient(165deg,rgba(30,48,37,.34),rgba(10,18,13,.22));
+  backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07),inset 0 0 60px rgba(201,162,39,.04),0 22px 54px rgba(0,0,0,.38);
   scrollbar-width:thin;scrollbar-color:rgba(201,162,39,.45) transparent}
 .tl-scroll::-webkit-scrollbar{width:8px}
 .tl-scroll::-webkit-scrollbar-track{background:transparent}
@@ -548,6 +550,29 @@ body.no-scroll{overflow:hidden}
   border-radius:12px;padding:14px 16px}
 .lk-alert b{display:block;color:#e8b13c;font-weight:400;font-family:"Forum",serif;font-size:1.02rem;margin-bottom:4px}
 .lk-alert span{display:block;color:var(--muted);font-size:.88rem;line-height:1.55;margin-bottom:10px}
+.lk-menu{position:relative;display:flex;align-items:center;justify-content:space-between;gap:14px;margin:0 0 18px;z-index:5}
+.lk-menu .cur-sec{font-family:"Forum",serif;color:var(--gold-l);font-size:1.05rem;letter-spacing:.05em}
+.lk-menu-btn{display:inline-flex;align-items:center;gap:9px;cursor:pointer;font-family:"PT Serif",serif;font-size:.86rem;
+  color:var(--gold-l);padding:9px 18px;border-radius:30px;border:1px solid rgba(201,162,39,.35);
+  background:linear-gradient(165deg,rgba(30,48,37,.5),rgba(12,20,15,.4));
+  backdrop-filter:blur(14px) saturate(1.3);-webkit-backdrop-filter:blur(14px) saturate(1.3);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08);transition:.25s}
+.lk-menu-btn:hover{border-color:var(--gold);box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 0 18px rgba(201,162,39,.2)}
+.lk-menu-btn .ar{transition:transform .25s;font-size:.7rem}
+.lk-drop{position:absolute;top:calc(100% + 10px);right:0;min-width:230px;border-radius:16px;overflow:hidden;
+  border:1px solid rgba(201,162,39,.32);
+  background:linear-gradient(165deg,rgba(28,44,34,.88),rgba(12,20,15,.86));
+  backdrop-filter:blur(18px) saturate(1.3);-webkit-backdrop-filter:blur(18px) saturate(1.3);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 24px 56px rgba(0,0,0,.5);
+  opacity:0;transform:translateY(-8px);pointer-events:none;transition:.25s}
+.lk-menu.open .lk-drop{opacity:1;transform:none;pointer-events:auto}
+.lk-menu.open .lk-menu-btn .ar{transform:rotate(180deg)}
+.lk-drop a{display:flex;align-items:center;gap:11px;padding:13px 18px;color:var(--ink);text-decoration:none;
+  font-size:.92rem;border-bottom:1px solid rgba(201,162,39,.12);transition:.2s}
+.lk-drop a:last-child{border-bottom:none}
+.lk-drop a:hover{background:rgba(201,162,39,.13);color:var(--gold-l);padding-left:23px}
+.lk-drop a.act{color:var(--gold-l);background:rgba(201,162,39,.07)}
+.lk-drop a .ic{width:17px;text-align:center;color:var(--gold)}
 .lk-settings{display:grid;gap:8px;margin-top:10px}
 .lk-set{display:flex;align-items:center;justify-content:space-between;gap:14px;border:1px solid var(--line);
   border-radius:10px;padding:11px 14px;color:#cdd6cc;font-size:.9rem;cursor:pointer}
@@ -1422,6 +1447,18 @@ body::before{animation:aurora 22s ease-in-out infinite alternate}
       </div>
     </div>
 
+    <div class="lk-menu" id="lkMenu">
+      <span class="cur-sec" id="lkCurSec">Обзор</span>
+      <button type="button" class="lk-menu-btn" onclick="lkMenuToggle()">Разделы <span class="ar">▼</span></button>
+      <div class="lk-drop">
+        <a href="#" class="act" data-sec="overview" onclick="lkShowSec('overview');return false"><span class="ic">⌂</span>Обзор</a>
+        <a href="#" data-sec="tarif" onclick="lkShowSec('tarif');return false"><span class="ic">★</span>Тариф</a>
+        <a href="#" data-sec="settings" onclick="lkShowSec('settings');return false"><span class="ic">⚙</span>Настройки</a>
+        <a href="#" onclick="lkLogout();return false"><span class="ic">→</span>Выйти из кабинета</a>
+      </div>
+    </div>
+
+    <div id="lkSecOverview">
     <div class="lk-alerts">
       <div class="lk-alert warn">
         <b>⚠ Подписка истекает через 25 дней</b>
@@ -1434,8 +1471,10 @@ body::before{animation:aurora 22s ease-in-out infinite alternate}
         <button type="button" class="map-open" onclick="alert('Демо: запись на сервис подключается на хостинге')">Записаться на сервис →</button>
       </div>
     </div>
+    </div><!-- /lkSecOverview -->
 
-    <div class="badge" style="margin-top:26px">Тарифы подписки</div>
+    <div id="lkSecTarif" hidden>
+    <div class="badge">Тарифы подписки</div>
     <div class="lk-tariffs">
       <div class="tarif">
         <div class="tname">«Уход»</div>
@@ -1475,14 +1514,17 @@ body::before{animation:aurora 22s ease-in-out infinite alternate}
       <div class="b"><span>Статус подписки</span><b style="color:#d57b1e">Активна до 05.07.2026 ⚠</b></div>
       <div class="b"><span>Автопродление</span><b id="lkAutoState">Выключено</b></div>
     </div>
+    </div><!-- /lkSecTarif -->
 
-    <div class="badge" style="margin-top:22px">Настройки кабинета</div>
+    <div id="lkSecSettings" hidden>
+    <div class="badge">Настройки кабинета</div>
     <div class="lk-settings">
       <label class="lk-set"><span>Email-уведомления об уходе</span><span class="sw on" onclick="swToggle(this)"></span></label>
       <label class="lk-set"><span>Фотоотчёты раз в месяц</span><span class="sw on" onclick="swToggle(this)"></span></label>
       <label class="lk-set"><span>Автопродление подписки</span><span class="sw" id="lkAutoSw" onclick="swToggle(this);lkAuto()"></span></label>
       <label class="lk-set"><span>Напоминания о памятных датах</span><span class="sw on" onclick="swToggle(this)"></span></label>
     </div>
+    </div><!-- /lkSecSettings -->
     <div style="text-align:center;margin-top:18px"><a href="#" onclick="lkLogout();return false;" style="color:var(--muted);font-size:.85rem">Выйти из кабинета</a></div>
     </div><!-- /lkDash -->
   </div>
@@ -1824,7 +1866,27 @@ function lkEnter(){
 function lkLogout(){
   const l=document.getElementById('lkLogin'),d=document.getElementById('lkDash');
   if(l&&d){d.hidden=true;l.hidden=false;}
+  const m=document.getElementById('lkMenu');if(m)m.classList.remove('open');
+  lkShowSec('overview');
 }
+function lkMenuToggle(){
+  const m=document.getElementById('lkMenu');if(m)m.classList.toggle('open');
+}
+const lkSecNames={overview:'Обзор',tarif:'Тариф',settings:'Настройки'};
+function lkShowSec(s){
+  const ids={overview:'lkSecOverview',tarif:'lkSecTarif',settings:'lkSecSettings'};
+  Object.keys(ids).forEach(k=>{
+    const el=document.getElementById(ids[k]);if(el)el.hidden=(k!==s);
+  });
+  const cur=document.getElementById('lkCurSec');if(cur)cur.textContent=lkSecNames[s]||s;
+  document.querySelectorAll('#lkMenu .lk-drop a[data-sec]').forEach(a=>a.classList.toggle('act',a.dataset.sec===s));
+  const m=document.getElementById('lkMenu');if(m)m.classList.remove('open');
+  if(lkModal){const c=lkModal.querySelector('.modal-card');if(c)c.scrollTop=0;}
+}
+document.addEventListener('click',e=>{
+  const m=document.getElementById('lkMenu');
+  if(m&&m.classList.contains('open')&&!e.target.closest('#lkMenu'))m.classList.remove('open');
+});
 function swToggle(el){el.classList.toggle('on');}
 function lkAuto(){const st=document.getElementById('lkAutoState'),sw=document.getElementById('lkAutoSw');
   if(st&&sw)st.textContent=sw.classList.contains('on')?'Включено':'Выключено';}
