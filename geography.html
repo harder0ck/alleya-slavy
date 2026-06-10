@@ -9,6 +9,37 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Forum&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Marck+Script&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
+<style>
+/* ===== Кадастр участков высадки ===== */
+.kad-region{font-family:"Forum",serif;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-l);
+  font-size:1.05rem;margin:34px 0 14px;display:flex;align-items:center;gap:12px}
+.kad-region::after{content:"";flex:1;height:1px;background:var(--line)}
+.kad-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:16px}
+.kad-card{border:1px solid var(--line);border-radius:16px;padding:18px 20px;
+  background:linear-gradient(165deg,#101b14,#0b120d);display:flex;flex-direction:column;gap:12px}
+.kad-card .reg{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.kad-card h4{font-family:"Forum",serif;font-size:1.12rem;margin:2px 0 0;color:var(--ink)}
+.kad-areas{display:flex;flex-direction:column;gap:6px;font-size:.88rem;color:var(--muted)}
+.kad-areas .ar{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dashed rgba(201,162,39,.18);padding-bottom:4px}
+.kad-areas .ar b{color:var(--gold-l);font-weight:400;white-space:nowrap}
+.kn-label{font-size:.78rem;color:var(--muted);margin-top:2px}
+.kn-chips{display:flex;flex-wrap:wrap;gap:6px}
+.kn{font-family:ui-monospace,Menlo,monospace;font-size:.72rem;color:var(--green-l);cursor:pointer;
+  border:1px solid rgba(105,160,126,.35);border-radius:7px;padding:3px 7px;background:rgba(105,160,126,.08);
+  transition:color .15s,border-color .15s,background .15s}
+.kn:hover{color:var(--gold-l);border-color:var(--gold);background:rgba(201,162,39,.12)}
+.kad-links{display:flex;flex-wrap:wrap;gap:14px;margin-top:auto;padding-top:4px}
+.kad-links a{font-size:.84rem;color:var(--gold-l);text-decoration:none;border-bottom:1px dashed rgba(201,162,39,.4)}
+.kad-links a:hover{color:#fff;border-color:#fff}
+.kad-summary{display:flex;flex-wrap:wrap;gap:22px;margin:6px 0 4px}
+.kad-summary .ks{border:1px solid var(--line);border-radius:12px;padding:10px 18px;background:rgba(201,162,39,.05)}
+.kad-summary .ks b{font-family:"Forum",serif;font-size:1.3rem;color:var(--gold-l);display:block}
+.kad-summary .ks span{font-size:.8rem;color:var(--muted)}
+#knToast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);opacity:0;
+  background:#13201a;border:1px solid var(--gold);color:var(--gold-l);padding:9px 20px;border-radius:10px;
+  font-size:.85rem;pointer-events:none;transition:opacity .25s,transform .25s;z-index:99}
+#knToast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
 </head>
 <body>
 
@@ -59,6 +90,26 @@
     <div class="plot-grid" id="plotGrid"></div>
   </div>
 </section>
+
+<!-- КАДАСТР УЧАСТКОВ ВЫСАДКИ -->
+<section class="section" style="padding-top:0" id="cadastre">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Кадастр</div>
+      <h2>Кадастровые участки <span class="gold">высадки</span></h2>
+      <p>Полосы высадки по ситуационным планам сельских поселений: площади, габариты и кадастровые номера смежных земельных участков. Нажмите на номер, чтобы скопировать его, и проверьте участок на публичной кадастровой карте НСПД.</p>
+      <div class="rule"></div>
+    </div>
+    <div class="kad-summary reveal">
+      <div class="ks"><b>27</b><span>полос высадки</span></div>
+      <div class="ks"><b>≈ 366 га</b><span>суммарная площадь</span></div>
+      <div class="ks"><b>10</b><span>поселений · 2 района</span></div>
+      <div class="ks"><a href="https://nspd.gov.ru/map?thematic=PKK" target="_blank" rel="noopener" style="text-decoration:none"><b style="font-size:1.05rem">НСПД →</b><span>публичная кадастровая карта</span></a></div>
+    </div>
+    <div id="kadWrap" class="reveal"></div>
+  </div>
+</section>
+<div id="knToast">Кадастровый номер скопирован</div>
 
 <footer>
   <div class="flame"></div>
@@ -149,6 +200,94 @@ filterEl.addEventListener('click',e=>{
 });
 renderFilter();
 renderPlots();
+
+/* ====== КАДАСТР УЧАСТКОВ ВЫСАДКИ ====== */
+const NSPD='https://nspd.gov.ru/map?thematic=PKK';
+const kad=[
+ /* Неклиновский район */
+ {reg:'Неклиновский район',sp:'Новобессергеневское СП',t:'с. Петрушино — с. Новобессергеневка',pdf:'novobessergenevskoe',
+  ar:[['№ 1','11 995 м²','414×29 м'],['№ 2','6 715 м²','180×37 м'],['№ 3','10 891 м²','228×37 м'],['№ 4','11 579 м²','180×64 м'],['№ 5','5 600 м²','136×41 м'],['№ 6','по границе смежных з.у.','']],
+  kn:['61:26:0600024:11827','61:26:0600024:7009','61:26:0600024:4298','61:26:0600024:11475','61:26:0600024:11476']},
+ {reg:'Неклиновский район',sp:'Новобессергеневское СП',t:'п. Дмитриадовка · х. Новозолотовка · с. Александрова Коса',pdf:'novobessergenevskoe',
+  ar:[['№ 15','10 983 м²','305×36 м'],['№ 16','7 747 м²','195×40 м'],['№ 17','3 886 м²','186×21 м'],['№ 18','18 881 м²','544×35 м'],['№ 19','13 681 м²','386×35 м']],
+  kn:['61:26:0180501:101','61:26:0180501:934','61:26:0180501:1','61:26:0180501:1174','61:26:0000000:6807','61:26:0000000:226','61:26:0180601:1545','61:26:0180601:2028','61:26:0180601:1984','61:26:0180601:1227','61:26:0180601:1965','61:26:0180601:1975','61:26:0180601:1997','61:26:0180601:1986','61:26:0180601:1481']},
+ {reg:'Неклиновский район',sp:'Лакедемоновское СП',t:'х. Красный Пахарь · х. Чапаев · с. Беглица',pdf:'lakedemonovskoe',
+  ar:[['№ 36','270 924 м²','4100×66 м'],['№ 37','83 906 м²','1134×79 м']],
+  kn:['61:28:0160401:685','61:28:0160401:761','61:28:0160401:459','61:28:0160401:859','61:28:0160401:224','61:28:0160401:234','61:28:0160401:111','61:28:0160501:15','61:28:0160501:3','61:28:0160601:41']},
+ {reg:'Неклиновский район',sp:'Лакедемоновское СП',t:'с. Беглица',pdf:'lakedemonovskoe',
+  ar:[['№ 38','15 167 м²','272×56 м']],
+  kn:['61:26:01600021:304','61:26:0160401:11']},
+ {reg:'Неклиновский район',sp:'Натальевское СП',t:'х. Рожок',pdf:'natalevskoe',
+  ar:[['№ 39','24 682 м²','1065×23 м'],['№ 40','42 683 м²','1317×32 м']],
+  kn:['61:26:0600020:270','61:26:0600020:1188','61:26:0030101:718','61:26:0030101:752','61:26:0600019:79','61:26:0600019:80','61:26:0100401:114','61:26:0100401:2597','61:26:0100401:2252','61:26:0100401:476']},
+ {reg:'Неклиновский район',sp:'Платовское СП',t:'с. Весело-Вознесенка · п. Приазовский',pdf:'veselo-voznesenka',
+  ar:[['№ 41','21 904 м²','846×26 м'],['№ 42','90 676 м²','2474×37 м']],
+  kn:['61:26:0600019:946','61:26:0600019:81','61:26:0100101:1167','61:26:0100101:66','61:26:0100101:68','61:26:0100101:1181','61:26:0100301:277','61:26:0100301:976']},
+ {reg:'Неклиновский район',sp:'Платовское СП',t:'Западнее Весело-Вознесенки',pdf:'veselo-voznesenka',
+  ar:[['№ 44','56 390 м²','2505×23 м']],
+  kn:['61:26:0600018:1179','61:26:0600018:1879','61:26:0600018:1850','61:26:0600018:1418']},
+ {reg:'Неклиновский район',sp:'Платовское СП',t:'Западная граница Ростовской области',pdf:'veselo-voznesenka',
+  ar:[['№ 45','72 523 м²','2519×29 м']],
+  kn:['61:26:0600018:1180','61:26:0600018:1914']},
+ /* Азовский район */
+ {reg:'Азовский район',sp:'Круглянское СП',t:'с. Стефанидинодар · с. Круглое',pdf:'kruglyanskoe',
+  ar:[['№ 1','306 234 м²','7038×43 м']],
+  kn:['61:01:0070201:972','61:01:0070201:1011','61:01:0070201:1368','61:01:0070201:59','61:01:0070201:952','61:01:0070201:66','61:01:0600010:461','61:01:0000000:2702']},
+ {reg:'Азовский район',sp:'Круглянское СП',t:'Павло-Очаковская коса · с. Стефанидинодар',pdf:'stefanidinodar',
+  ar:[['№ 2','167 441 м²','7685×22 м']],
+  kn:['61:01:060009:438','61:01:060009:458','61:01:060009:464','61:01:060009:497','61:01:060009:1246','61:01:060009:2065','61:01:060009:2138','61:01:060009:2250','61:01:060009:378','61:01:060009:432','61:01:0070201:964']},
+ {reg:'Азовский район',sp:'Семибалковское СП',t:'х. Павло-Очаково · с. Семибалки',pdf:'semibalki',
+  ar:[['№ 3','473 443 м²','6980×67 м']],
+  kn:['61:01:0180101:1845','61:01:0180101:1035','61:01:0180101:1022','61:01:0180101:1946','61:01:0180101:1125','61:01:0180301:267','61:01:0180301:11','61:01:0180301:36']},
+ {reg:'Азовский район',sp:'Семибалковское СП',t:'Земли к западу от с. Семибалки',pdf:'semibalki-coast',
+  ar:[['№ 4','364 606 м²','6327×57 м']],
+  kn:['61:01:0600009:1722','61:01:0600009:516','61:01:0600009:614','61:01:0600009:153']},
+ {reg:'Азовский район',sp:'Маргаритовское СП',t:'х. Чумбур-Коса',pdf:'chumbur-kosa',
+  ar:[['№ 5','391 250 м²','7909×49 м']],
+  kn:['61:01:0600008:1646','61:01:0600008:1476','61:01:0600008:1321','61:01:0600009:609','61:01:0100501:409','61:01:0100501:384','61:01:0100501:271']},
+ {reg:'Азовский район',sp:'Маргаритовское СП',t:'с. Маргаритово · с. Новомаргаритово',pdf:'margaritovo',
+  ar:[['№ 6','770 901 м²','6821×113 м']],
+  kn:['61:01:0100101:591','61:01:0100101:558','61:01:0100101:375','61:01:0600008:1383','61:01:0600008:1394','61:01:0600008:86','61:01:0100201:245','61:01:0100201:42','61:01:0100201:296','61:01:0100201:479']},
+ {reg:'Азовский район',sp:'Маргаритовское СП',t:'с. Новомаргаритово · с. Порт-Катон · граница РО',pdf:'port-katon',
+  ar:[['№ 7','411 176 м²','7147×57 м']],
+  kn:['61:01:0600008:1923','61:01:0600008:2043','61:01:0600008:2019','61:01:0600008:1979','61:01:0100301:1110','61:01:0000000:2238']}
+];
+
+const kadWrap=document.getElementById('kadWrap');
+const regs=[...new Set(kad.map(k=>k.reg))];
+kadWrap.innerHTML=regs.map(reg=>`
+  <div class="kad-region">${reg}</div>
+  <div class="kad-grid">
+  ${kad.filter(k=>k.reg===reg).map(k=>`
+    <div class="kad-card">
+      <div><div class="reg">${k.sp}</div><h4>${k.t}</h4></div>
+      <div class="kad-areas">
+        ${k.ar.map(a=>`<div class="ar"><span>Площадка ${a[0]}</span><b>${a[1]}${a[2]?' · '+a[2]:''}</b></div>`).join('')}
+      </div>
+      <div class="kn-label">Смежные земельные участки (к.н.) — нажмите, чтобы скопировать:</div>
+      <div class="kn-chips">${k.kn.map(n=>`<span class="kn" data-kn="${n}">${n}</span>`).join('')}</div>
+      <div class="kad-links">
+        <a href="assets/maps/${k.pdf}.pdf" download>Ситуационный план (PDF)</a>
+        <a href="${NSPD}" target="_blank" rel="noopener">Кадастровая карта НСПД →</a>
+      </div>
+    </div>`).join('')}
+  </div>`).join('');
+
+const knToast=document.getElementById('knToast');
+let knTimer=null;
+kadWrap.addEventListener('click',e=>{
+  const c=e.target.closest('.kn'); if(!c)return;
+  const num=c.dataset.kn;
+  const done=()=>{
+    knToast.textContent='Скопировано: '+num;
+    knToast.classList.add('show');
+    clearTimeout(knTimer);
+    knTimer=setTimeout(()=>knToast.classList.remove('show'),1800);
+  };
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(num).then(done).catch(done);
+  }else{done();}
+});
 </script>
 </body>
 </html>
