@@ -134,7 +134,8 @@ nav{
   border:1px solid var(--line);color:var(--gold);padding:10px 18px;border-radius:30px}
 .decl-card{background:linear-gradient(160deg,var(--panel),var(--bg));border:1px solid var(--line);
   border-radius:18px;padding:38px;box-shadow:var(--shadow);position:relative;overflow:hidden}
-.decl-card::before{content:"❝";position:absolute;top:-10px;left:18px;font-size:6rem;color:rgba(201,162,39,.14);font-family:Georgia}
+.decl-card .emb{position:absolute;top:18px;right:18px;width:56px;height:56px;border-radius:50%;
+  border:1px solid rgba(201,162,39,.4);box-shadow:0 0 18px rgba(201,162,39,.18);opacity:.92}
 .decl-card h3{color:var(--gold);font-size:1.4rem;margin-bottom:14px}
 .decl-card ul{list-style:none;margin-top:8px}
 .decl-card li{padding:10px 0 10px 28px;position:relative;color:#cfc9ba;border-bottom:1px dashed rgba(201,162,39,.12)}
@@ -910,6 +911,7 @@ body::before{animation:aurora 22s ease-in-out infinite alternate}
         </div>
       </div>
       <div class="decl-card reveal">
+        <img class="emb" src="assets/avbd-emblem.jpg" alt="Эмблема Ассоциации ветеранов боевых действий ОВД и ВВ России">
         <h3>Наши принципы</h3>
         <ul>
           <li>Одно дерево — одна судьба, одно имя, одна история.</li>
