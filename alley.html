@@ -34,7 +34,7 @@ body{
   background:var(--bg);
   color:var(--ink);
   line-height:1.65;
-  overflow-x:hidden;
+  overflow-x:clip;
   -webkit-font-smoothing:antialiased;
 }
 body::before{
@@ -428,8 +428,10 @@ body.no-scroll{overflow:hidden}
 .reveal.in{opacity:1;transform:none}
 
 @media(max-width:880px){
-  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;
-    background:rgba(10,15,12,.97);padding:14px;border-bottom:1px solid var(--line)}
+  .nav-links{display:none;position:fixed;top:62px;left:0;right:0;flex-direction:column;
+    background:rgba(10,15,12,.97);padding:14px;border-bottom:1px solid var(--line);
+    max-height:calc(100vh - 62px);max-height:calc(100dvh - 62px);overflow-y:auto;
+    overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
   .nav-links.show{display:flex}
   .burger{display:block}
   .nav-dd-menu{position:static;display:flex;border:none;box-shadow:none;background:none;padding:0 0 0 18px}
@@ -840,7 +842,7 @@ body::before{animation:aurora 22s ease-in-out infinite alternate}
 <!-- NAV -->
 <nav>
   <div class="brand"><span class="flame"></span> Аллеи Славы</div>
-  <button class="burger" onclick="document.querySelector('.nav-links').classList.toggle('show')">☰</button>
+  <button class="burger" onclick="(function(){var n=document.querySelector('.nav-links');n.classList.toggle('show');document.body.classList.toggle('no-scroll',n.classList.contains('show'));})()">☰</button>
   <div class="nav-links">
     <a href="#decl">Идея</a>
     <a href="#trees">Деревья</a>
@@ -2020,7 +2022,7 @@ countUp(document.getElementById('stat-trees'),trees.length);
 document.querySelector('.hero .ribbon')?.classList.add('floaty');
 
 /* close mobile menu on click */
-document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>document.querySelector('.nav-links').classList.remove('show')));
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{document.querySelector('.nav-links').classList.remove('show');document.body.classList.remove('no-scroll');}));
 </script>
 
 <!-- LIQUID GLASS PLAYER -->

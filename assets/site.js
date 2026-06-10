@@ -8,12 +8,15 @@
   /* ---- бургер-меню ---- */
   window.toggleNav = function(){
     var n = document.querySelector('.nav-links');
-    if(n) n.classList.toggle('show');
+    if(!n) return;
+    n.classList.toggle('show');
+    document.body.classList.toggle('no-scroll', n.classList.contains('show'));
   };
   document.addEventListener('click', function(e){
     if(e.target.closest('.nav-links a')){
       var n = document.querySelector('.nav-links');
       if(n) n.classList.remove('show');
+      document.body.classList.remove('no-scroll');
     }
   });
 

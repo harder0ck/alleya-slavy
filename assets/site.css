@@ -13,7 +13,8 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:80px}
 body{font-family:"PT Serif",Georgia,serif;background:var(--bg);color:var(--ink);
-  line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  line-height:1.65;overflow-x:clip;-webkit-font-smoothing:antialiased}
+body.no-scroll{overflow:hidden}
 body::before{content:"";position:fixed;inset:0;z-index:-2;
   background:
     radial-gradient(1200px 700px at 78% -8%, rgba(201,162,39,.10), transparent 60%),
@@ -225,8 +226,10 @@ footer .cr{color:var(--muted);font-size:.85rem;margin-top:24px}
 
 /* ===== RESPONSIVE ===== */
 @media(max-width:860px){
-  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;
-    background:rgba(10,15,12,.97);padding:14px 20px;border-bottom:1px solid var(--line)}
+  .nav-links{display:none;position:fixed;top:62px;left:0;right:0;flex-direction:column;
+    background:rgba(10,15,12,.97);padding:14px 20px;border-bottom:1px solid var(--line);
+    max-height:calc(100vh - 62px);max-height:calc(100dvh - 62px);overflow-y:auto;
+    overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
   .nav-links.show{display:flex}
   .burger{display:block}
 }
