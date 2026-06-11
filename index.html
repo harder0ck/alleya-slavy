@@ -134,23 +134,12 @@ nav{
   color:var(--muted);font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px}
 .scroll-hint::after{content:"";width:1px;height:36px;background:linear-gradient(var(--gold),transparent);animation:fall 1.8s infinite}
 @keyframes fall{0%{opacity:0;transform:scaleY(0);transform-origin:top}50%{opacity:1}100%{opacity:0;transform:scaleY(1);transform-origin:bottom}}
-.quote-band{text-align:center;display:grid;place-items:center;position:relative;overflow:hidden;
-  padding:34px 24px 60px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+.quote-band{text-align:center;padding:46px 24px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
   background:linear-gradient(180deg,rgba(201,162,39,.04),transparent)}
-.quote-band::before{content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(48% 62% at 50% 44%,rgba(240,163,44,.14),transparent 72%);
-  animation:glowPulse 2.6s ease-in-out infinite}
-.quote-band q{grid-area:1/1;display:inline-block;position:relative;z-index:1;
-  transform:translateY(clamp(74px,11vw,112px));
-  font-family:"Forum",serif;font-size:clamp(1.4rem,3.6vw,2.2rem);color:#ffeebc;font-style:normal;
-  text-shadow:0 0 14px rgba(255,176,55,.45),0 0 40px rgba(240,163,44,.3),0 2px 5px rgba(0,0,0,.65);
-  animation:litText 3.4s ease-in-out infinite}
-@keyframes litText{
-  0%,100%{text-shadow:0 0 12px rgba(255,176,55,.38),0 0 34px rgba(240,163,44,.24),0 2px 5px rgba(0,0,0,.65)}
-  50%{text-shadow:0 0 18px rgba(255,191,80,.6),0 0 52px rgba(240,163,44,.42),0 2px 5px rgba(0,0,0,.65)}}
+.quote-band q{font-family:"Forum",serif;font-size:clamp(1.4rem,3.6vw,2.2rem);color:var(--gold-l);font-style:normal}
 .quote-band q::before,.quote-band q::after{content:"";}
-.eternal{grid-area:1/1;width:auto;margin:0;opacity:.96}
-.eternal svg{display:block;width:clamp(230px,32vw,330px);height:auto;margin:0 auto;overflow:visible}
+.eternal{width:120px;margin:0 auto 8px}
+.eternal svg{display:block;width:120px;height:130px;margin:0 auto;overflow:visible}
 .ef-sway{transform-box:fill-box;transform-origin:50% 100%;animation:efSway 3.4s ease-in-out infinite}
 @keyframes efSway{
   0%,100%{transform:rotate(-1.6deg) scaleY(1)}
