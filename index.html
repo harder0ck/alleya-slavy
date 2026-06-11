@@ -138,6 +138,29 @@ nav{
   background:linear-gradient(180deg,rgba(201,162,39,.04),transparent)}
 .quote-band q{font-family:"Forum",serif;font-size:clamp(1.4rem,3.6vw,2.2rem);color:var(--gold-l);font-style:normal}
 .quote-band q::before,.quote-band q::after{content:"";}
+.eternal{width:74px;height:84px;margin:0 auto 14px;position:relative}
+.eternal .star{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:74px;height:26px;
+  background:linear-gradient(180deg,#8a6f2f,#4c3d18);
+  clip-path:polygon(50% 0,61% 32%,96% 32%,68% 53%,79% 88%,50% 66%,21% 88%,32% 53%,4% 32%,39% 32%);
+  filter:drop-shadow(0 6px 14px rgba(0,0,0,.5))}
+.eternal .fl{position:absolute;left:50%;bottom:16px;transform-origin:50% 100%;
+  border-radius:50% 50% 50% 50%/64% 64% 36% 36%}
+.eternal .fl1{width:30px;height:48px;margin-left:-15px;
+  background:radial-gradient(60% 80% at 50% 78%,#ffdf8a 0%,#f0a32c 45%,#c2531d 78%,rgba(194,83,29,0) 100%);
+  filter:blur(.6px) drop-shadow(0 0 18px rgba(240,163,44,.55));
+  animation:flameSway 2.1s ease-in-out infinite}
+.eternal .fl2{width:16px;height:30px;margin-left:-8px;bottom:18px;
+  background:radial-gradient(60% 80% at 50% 80%,#fff7d6 0%,#ffd76a 55%,rgba(255,215,106,0) 100%);
+  animation:flameSway 1.6s ease-in-out -0.6s infinite}
+.eternal .glow{position:absolute;left:50%;bottom:0;width:150px;height:90px;transform:translateX(-50%);
+  background:radial-gradient(50% 60% at 50% 70%,rgba(240,163,44,.28),transparent 70%);
+  animation:glowPulse 2.6s ease-in-out infinite;pointer-events:none}
+@keyframes flameSway{
+  0%,100%{transform:scaleY(1) rotate(-2.5deg) skewX(-2deg)}
+  30%{transform:scaleY(1.1) rotate(2deg) skewX(2.5deg)}
+  55%{transform:scaleY(.93) rotate(-1.5deg) skewX(-1.5deg)}
+  80%{transform:scaleY(1.06) rotate(2.5deg) skewX(1.5deg)}}
+@keyframes glowPulse{0%,100%{opacity:.75}50%{opacity:1}}
 
 /* ===== DECLARATION ===== */
 .declaration{background:var(--bg-2)}
@@ -937,6 +960,7 @@ body::before{animation:aurora 22s ease-in-out infinite alternate}
         <a href="team.html">Команда</a>
         <a href="media.html">Медиа</a>
         <a href="materials.html">Файлы проекта</a>
+        <a href="#" onclick="openLk();return false;">Личный кабинет</a>
       </div>
     </div>
     <a href="materials.html">Файлы</a>
@@ -962,7 +986,10 @@ body::before{animation:aurora 22s ease-in-out infinite alternate}
   <div class="scroll-hint">Листайте вниз</div>
 </header>
 
-<div class="quote-band"><q>Никто не забыт, ничто не забыто</q></div>
+<div class="quote-band">
+  <div class="eternal" aria-hidden="true"><span class="glow"></span><span class="fl fl1"></span><span class="fl fl2"></span><span class="star"></span></div>
+  <q>Никто не забыт, ничто не забыто</q>
+</div>
 
 <!-- DECLARATION -->
 <section class="section declaration" id="decl">
