@@ -138,16 +138,6 @@ nav{
   background:linear-gradient(180deg,rgba(201,162,39,.04),transparent)}
 .quote-band q{font-family:"Forum",serif;font-size:clamp(1.4rem,3.6vw,2.2rem);color:var(--gold-l);font-style:normal}
 .quote-band q::before,.quote-band q::after{content:"";}
-.eternal{width:120px;margin:0 auto 8px}
-.eternal svg{display:block;width:120px;height:130px;margin:0 auto;overflow:visible}
-.ef-sway{transform-box:fill-box;transform-origin:50% 100%;animation:efSway 3.4s ease-in-out infinite}
-@keyframes efSway{
-  0%,100%{transform:rotate(-1.6deg) scaleY(1)}
-  30%{transform:rotate(1.4deg) scaleY(1.05)}
-  60%{transform:rotate(-.8deg) scaleY(.96)}
-  80%{transform:rotate(1.8deg) scaleY(1.03)}}
-.ef-glow{animation:glowPulse 2.6s ease-in-out infinite}
-@keyframes glowPulse{0%,100%{opacity:.7}50%{opacity:1}}
 
 /* ===== DECLARATION ===== */
 .declaration{background:var(--bg-2)}
@@ -973,10 +963,7 @@ body::before{animation:aurora 22s ease-in-out infinite alternate}
   <div class="scroll-hint">Листайте вниз</div>
 </header>
 
-<div class="quote-band">
-  <div class="eternal" aria-hidden="true"><svg viewBox="0 0 120 130" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="gGlow" cx="50%" cy="62%" r="50%"><stop offset="0%" stop-color="#f0a32c" stop-opacity=".5"/><stop offset="70%" stop-color="#f0a32c" stop-opacity="0"/></radialGradient><linearGradient id="gOut" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e8401c"/><stop offset="55%" stop-color="#f07f1f"/><stop offset="100%" stop-color="#c2531d"/></linearGradient><linearGradient id="gMid" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffb237"/><stop offset="100%" stop-color="#ffd76a"/></linearGradient><filter id="fireWobble" x="-30%" y="-30%" width="160%" height="160%"><feTurbulence type="fractalNoise" baseFrequency="0.028 0.055" numOctaves="2" seed="7" result="n"><animate attributeName="baseFrequency" dur="6s" values="0.028 0.055;0.034 0.07;0.026 0.05;0.028 0.055" repeatCount="indefinite"/></feTurbulence><feDisplacementMap in="SourceGraphic" in2="n" scale="7" xChannelSelector="R" yChannelSelector="G"/></filter><filter id="soft"><feGaussianBlur stdDeviation="0.7"/></filter></defs><ellipse cx="60" cy="80" rx="56" ry="48" fill="url(#gGlow)" class="ef-glow"/><g filter="url(#fireWobble)" transform="translate(0,13)"><g class="ef-sway"><path filter="url(#soft)" fill="url(#gOut)" opacity=".92"d="M60 22 C66 38 74 48 76 62 C78 78 70 90 60 90 C50 90 42 78 44 62 C46 48 54 38 60 22 Z"/><path filter="url(#soft)" fill="url(#gMid)" opacity=".95"d="M60 42 C64 52 69 59 70 68 C71 79 66 86 60 86 C54 86 49 79 50 68 C51 59 56 52 60 42 Z"/><path fill="#fff4cf"d="M60 60 C62.5 66 65 69.5 65 74.5 C65 80.5 62.5 83.5 60 83.5 C57.5 83.5 55 80.5 55 74.5 C55 69.5 57.5 66 60 60 Z"/></g></g><g class="ef-star"><path d="M60,106 L51.5,101.1 L60.0,90.9 Z" fill="#a8853c"/><path d="M60,106 L60.0,90.9 L68.5,101.1 Z" fill="#6b5320"/><path d="M60,106 L68.5,101.1 L94.2,101.3 Z" fill="#a8853c"/><path d="M60,106 L94.2,101.3 L73.8,107.9 Z" fill="#6b5320"/><path d="M60,106 L73.8,107.9 L81.2,118.2 Z" fill="#a8853c"/><path d="M60,106 L81.2,118.2 L60.0,112.1 Z" fill="#6b5320"/><path d="M60,106 L60.0,112.1 L38.8,118.2 Z" fill="#a8853c"/><path d="M60,106 L38.8,118.2 L46.2,107.9 Z" fill="#6b5320"/><path d="M60,106 L46.2,107.9 L25.8,101.3 Z" fill="#a8853c"/><path d="M60,106 L25.8,101.3 L51.5,101.1 Z" fill="#6b5320"/><ellipse cx="60" cy="106" rx="9.5" ry="4.6" fill="#2a2118"/><ellipse cx="60" cy="105.2" rx="9.5" ry="4.6" fill="none" stroke="#caa452" stroke-width="1.1"/></g></svg></div>
-  <q>Никто не забыт, ничто не забыто</q>
-</div>
+<div class="quote-band"><q>Никто не забыт, ничто не забыто</q></div>
 
 <!-- DECLARATION -->
 <section class="section declaration" id="decl">
