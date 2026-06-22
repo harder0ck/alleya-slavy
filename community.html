@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Комьюнити проекта Аллеи Славы: деятели культуры, искусства и общественные активисты, поддерживающие идею сохранения памяти.">
+<title>Комьюнити · Аллеи Славы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Forum&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Marck+Script&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(360px,100%),1fr));gap:20px}
+.bio{display:flex;gap:18px;background:linear-gradient(160deg,var(--panel),var(--bg));
+  border:1px solid var(--line);border-radius:16px;padding:22px;transition:border-color .25s,transform .2s}
+.bio:hover{border-color:rgba(201,162,39,.4);transform:translateY(-2px)}
+.bio .ava{flex:0 0 auto;width:66px;height:66px;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+.bio .ava svg{width:100%;height:100%;display:block}
+.bio h4{font-family:"Forum",serif;font-weight:400;font-size:1.2rem;color:var(--ink);margin-bottom:2px}
+.bio .role{font-family:"Forum",serif;letter-spacing:.04em;color:var(--gold);font-size:.82rem;text-transform:uppercase;display:block;margin-bottom:9px}
+.bio p{color:#cdd6cc;font-size:.9rem;line-height:1.6}
+.bio p+p{margin-top:9px}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="brand" href="index.html"><span class="flame"></span> Аллеи Славы</a>
+  <button class="burger" onclick="toggleNav()">☰</button>
+  <div class="nav-links">
+    <a class="home-link" href="index.html">← Главная</a>
+    <a href="pavlovnia.html">О павловнии</a>
+    <a href="geography.html">География</a>
+    <a href="team.html">Команда</a>
+    <a href="community.html" class="active">Комьюнити</a>
+    <a href="media.html">Медиа</a>
+    <a href="materials.html">Файлы</a>
+    <a href="index.html#contacts">Контакты</a>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="crumbs"><a href="index.html">Главная</a> · База знаний · Комьюнити</div>
+  <h1>Комьюнити <span class="gold">проекта</span></h1>
+  <p>Идею Аллеи Славы поддерживают деятели культуры, искусства и общественные активисты. Ниже — краткие публичные сведения об участниках сообщества.</p>
+  <div class="rule"></div>
+</header>
+
+<section class="section">
+  <div class="wrap">
+    <div class="team-grid" id="commGrid"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="flame"></div>
+  <div class="pledge"><span>Помним</span><span>Гордимся</span><span>Чтим</span></div>
+  <p class="cr">Аллеи Славы © 2026. Вечная память героям.</p>
+</footer>
+
+<script src="assets/site.js"></script>
+<script>
+const community=[
+  {n:'Шевкунов Н. Ф.',c1:'#b5683f',c2:'#8a4a2a',role:'Скульптор-медальер · художник',
+   bio:[
+     'Член Творческого союза художников России, скульптор-медальер. Автор более ста памятных медалей, общественных наград и знаков. Помимо обширных частных коллекций, авторские медали хранятся в Государственном историческом музее (ГИМ), практически во всех ведущих музеях космонавтики России, в краеведческих музеях Ростовской области и других регионов. Автор нескольких памятников, памятных досок и памятных знаков.',
+     'Член ряда общественных сообществ: Русского географического общества (председатель геральдической комиссии регионального отделения), РВИО, ВООПИиК, Федерации космонавтики России, нескольких ветеранских военных организаций. Служил в РВСН, подполковник в отставке.',
+     'Активный участник общественных программ. Инициатор программы «Имя — Берест!» (присвоение А. П. Бересту звания Героя России, присвоение станции «Сельмаш» имени А. П. Береста, учреждение знака «Однополчанин Береста»), инициатор региональной награды «Медаль Береста», автор памятной медали «100 лет А. П. Бересту» (хранится в ГИМ). 23 февраля 1963 года в ДК завода «Ростсельмаш» был принят А. П. Берестом в пионеры.',
+     'Активно участвует в увековечении памяти бойцов и командиров РККА — жертв «Гросс-лазарета 192», «Ростовского лагеря смерти». Инициатор создания дубовых аллей и рощ из желудей «платовских дубов», растущих в Новочеркасске: «Платовские дубки» уже высажены в парке у храма Георгия Победоносца в Ростове-на-Дону и в селе Весело-Вознесенке (Платовке), где скончался донской атаман.',
+     'Дипломант Академии художеств России за разработку и создание серии ювелирных изделий (2026). Награждён бронзовой медалью Творческого союза художников России (2020) за большой вклад в сохранение и развитие российского медальерного искусства. Создатель «Художественной медальерной мастерской Шевкунова Н.».'
+   ]},
+  {n:'Ильинов Максим Владимирович',c1:'#46785a',c2:'#335a44',role:'Художник, поэт, музыкант · донской казак',
+   bio:[
+     'Художник, поэт, музыкант, общественный деятель, донской казак.',
+     'Член комиссии по работе с общественными объединениями казаков Совета при Президенте РФ по делам казачества. Хорунжий Всевеликого войска Донского.'
+   ]}
+];
+function monogram(p,i){const parts=p.n.split(' ');const ini=(parts[0][0]||'')+(parts[1]?parts[1][0]:'');
+  return `<svg viewBox="0 0 100 100"><defs><linearGradient id="bg${i}" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="${p.c1}"/><stop offset="1" stop-color="${p.c2}"/></linearGradient></defs>
+    <rect width="100" height="100" fill="url(#bg${i})"/>
+    <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-family="Forum,serif" font-size="42" fill="#fff" opacity=".95">${ini}</text></svg>`;}
+document.getElementById('commGrid').innerHTML=community.map((p,i)=>
+  `<div class="bio reveal"><div class="ava">${monogram(p,i)}</div>
+   <div class="bio-tx"><h4>${p.n}</h4><span class="role">${p.role}</span><p>${p.bio.join('</p><p>')}</p></div></div>`).join('');
+</script>
+</body>
+</html>

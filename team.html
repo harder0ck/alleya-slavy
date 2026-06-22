@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Forum&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Marck+Script&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 <style>
-.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:20px}
 .bio{display:flex;gap:18px;background:linear-gradient(160deg,var(--panel),var(--bg));
   border:1px solid var(--line);border-radius:16px;padding:22px;transition:border-color .25s,transform .2s}
 .bio:hover{border-color:rgba(201,162,39,.4);transform:translateY(-2px)}
@@ -19,6 +19,9 @@
 .bio h4{font-family:"Forum",serif;font-weight:400;font-size:1.2rem;color:var(--ink);margin-bottom:2px}
 .bio .role{font-family:"Forum",serif;letter-spacing:.04em;color:var(--gold);font-size:.82rem;text-transform:uppercase;display:block;margin-bottom:9px}
 .bio p{color:#cdd6cc;font-size:.9rem;line-height:1.6}
+.bio .vk{margin-top:10px}
+.bio .vk a{color:var(--gold-l);font-family:"Forum",serif;font-size:.86rem;letter-spacing:.03em;text-decoration:none;border-bottom:1px solid rgba(201,162,39,.4)}
+.bio .vk a:hover{color:var(--gold)}
 </style>
 </head>
 <body>
@@ -31,6 +34,7 @@
     <a href="pavlovnia.html">О павловнии</a>
     <a href="geography.html">География</a>
     <a href="team.html" class="active">Команда</a>
+    <a href="community.html">Комьюнити</a>
     <a href="media.html">Медиа</a>
     <a href="materials.html">Файлы</a>
     <a href="index.html#contacts">Контакты</a>
@@ -59,7 +63,7 @@
 <script src="assets/site.js"></script>
 <script>
 const team=[
-  {n:'Климов Андрей Анатольевич',c1:'#46785a',c2:'#335a44',role:'Руководитель проекта',
+  {n:'Климов Андрей Анатольевич',c1:'#46785a',c2:'#335a44',role:'Руководитель проекта',vk:'https://vk.ru/app8089300',
    bio:'Заместитель председателя Ростовского регионального отделения АВБД ОВД и ВВ России, ветеран боевых действий. Образование — государственное и муниципальное управление (МГУТУ им. К.Г. Разумовского). Автор проекта «Организация многоцелевых природных экокластеров», финалист и лауреат конкурсов Общественной палаты Ростовской области.'},
   {n:'Шестаков Виталий Анатольевич',c1:'#c9a227',c2:'#9a7b3f',role:'Инженер-геодезист',
    bio:'Инженер-геодезист (РИСИ / ЮРГСА, специальность «Прикладная геодезия»). Специалист по капитальному строительству, строительному контролю и техническому надзору.'},
@@ -79,7 +83,7 @@ function monogram(p,i){const parts=p.n.split(' ');const ini=(parts[0][0]||'')+(p
     <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-family="Forum,serif" font-size="42" fill="#fff" opacity=".95">${ini}</text></svg>`;}
 document.getElementById('teamGrid').innerHTML=team.map((p,i)=>
   `<div class="bio reveal"><div class="ava">${monogram(p,i)}</div>
-   <div class="bio-tx"><h4>${p.n}</h4><span class="role">${p.role}</span><p>${p.bio}</p></div></div>`).join('');
+   <div class="bio-tx"><h4>${p.n}</h4><span class="role">${p.role}</span><p>${p.bio}</p>${p.vk?`<p class="vk"><a href="${p.vk}" target="_blank" rel="noopener">ВКонтакте →</a></p>`:''}</div></div>`).join('');
 </script>
 </body>
 </html>

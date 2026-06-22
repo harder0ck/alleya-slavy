@@ -84,7 +84,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 
 /* ===== HUB CARDS (для главной и подстраниц) ===== */
-.hub-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px}
+.hub-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr));gap:22px}
 .hub-card{position:relative;display:flex;flex-direction:column;background:linear-gradient(160deg,var(--panel),var(--bg));
   border:1px solid var(--line);border-radius:18px;padding:28px;box-shadow:var(--shadow);overflow:hidden;
   transition:transform .25s,border-color .25s,box-shadow .25s}
@@ -102,7 +102,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .hub-card .go{margin-top:18px;color:var(--gold);font-family:"Forum",serif;letter-spacing:.05em}
 
 /* ===== DOCUMENT DOWNLOAD LIST ===== */
-.doc-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.doc-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:16px}
 .doc-card{display:flex;align-items:flex-start;gap:16px;background:linear-gradient(160deg,var(--panel),var(--bg));
   border:1px solid var(--line);border-radius:14px;padding:20px;transition:border-color .25s,transform .2s}
 .doc-card:hover{border-color:rgba(201,162,39,.4);transform:translateY(-2px);box-shadow:0 16px 40px rgba(0,0,0,.4)}
@@ -120,7 +120,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .doc-card .acts svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 
 /* ===== FACTS ===== */
-.fact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px}
+.fact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:18px}
 .fact{position:relative;background:linear-gradient(160deg,var(--panel),var(--bg));border:1px solid var(--line);
   border-radius:14px;padding:24px 22px;overflow:hidden;transition:border-color .25s,transform .2s}
 .fact::before{content:"";position:absolute;top:0;left:22px;width:30px;height:2px;
@@ -139,7 +139,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .pat-rows .row b{color:#d8d2c2;font-weight:400;text-align:right}
 
 /* ===== SETTLEMENTS ===== */
-.set-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.set-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:18px}
 .set-card{background:linear-gradient(160deg,var(--panel),var(--bg));border:1px solid var(--line);
   border-radius:16px;padding:24px;transition:border-color .25s,transform .2s}
 .set-card:hover{border-color:rgba(201,162,39,.4);transform:translateY(-2px);box-shadow:0 16px 40px rgba(0,0,0,.4)}
@@ -161,7 +161,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
   border-radius:9px;padding:9px 16px;cursor:pointer;transition:.2s}
 .plot-filter button:hover{color:var(--ink)}
 .plot-filter button.active{background:linear-gradient(135deg,var(--gold),var(--bronze));color:#0c120e}
-.plot-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px}
+.plot-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(240px,100%),1fr));gap:20px}
 .plot{background:linear-gradient(160deg,var(--panel),var(--bg));border:1px solid var(--line);
   border-radius:14px;overflow:hidden;transition:transform .25s,border-color .25s}
 .plot:hover{transform:translateY(-4px);border-color:rgba(201,162,39,.4)}
@@ -180,7 +180,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .plot .pb .dl svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 
 /* ===== GALLERY ===== */
-.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr));gap:14px}
 .gallery figure{position:relative;border-radius:13px;overflow:hidden;border:1px solid var(--line);
   cursor:zoom-in;aspect-ratio:4/3;background:#0a120d}
 .gallery img{width:100%;height:100%;object-fit:cover;transition:transform .45s;filter:saturate(.95)}
