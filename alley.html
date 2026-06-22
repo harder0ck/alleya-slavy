@@ -387,6 +387,40 @@ nav{
 .rate{display:flex;gap:6px;font-size:1.6rem;color:var(--line);cursor:pointer;justify-content:center;margin-bottom:8px}
 .rate span{transition:.15s}
 .rate span.on,.rate span:hover{color:var(--gold);transform:scale(1.1)}
+/* official endorsement letter */
+.endorse{display:grid;grid-template-columns:auto 1fr;gap:34px;align-items:stretch;
+  background:linear-gradient(160deg,rgba(201,162,39,.07),rgba(70,120,90,.04));
+  border:1px solid rgba(201,162,39,.28);border-radius:20px;padding:30px;margin-bottom:44px;
+  position:relative;overflow:hidden}
+.endorse::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;
+  background:linear-gradient(180deg,var(--gold),var(--bronze))}
+.endorse .doc-thumb{display:block;position:relative;flex:0 0 auto;width:210px;border-radius:12px;overflow:hidden;
+  border:1px solid var(--line);box-shadow:0 12px 30px rgba(0,0,0,.5);
+  transition:transform .25s,box-shadow .25s;align-self:center}
+.endorse .doc-thumb img{width:100%;display:block}
+.endorse .doc-thumb:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(0,0,0,.6)}
+.endorse .doc-thumb .open-ov{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:rgba(10,15,12,.45);opacity:0;transition:.25s}
+.endorse .doc-thumb:hover .open-ov{opacity:1}
+.endorse .doc-thumb .open-ov span{background:rgba(10,15,12,.75);border:1px solid var(--gold);
+  color:var(--gold-l);font-size:.82rem;padding:8px 14px;border-radius:30px}
+.endorse .doc-body{display:flex;flex-direction:column;justify-content:center}
+.endorse .doc-badge{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;
+  font-family:"Forum",serif;letter-spacing:.04em;text-transform:uppercase;font-size:.76rem;
+  color:var(--gold);border:1px solid rgba(201,162,39,.4);border-radius:30px;padding:5px 13px;margin-bottom:14px}
+.endorse .doc-badge svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.6}
+.endorse blockquote{margin:0 0 16px;font-family:"PT Serif",serif;font-style:italic;
+  color:#e6ddc8;font-size:1.12rem;line-height:1.55}
+.endorse .doc-meta b{display:block;font-family:"Forum",serif;font-weight:400;color:var(--ink);font-size:1.02rem;margin-bottom:2px}
+.endorse .doc-meta span{color:var(--muted);font-size:.86rem;line-height:1.5;display:block}
+.endorse .doc-actions{margin-top:18px}
+.endorse .doc-actions .btn{font-size:.9rem;padding:11px 22px}
+@media(max-width:720px){
+  .endorse{grid-template-columns:1fr;gap:22px;padding:24px;text-align:center}
+  .endorse .doc-thumb{width:180px;margin:0 auto}
+  .endorse .doc-badge,.endorse .doc-body{align-self:center}
+  .endorse .doc-body{align-items:center}
+}
 
 /* ===== VIDEO / AVATAR / QR ===== */
 .media{background:var(--bg-2)}
@@ -1210,6 +1244,25 @@ body::before{animation:aurora 22s ease-in-out infinite alternate}
       <p>Слова посетителей, семей героев и волонтёров нашей Аллеи Славы.</p>
       <div class="rule"></div>
     </div>
+
+    <div class="endorse reveal">
+      <a class="doc-thumb" href="assets/docs/medvedev-letter.pdf" target="_blank" rel="noopener" aria-label="Открыть письмо поддержки (PDF)">
+        <img src="assets/docs/medvedev-letter.jpg" alt="Письмо поддержки прихода храма Святого Георгия Победоносца" loading="lazy">
+        <span class="open-ov"><span>Открыть PDF</span></span>
+      </a>
+      <div class="doc-body">
+        <span class="doc-badge"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15a0 0 0 0 1 0 0H6a0 0 0 0 1 0 0z"/><path d="M14 2v6h6"/></svg>Официальное письмо поддержки</span>
+        <blockquote>«Полностью поддерживаем вашу концепцию по созданию памятных деревьев-аватаров в честь павших воинов со времён Великой Отечественной войны».</blockquote>
+        <div class="doc-meta">
+          <b>Протоиерей Валерий Волощук</b>
+          <span>Настоятель прихода, руководитель отдела ВВСиПО · Православный приход храма Святого Георгия Победоносца, Ростовская-на-Дону епархия РПЦ (Московский Патриархат) · 17 июня 2026 г.</span>
+        </div>
+        <div class="doc-actions">
+          <a class="btn" href="assets/docs/medvedev-letter.pdf" target="_blank" rel="noopener">Открыть документ (PDF)</a>
+        </div>
+      </div>
+    </div>
+
     <div class="rev-grid" id="revGrid"></div>
     <div class="add-rev reveal">
       <h3>Оставить отзыв</h3>
