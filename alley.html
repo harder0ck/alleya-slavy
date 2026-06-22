@@ -352,6 +352,17 @@ nav{
   border-radius:10px;padding:13px 15px;color:var(--ink);font-family:"PT Serif";font-size:1rem;transition:.2s}
 .field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,162,39,.12)}
 .field textarea{min-height:110px;resize:vertical}
+.consent{display:flex;align-items:flex-start;gap:11px;margin:4px 0 18px;text-align:left;cursor:pointer}
+.consent input{appearance:none;-webkit-appearance:none;flex:0 0 auto;width:20px;height:20px;margin-top:1px;
+  border:1px solid var(--line);border-radius:6px;background:var(--bg);cursor:pointer;position:relative;transition:.2s}
+.consent input:hover{border-color:var(--gold)}
+.consent input:checked{background:linear-gradient(180deg,var(--gold),var(--bronze));border-color:var(--gold)}
+.consent input:checked::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;
+  border:solid #1a140a;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.consent input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.consent span{font-size:.86rem;color:var(--muted);line-height:1.45}
+.consent a{color:var(--gold-l);border-bottom:1px dashed rgba(201,162,39,.5)}
+.consent a:hover{color:#fff;border-color:#fff}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .btn{display:inline-block;cursor:pointer;font-family:"Forum",serif;letter-spacing:.1em;text-transform:uppercase;
   font-size:.92rem;background:linear-gradient(180deg,var(--gold),var(--bronze));color:#1a140a;border:none;
@@ -1182,6 +1193,7 @@ body::before{animation:aurora 22s ease-in-out infinite alternate}
           <select><option>Посадка дерева</option><option>Памятная встреча</option><option>Субботник / уход за аллеей</option><option>Экскурсия для школьников</option><option>Другое</option></select>
         </div>
         <div class="field"><label>Описание идеи</label><textarea required placeholder="Опишите вашу идею, желаемую дату и количество участников"></textarea></div>
+        <label class="consent"><input type="checkbox" required><span>Я даю согласие на обработку моих персональных данных в соответствии с <a href="privacy.html" target="_blank" rel="noopener">Политикой конфиденциальности</a> и Федеральным законом № 152-ФЗ «О персональных данных».</span></label>
         <div style="text-align:center"><button class="btn" type="submit">Отправить предложение</button></div>
         <div class="form-msg" id="proposeMsg"></div>
       </form>
@@ -1208,6 +1220,7 @@ body::before{animation:aurora 22s ease-in-out infinite alternate}
           <div class="field"><label>Кто вы</label><input id="revRole" placeholder="Напр.: посетитель, волонтёр"></div>
         </div>
         <div class="field"><label>Ваш отзыв</label><textarea id="revText" required placeholder="Поделитесь впечатлениями"></textarea></div>
+        <label class="consent"><input type="checkbox" id="revConsent" required><span>Я даю согласие на обработку моих персональных данных в соответствии с <a href="privacy.html" target="_blank" rel="noopener">Политикой конфиденциальности</a> и Федеральным законом № 152-ФЗ «О персональных данных».</span></label>
         <div style="text-align:center"><button class="btn" type="submit">Опубликовать отзыв</button></div>
         <div class="form-msg" id="revMsg"></div>
       </form>
@@ -1333,6 +1346,7 @@ body::before{animation:aurora 22s ease-in-out infinite alternate}
           <div class="field"><label>Имя</label><input required placeholder="Ваше имя"></div>
           <div class="field"><label>E-mail</label><input type="email" required placeholder="email@example.com"></div>
           <div class="field"><label>Сообщение</label><textarea required placeholder="Ваш вопрос или предложение"></textarea></div>
+          <label class="consent"><input type="checkbox" required><span>Я даю согласие на обработку моих персональных данных в соответствии с <a href="privacy.html" target="_blank" rel="noopener">Политикой конфиденциальности</a> и Федеральным законом № 152-ФЗ «О персональных данных».</span></label>
           <button class="btn" type="submit">Отправить</button>
           <div class="form-msg" id="contactMsg"></div>
         </form>
