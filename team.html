@@ -74,7 +74,10 @@ const team=[
   {n:'Медведев Александр Владимирович',c1:'#3f7fb5',c2:'#2a5a8a',role:'Юрист',
    bio:'Юрист (Ростовская высшая школа МВД). Проходил службу во Внутренних войсках МВД РФ.'},
   {n:'Ломакин А. В.',c1:'#5a8a6a',c2:'#3f6a4a',role:'Городское управление',
-   bio:'Специалист в сфере городского управления и градостроительства.'}
+   bio:'Специалист в сфере городского управления и градостроительства.'},
+  {n:'Николай Томатный',c1:'#c9a227',c2:'#6f4f9a',role:'Создатель и разработчик сайта',
+   link:'https://t.me/nick1name1',linkLabel:'Telegram →',
+   bio:'Создатель и разработчик сайта «Аллеи Славы» — идея, дизайн и техническая реализация проекта.'}
 ];
 function monogram(p,i){const parts=p.n.split(' ');const ini=(parts[0][0]||'')+(parts[1]?parts[1][0]:'');
   return `<svg viewBox="0 0 100 100"><defs><linearGradient id="bg${i}" x1="0" y1="0" x2="1" y2="1">
@@ -83,7 +86,7 @@ function monogram(p,i){const parts=p.n.split(' ');const ini=(parts[0][0]||'')+(p
     <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-family="Forum,serif" font-size="42" fill="#fff" opacity=".95">${ini}</text></svg>`;}
 document.getElementById('teamGrid').innerHTML=team.map((p,i)=>
   `<div class="bio reveal"><div class="ava">${monogram(p,i)}</div>
-   <div class="bio-tx"><h4>${p.n}</h4><span class="role">${p.role}</span><p>${p.bio}</p>${p.vk?`<p class="vk"><a href="${p.vk}" target="_blank" rel="noopener">ВКонтакте →</a></p>`:''}</div></div>`).join('');
+   <div class="bio-tx"><h4>${p.n}</h4><span class="role">${p.role}</span><p>${p.bio}</p>${p.vk?`<p class="vk"><a href="${p.vk}" target="_blank" rel="noopener">ВКонтакте →</a></p>`:''}${p.link?`<p class="vk"><a href="${p.link}" target="_blank" rel="noopener">${p.linkLabel||'Ссылка →'}</a></p>`:''}</div></div>`).join('');
 </script>
 </body>
 </html>
